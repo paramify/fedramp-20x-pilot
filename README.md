@@ -66,7 +66,7 @@ Our draft package submission is represented using YAML due to its simplicity.  T
 ---
 
 ## 📑 Assessment File Structure
-The machine-readable assessment file is a YAML file with the following structure / schema:
+The machine-readable assessment file is a YAML file with the following structure (see [schema.yaml](schema.yaml)):
 
 ```yaml
 Package:
