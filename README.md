@@ -211,9 +211,6 @@ It is anticipated that Paramify Cloud will allow for a shareable link that shows
 ### Step 8 - CSP Rationale and Summary
 Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods.
 
-### Step 8 - CSP Rationale and Summary
-Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods.
-
 ### Step 9 - CSP Submission
 Similar to the Continuous Reporting capability, the package will be available either with a viewable link or through the machine-readable package file with a friendly HTML viewer.
 
