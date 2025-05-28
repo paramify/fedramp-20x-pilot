@@ -1,0 +1,1808 @@
+Package:
+  CSPName: Lorem Technologies Inc
+  CSO: Lorem Cloud Platform
+  impact: Low
+  summaryOfCSO: Lorem Cloud Platform provides scalable infrastructure services with integrated security monitoring and compliance automation for federal agencies and commercial enterprises.
+  Assessments:
+  - Assessment:
+      digitalSignature: 9f4e2207df7d2b9f5a8c6b1e3d4a5f7c8e9b2a1d
+      assessorOrg: Ipsum Security Partners
+      date: 6/15/2025
+      leadAssessor: Jane Consectetur
+      recommendation: Authorize
+      remarks: All KSIs demonstrated adequate implementation with minor findings addressed during assessment period.
+      KSIs:
+      - KSI:
+          name: Cloud Native Architecture
+          shortName: KSI-CNA
+          status: Complete
+          Validations:
+          - validation:
+              id: 1
+              shortName: KSI-CNA-1
+              description: Have denial of service (DoS) protection
+              implementation: AWS WAF with rate limiting
+              implementationStatus: True
+              digitalSignature: 2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/12/2025
+              remarks: WAF rules properly configured with rate limiting
+              Evidences:
+              - evidence:
+                  id: 1.1
+                  name: WAF Configuration
+                  description: Web application firewall DoS protection rules
+                  instructions: Review WAF rate limiting configuration
+                  automated: True
+                  commands: aws wafv2 list-web-acls --scope CLOUDFRONT
+                  scriptName: check_waf_dos.sh
+                  validationRules:
+                  - rule:
+                      id: 1.1.1
+                      textValue: RateBasedStatement
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/12/2025
+                  remarks: Rate limiting rule found with 2000 requests per 5 minutes
+                  Artifacts:
+                  - artifact:
+                      name: WAF Rules Output
+                      reference: waf_rules_output.json
+                      outputResults: '{"WebACLs":[{"Name":"lorem-waf","Id":"abc123","DefaultAction":{"Allow":{}},"Rules":[{"Name":"RateLimitRule","Priority":1,"Statement":{"RateBasedStatement":{"Limit":2000,"AggregateKeyType":"IP"}},"Action":{"Block":{}}}]}]}'
+                      effectiveDate: 6/10/2025
+          - validation:
+              id: 2
+              shortName: KSI-CNA-2
+              description: Configure firewalls/proxy servers to limit inbound and outbound traffic
+              implementation: Security groups and NACLs
+              implementationStatus: True
+              digitalSignature: 3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/12/2025
+              remarks: Network controls properly restrict traffic flows
+              Evidences:
+              - evidence:
+                  id: 2.1
+                  name: Security Group Rules
+                  description: EC2 security group configurations
+                  instructions: Audit security group rules for least privilege
+                  automated: True
+                  commands: aws ec2 describe-security-groups
+                  scriptName: audit_security_groups.sh
+                  validationRules:
+                  - rule:
+                      id: 2.1.1
+                      textValue: "0.0.0.0/0"
+                  - rule:
+                      id: 2.1.2
+                      textValue: "FromPort"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/12/2025
+                  remarks: No overly permissive rules found
+                  Artifacts:
+                  - artifact:
+                      name: Security Groups Audit
+                      reference: sg_audit_results.json
+                      outputResults: '{"SecurityGroups":[{"GroupId":"sg-12345","GroupName":"lorem-web","IpPermissions":[{"IpProtocol":"tcp","FromPort":443,"ToPort":443,"IpRanges":[{"CidrIp":"10.0.0.0/8"}]}]}]}'
+                      effectiveDate: 6/10/2025
+              - evidence:
+                  id: 2.2
+                  name: NACL Configuration
+                  description: Network ACL rules review
+                  instructions: Review network ACL entries for proper traffic control
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/12/2025
+                  remarks: Manual review confirmed appropriate NACL rules
+                  Artifacts:
+                  - artifact:
+                      name: NACL Rules Documentation
+                      reference: nacl_review.pdf
+                      outputResults: ""
+                      effectiveDate: 6/10/2025
+          - validation:
+              id: 3
+              shortName: KSI-CNA-3
+              description: Use immutable containers and serverless functions with strictly defined functionality and privileges
+              implementation: ECS Fargate with read-only root filesystem
+              implementationStatus: True
+              digitalSignature: 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/13/2025
+              remarks: Container immutability properly enforced
+              Evidences:
+              - evidence:
+                  id: 3.1
+                  name: Container Configuration
+                  description: ECS task definition review
+                  instructions: Verify read-only root filesystem settings
+                  automated: True
+                  commands: aws ecs describe-task-definition --task-definition lorem-app
+                  scriptName: check_container_immutable.sh
+                  validationRules:
+                  - rule:
+                      id: 3.1.1
+                      textValue: '"readonlyRootFilesystem": true'
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/13/2025
+                  remarks: All containers configured with read-only root filesystem
+                  Artifacts:
+                  - artifact:
+                      name: Task Definition
+                      reference: task_definition.json
+                      outputResults: '{"taskDefinition":{"containerDefinitions":[{"name":"lorem-container","readonlyRootFilesystem":true,"cpu":256,"memory":512}]}}'
+                      effectiveDate: 6/11/2025
+                  - artifact:
+                      name: Lambda Function Config
+                      reference: lambda_config.json
+                      outputResults: '{"Configuration":{"FunctionName":"lorem-function","Runtime":"python3.9","Role":"arn:aws:iam::123456789012:role/lorem-lambda-role","Environment":{"Variables":{"ENV":"production"}}}}'
+                      effectiveDate: 6/11/2025
+          - validation:
+              id: 4
+              shortName: KSI-CNA-4
+              description: Design systems as logically segmented micro-services to minimize the attack surface and lateral movement if compromised
+              implementation: Microservices architecture with service mesh
+              implementationStatus: True
+              digitalSignature: 5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e
+              assessmentStatus: Partial
+              assessedBy: Jane Consectetur
+              assessedOn: 6/13/2025
+              remarks: Service mesh partially implemented, some services need isolation improvements
+              Evidences:
+              - evidence:
+                  id: 4.1
+                  name: Service Mesh Configuration
+                  description: Istio service mesh policies
+                  instructions: Review service-to-service communication policies
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/13/2025
+                  remarks: Service mesh policies reviewed, some gaps identified
+                  Artifacts:
+                  - artifact:
+                      name: Istio Policies
+                      reference: istio_policies.yaml
+                      outputResults: ""
+                      effectiveDate: 6/11/2025
+          - validation:
+              id: 5
+              shortName: KSI-CNA-5
+              description: Use cloud native virtual networks and related capabilities to enforce logical traffic flow controls
+              implementation: VPC with subnets and routing tables
+              implementationStatus: True
+              digitalSignature: 6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/13/2025
+              remarks: Network segmentation properly implemented
+              Evidences:
+              - evidence:
+                  id: 5.1
+                  name: VPC Configuration
+                  description: Virtual private cloud network setup
+                  instructions: Review VPC subnets and routing
+                  automated: True
+                  commands: aws ec2 describe-vpcs; aws ec2 describe-subnets
+                  scriptName: audit_vpc_config.sh
+                  validationRules:
+                  - rule:
+                      id: 5.1.1
+                      textValue: "private"
+                  - rule:
+                      id: 5.1.2
+                      textValue: "public"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/13/2025
+                  remarks: Proper network segmentation with public/private subnets
+                  Artifacts:
+                  - artifact:
+                      name: VPC Audit Results
+                      reference: vpc_audit.json
+                      outputResults: '{"Vpcs":[{"VpcId":"vpc-12345","CidrBlock":"10.0.0.0/16","State":"available"}],"Subnets":[{"SubnetId":"subnet-12345","VpcId":"vpc-12345","CidrBlock":"10.0.1.0/24","MapPublicIpOnLaunch":false}]}'
+                      effectiveDate: 6/11/2025
+          - validation:
+              id: 6
+              shortName: KSI-CNA-6
+              description: Execute continuous scanning of cloud native system components
+              implementation: Amazon Inspector and third-party vulnerability scanning
+              implementationStatus: True
+              digitalSignature: 7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/14/2025
+              remarks: Continuous scanning operational with regular reporting
+              Evidences:
+              - evidence:
+                  id: 6.1
+                  name: Inspector Scan Results
+                  description: AWS Inspector vulnerability findings
+                  instructions: Review recent vulnerability scan results
+                  automated: True
+                  commands: aws inspector2 list-findings --filter-criteria
+                  scriptName: get_inspector_findings.sh
+                  validationRules:
+                  - rule:
+                      id: 6.1.1
+                      textValue: "findings"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/14/2025
+                  remarks: Active scanning with findings tracked and remediated
+                  Artifacts:
+                  - artifact:
+                      name: Vulnerability Scan Report
+                      reference: vuln_scan_report.json
+                      outputResults: '{"findings":[{"severity":"MEDIUM","title":"Outdated package detected","status":"ACTIVE","remediation":"Update package to latest version"}]}'
+                      effectiveDate: 6/13/2025
+          - validation:
+              id: 7
+              shortName: KSI-CNA-7
+              description: Use high availability design principles to maximize uptime
+              implementation: Multi-AZ deployment with auto-scaling
+              implementationStatus: True
+              digitalSignature: 8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/14/2025
+              remarks: High availability architecture properly implemented
+              Evidences:
+              - evidence:
+                  id: 7.1
+                  name: Auto Scaling Configuration
+                  description: EC2 auto scaling group settings
+                  instructions: Verify multi-AZ deployment and scaling policies
+                  automated: True
+                  commands: aws autoscaling describe-auto-scaling-groups
+                  scriptName: check_ha_config.sh
+                  validationRules:
+                  - rule:
+                      id: 7.1.1
+                      textValue: "AvailabilityZones"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/14/2025
+                  remarks: Multi-AZ deployment confirmed with proper scaling
+                  Artifacts:
+                  - artifact:
+                      name: Auto Scaling Groups
+                      reference: asg_config.json
+                      outputResults: '{"AutoScalingGroups":[{"AutoScalingGroupName":"lorem-asg","MinSize":2,"MaxSize":10,"DesiredCapacity":3,"AvailabilityZones":["us-east-1a","us-east-1b","us-east-1c"]}]}'
+                      effectiveDate: 6/12/2025
+      - KSI:
+          name: Service Configuration
+          shortName: KSI-SC
+          status: Complete
+          Validations:
+          - validation:
+              id: 8
+              shortName: KSI-SC-1
+              description: Harden and review network and system configurations
+              implementation: CIS benchmarks and configuration management
+              implementationStatus: True
+              digitalSignature: 9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/15/2025
+              remarks: System hardening follows CIS benchmarks
+              Evidences:
+              - evidence:
+                  id: 8.1
+                  name: CIS Benchmark Compliance
+                  description: CIS benchmark assessment results
+                  instructions: Run CIS benchmark assessment tools
+                  automated: True
+                  commands: sudo /opt/cis-cat/cis-cat.sh -b /opt/cis-cat/benchmarks/
+                  scriptName: run_cis_assessment.sh
+                  validationRules:
+                  - rule:
+                      id: 8.1.1
+                      textValue: "PASS"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/15/2025
+                  remarks: 95% compliance with CIS benchmarks achieved
+                  Artifacts:
+                  - artifact:
+                      name: CIS Assessment Report
+                      reference: cis_assessment_report.xml
+                      outputResults: '<?xml version="1.0"?><report><benchmark>CIS Ubuntu 20.04</benchmark><score>95</score><status>PASS</status></report>'
+                      effectiveDate: 6/14/2025
+          - validation:
+              id: 9
+              shortName: KSI-SC-2
+              description: Encrypt all network traffic
+              implementation: TLS 1.3 for all communications
+              implementationStatus: True
+              digitalSignature: 0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/15/2025
+              remarks: All network traffic encrypted with TLS 1.3
+              Evidences:
+              - evidence:
+                  id: 9.1
+                  name: TLS Configuration
+                  description: Application load balancer TLS settings
+                  instructions: Verify TLS version and cipher suites
+                  automated: True
+                  commands: aws elbv2 describe-ssl-policies
+                  scriptName: check_tls_config.sh
+                  validationRules:
+                  - rule:
+                      id: 9.1.1
+                      textValue: "TLSv1.3"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/15/2025
+                  remarks: TLS 1.3 enforced across all endpoints
+                  Artifacts:
+                  - artifact:
+                      name: TLS Policy Configuration
+                      reference: tls_policies.json
+                      outputResults: '{"SslPolicies":[{"Name":"ELBSecurityPolicy-TLS13-1-2-2021-06","SslProtocols":["TLSv1.3"],"Ciphers":["TLS_AES_128_GCM_SHA256"]}]}'
+                      effectiveDate: 6/14/2025
+          - validation:
+              id: 10
+              shortName: KSI-SC-3
+              description: Encrypt all federal and sensitive information at rest
+              implementation: AWS KMS encryption for all data stores
+              implementationStatus: True
+              digitalSignature: 1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/15/2025
+              remarks: All data encrypted at rest using customer-managed KMS keys
+              Evidences:
+              - evidence:
+                  id: 10.1
+                  name: S3 Encryption Status
+                  description: S3 bucket encryption configuration
+                  instructions: Verify S3 bucket encryption settings
+                  automated: True
+                  commands: aws s3api get-bucket-encryption --bucket lorem-data-bucket
+                  scriptName: check_s3_encryption.sh
+                  validationRules:
+                  - rule:
+                      id: 10.1.1
+                      textValue: "aws:kms"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/15/2025
+                  remarks: All S3 buckets encrypted with KMS keys
+                  Artifacts:
+                  - artifact:
+                      name: S3 Encryption Config
+                      reference: s3_encryption.json
+                      outputResults: '{"ServerSideEncryptionConfiguration":{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"aws:kms","KMSMasterKeyID":"arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012"}}]}}'
+                      effectiveDate: 6/14/2025
+              - evidence:
+                  id: 10.2
+                  name: RDS Encryption Status
+                  description: RDS database encryption verification
+                  instructions: Check RDS instance encryption status
+                  automated: True
+                  commands: aws rds describe-db-instances
+                  scriptName: check_rds_encryption.sh
+                  validationRules:
+                  - rule:
+                      id: 10.2.1
+                      textValue: '"StorageEncrypted": true'
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/15/2025
+                  remarks: All RDS instances encrypted with KMS
+                  Artifacts:
+                  - artifact:
+                      name: RDS Encryption Status
+                      reference: rds_encryption.json
+                      outputResults: '{"DBInstances":[{"DBInstanceIdentifier":"lorem-db","StorageEncrypted":true,"KmsKeyId":"arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012"}]}'
+                      effectiveDate: 6/14/2025
+          - validation:
+              id: 11
+              shortName: KSI-SC-4
+              description: Manage configuration centrally
+              implementation: AWS Systems Manager Parameter Store and Config
+              implementationStatus: True
+              digitalSignature: 2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/16/2025
+              remarks: Centralized configuration management implemented
+              Evidences:
+              - evidence:
+                  id: 11.1
+                  name: Parameter Store Usage
+                  description: Systems Manager Parameter Store configuration
+                  instructions: Review parameter store usage for configuration management
+                  automated: True
+                  commands: aws ssm describe-parameters
+                  scriptName: audit_parameter_store.sh
+                  validationRules:
+                  - rule:
+                      id: 11.1.1
+                      textValue: "Parameters"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/16/2025
+                  remarks: Configuration parameters centrally managed
+                  Artifacts:
+                  - artifact:
+                      name: Parameter Store Audit
+                      reference: parameter_store.json
+                      outputResults: '{"Parameters":[{"Name":"/lorem/app/database/url","Type":"SecureString","KeyId":"alias/lorem-kms-key","Description":"Database connection URL"}]}'
+                      effectiveDate: 6/15/2025
+          - validation:
+              id: 12
+              shortName: KSI-SC-5
+              description: Enforce system and component integrity through cryptographic means
+              implementation: Code signing and file integrity monitoring
+              implementationStatus: True
+              digitalSignature: 3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/16/2025
+              remarks: Cryptographic integrity controls in place
+              Evidences:
+              - evidence:
+                  id: 12.1
+                  name: Code Signing Verification
+                  description: Application code signing status
+                  instructions: Verify digital signatures on application binaries
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/16/2025
+                  remarks: All application code properly signed
+                  Artifacts:
+                  - artifact:
+                      name: Code Signing Report
+                      reference: code_signing_report.pdf
+                      outputResults: ""
+                      effectiveDate: 6/15/2025
+          - validation:
+              id: 13
+              shortName: KSI-SC-6
+              description: Use a key management capability to execute regular rotation of digital keys
+              implementation: AWS KMS automatic key rotation
+              implementationStatus: True
+              digitalSignature: 4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/16/2025
+              remarks: Automatic key rotation enabled for all KMS keys
+              Evidences:
+              - evidence:
+                  id: 13.1
+                  name: KMS Key Rotation Status
+                  description: KMS key rotation configuration
+                  instructions: Verify automatic key rotation is enabled
+                  automated: True
+                  commands: aws kms get-key-rotation-status --key-id lorem-kms-key
+                  scriptName: check_key_rotation.sh
+                  validationRules:
+                  - rule:
+                      id: 13.1.1
+                      textValue: '"KeyRotationEnabled": true'
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/16/2025
+                  remarks: Annual key rotation enabled for all keys
+                  Artifacts:
+                  - artifact:
+                      name: Key Rotation Status
+                      reference: key_rotation_status.json
+                      outputResults: '{"KeyRotationEnabled":true,"KeyId":"arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012"}'
+                      effectiveDate: 6/15/2025
+          - validation:
+              id: 14
+              shortName: KSI-SC-7
+              description: Use a consistent, risk-informed approach for applying security patches
+              implementation: AWS Systems Manager Patch Manager
+              implementationStatus: True
+              digitalSignature: 5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/16/2025
+              remarks: Automated patch management with risk-based prioritization
+              Evidences:
+              - evidence:
+                  id: 14.1
+                  name: Patch Compliance Status
+                  description: Systems Manager patch compliance report
+                  instructions: Review patch compliance across all systems
+                  automated: True
+                  commands: aws ssm describe-instance-patch-states
+                  scriptName: check_patch_compliance.sh
+                  validationRules:
+                  - rule:
+                      id: 14.1.1
+                      textValue: "CompliantCount"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/16/2025
+                  remarks: 98% patch compliance maintained
+                  Artifacts:
+                  - artifact:
+                      name: Patch Compliance Report
+                      reference: patch_compliance.json
+                      outputResults: '{"InstancePatchStates":[{"InstanceId":"i-1234567890abcdef0","PatchGroup":"lorem-patch-group","BaselineId":"pb-12345","SnapshotId":"s-12345","CriticalNonCompliantCount":0,"SecurityNonCompliantCount":1,"OtherNonCompliantCount":2,"InstalledCount":145,"InstalledOtherCount":23,"MissingCount":3,"FailedCount":0,"UnreportedNotApplicableCount":5,"NotApplicableCount":212,"OperationType":"Scan","OperationStartTime":"2025-06-15T10:00:00Z","OperationEndTime":"2025-06-15T10:30:00Z"}]}'
+                      effectiveDate: 6/15/2025
+      - KSI:
+          name: Identity and Access Management
+          shortName: KSI-IAM
+          status: Complete
+          Validations:
+          - validation:
+              id: 15
+              shortName: KSI-IAM-1
+              description: Enforce phishing-resistant multi-factor authentication (MFA)
+              implementation: Hardware security keys and AWS IAM MFA
+              implementationStatus: True
+              digitalSignature: 6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/17/2025
+              remarks: FIDO2/WebAuthn MFA enforced for all privileged accounts
+              Evidences:
+              - evidence:
+                  id: 15.1
+                  name: MFA Enforcement Policy
+                  description: IAM policy requiring MFA for all users
+                  instructions: Review IAM policies for MFA requirements
+                  automated: True
+                  commands: aws iam list-policies --scope Local | jq '.Policies[] | select(.PolicyName | contains("MFA"))'
+                  scriptName: check_mfa_policies.sh
+                  validationRules:
+                  - rule:
+                      id: 15.1.1
+                      textValue: "aws:MultiFactorAuthPresent"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/17/2025
+                  remarks: MFA required for all administrative actions
+                  Artifacts:
+                  - artifact:
+                      name: MFA Policy Document
+                      reference: mfa_policy.json
+                      outputResults: '{"Policy":{"Version":"2012-10-17","Statement":[{"Effect":"Deny","Action":"*","Resource":"*","Condition":{"BoolIfExists":{"aws:MultiFactorAuthPresent":"false"}}}]}}'
+                      effectiveDate: 6/16/2025
+              - evidence:
+                  id: 15.2
+                  name: User MFA Status
+                  description: Current MFA device assignments
+                  instructions: Audit user MFA device enrollment
+                  automated: True
+                  commands: aws iam list-users --query 'Users[*].[UserName]' | xargs -I {} aws iam list-mfa-devices --user-name {}
+                  scriptName: audit_user_mfa.sh
+                  validationRules:
+                  - rule:
+                      id: 15.2.1
+                      textValue: "MFADevices"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/17/2025
+                  remarks: 100% of users have hardware MFA devices enrolled
+                  Artifacts:
+                  - artifact:
+                      name: MFA Device Report
+                      reference: mfa_devices.json
+                      outputResults: '{"Users":[{"UserName":"lorem.admin","MFADevices":[{"UserName":"lorem.admin","SerialNumber":"arn:aws:iam::123456789012:mfa/lorem.admin","EnableDate":"2025-06-01T10:00:00Z"}]}]}'
+                      effectiveDate: 6/16/2025
+          - validation:
+              id: 16
+              shortName: KSI-IAM-2
+              description: Enforce strong passwords
+              implementation: IAM password policy with complexity requirements
+              implementationStatus: True
+              digitalSignature: 7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/17/2025
+              remarks: Strong password policy enforced organization-wide
+              Evidences:
+              - evidence:
+                  id: 16.1
+                  name: Password Policy Configuration
+                  description: IAM account password policy settings
+                  instructions: Review current password policy requirements
+                  automated: True
+                  commands: aws iam get-account-password-policy
+                  scriptName: check_password_policy.sh
+                  validationRules:
+                  - rule:
+                      id: 16.1.1
+                      textValue: '"MinimumPasswordLength": 14'
+                  - rule:
+                      id: 16.1.2
+                      textValue: '"RequireSymbols": true'
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/17/2025
+                  remarks: Password policy meets NIST 800-63B requirements
+                  Artifacts:
+                  - artifact:
+                      name: Password Policy
+          - validation:
+              id: 17
+              shortName: KSI-IAM-3
+              description: Use secure API authentication methods via industry standard protocols
+              implementation: OAuth 2.0 and JWT tokens with API Gateway
+              implementationStatus: True
+              digitalSignature: 8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/17/2025
+              remarks: API authentication uses industry standard OAuth 2.0
+              Evidences:
+              - evidence:
+                  id: 17.1
+                  name: API Gateway Authorizers
+                  description: API Gateway authentication configuration
+                  instructions: Review API Gateway authorizer settings
+                  automated: True
+                  commands: aws apigateway get-authorizers --rest-api-id lorem-api-id
+                  scriptName: check_api_auth.sh
+                  validationRules:
+                  - rule:
+                      id: 17.1.1
+                      textValue: "JWT"
+                  - rule:
+                      id: 17.1.2
+                      textValue: "COGNITO_USER_POOLS"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/17/2025
+                  remarks: All APIs protected with JWT-based authentication
+                  Artifacts:
+                  - artifact:
+                      name: API Authorizers Config
+                      reference: api_authorizers.json
+                      outputResults: '{"items":[{"id":"abc123","name":"lorem-jwt-authorizer","type":"JWT","jwtConfiguration":{"issuer":"https://cognito-idp.us-east-1.amazonaws.com/us-east-1_EXAMPLE","audience":["lorem-client-id"]}}]}'
+                      effectiveDate: 6/16/2025
+              - evidence:
+                  id: 17.2
+                  name: Cognito User Pool Configuration
+                  description: Cognito user pool OAuth settings
+                  instructions: Verify OAuth 2.0 configuration in Cognito
+                  automated: True
+                  commands: aws cognito-idp describe-user-pool --user-pool-id us-east-1_EXAMPLE
+                  scriptName: check_cognito_oauth.sh
+                  validationRules:
+                  - rule:
+                      id: 17.2.1
+                      textValue: "SupportedIdentityProviders"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/17/2025
+                  remarks: OAuth 2.0 flows properly configured
+                  Artifacts:
+                  - artifact:
+                      name: Cognito User Pool Config
+                      reference: cognito_config.json
+                      outputResults: '{"UserPool":{"Id":"us-east-1_EXAMPLE","Name":"lorem-user-pool","Policies":{"PasswordPolicy":{"MinimumLength":14,"RequireUppercase":true,"RequireLowercase":true,"RequireNumbers":true,"RequireSymbols":true}},"AutoVerifiedAttributes":["email"],"MfaConfiguration":"ON"}}'
+                      effectiveDate: 6/16/2025
+          - validation:
+              id: 18
+              shortName: KSI-IAM-4
+              description: Use a least-privileged, role-based, and just-in-time security model
+              implementation: IAM roles with time-bound permissions and AWS IAM Identity Center
+              implementationStatus: True
+              digitalSignature: 9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/18/2025
+              remarks: Least privilege access implemented with just-in-time elevation
+              Evidences:
+              - evidence:
+                  id: 18.1
+                  name: IAM Role Permissions Audit
+                  description: IAM roles and attached policies review
+                  instructions: Audit IAM roles for least privilege compliance
+                  automated: True
+                  commands: aws iam list-roles | jq '.Roles[] | select(.RoleName | startswith("lorem"))'
+                  scriptName: audit_iam_roles.sh
+                  validationRules:
+                  - rule:
+                      id: 18.1.1
+                      textValue: "AssumeRolePolicyDocument"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/18/2025
+                  remarks: All roles follow least privilege principle
+                  Artifacts:
+                  - artifact:
+                      name: IAM Roles Audit
+                      reference: iam_roles_audit.json
+                      outputResults: '{"Roles":[{"RoleName":"lorem-app-role","AssumeRolePolicyDocument":"%7B%22Version%22%3A%222012-10-17%22%2C%22Statement%22%3A%5B%7B%22Effect%22%3A%22Allow%22%2C%22Principal%22%3A%7B%22Service%22%3A%22ec2.amazonaws.com%22%7D%2C%22Action%22%3A%22sts%3AAssumeRole%22%7D%5D%7D","CreateDate":"2025-06-01T10:00:00Z","RoleId":"AROAEXAMPLE","MaxSessionDuration":3600}]}'
+                      effectiveDate: 6/17/2025
+              - evidence:
+                  id: 18.2
+                  name: Identity Center Permission Sets
+                  description: AWS IAM Identity Center permission set configuration
+                  instructions: Review Identity Center permission sets for JIT access
+                  automated: True
+                  commands: aws sso-admin list-permission-sets --instance-arn arn:aws:sso:::instance/ssoins-EXAMPLE
+                  scriptName: check_identity_center.sh
+                  validationRules:
+                  - rule:
+                      id: 18.2.1
+                      textValue: "PermissionSets"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/18/2025
+                  remarks: JIT access implemented through Identity Center
+                  Artifacts:
+                  - artifact:
+                      name: Identity Center Permission Sets
+                      reference: identity_center_perms.json
+                      outputResults: '{"PermissionSets":["arn:aws:sso:::permissionSet/ssoins-EXAMPLE/ps-EXAMPLE1","arn:aws:sso:::permissionSet/ssoins-EXAMPLE/ps-EXAMPLE2"]}'
+                      effectiveDate: 6/17/2025
+              - evidence:
+                  id: 18.3
+                  name: Session Duration Limits
+                  description: Role session duration configuration
+                  instructions: Verify maximum session durations for all roles
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/18/2025
+                  remarks: All role sessions limited to 1-4 hours maximum
+                  Artifacts:
+                  - artifact:
+                      name: Session Duration Report
+                      reference: session_duration_report.pdf
+                      outputResults: ""
+                      effectiveDate: 6/17/2025
+      - KSI:
+          name: Monitoring, Logging, and Auditing
+          shortName: KSI-MLA
+          status: Complete
+          Validations:
+          - validation:
+              id: 19
+              shortName: KSI-MLA-1
+              description: Operate a Security Information and Event Management (SIEM) system for centralized, tamper-resistent event, activity, and change logging
+              implementation: Splunk SIEM with AWS CloudTrail integration
+              implementationStatus: True
+              digitalSignature: 0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/19/2025
+              remarks: SIEM operational with comprehensive log aggregation and tamper protection
+              Evidences:
+              - evidence:
+                  id: 19.1
+                  name: SIEM Configuration
+                  description: Splunk deployment and data source configuration
+                  instructions: Review SIEM data sources and retention policies
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/19/2025
+                  remarks: All critical log sources integrated with 2-year retention
+                  Artifacts:
+                  - artifact:
+                      name: SIEM Data Sources Report
+                      reference: siem_data_sources.pdf
+                      outputResults: ""
+                      effectiveDate: 6/18/2025
+              - evidence:
+                  id: 19.2
+                  name: CloudTrail Integration
+                  description: AWS CloudTrail to SIEM data flow
+                  instructions: Verify CloudTrail logs are flowing to SIEM
+                  automated: True
+                  commands: aws cloudtrail describe-trails
+                  scriptName: check_cloudtrail_siem.sh
+                  validationRules:
+                  - rule:
+                      id: 19.2.1
+                      textValue: "IsLogging"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/19/2025
+                  remarks: CloudTrail events successfully forwarded to SIEM
+                  Artifacts:
+                  - artifact:
+                      name: CloudTrail Configuration
+                      reference: cloudtrail_config.json
+                      outputResults: '{"trailList":[{"Name":"lorem-cloudtrail","S3BucketName":"lorem-cloudtrail-logs","IncludeGlobalServiceEvents":true,"IsMultiRegionTrail":true,"HomeRegion":"us-east-1","IsLogging":true}]}'
+                      effectiveDate: 6/18/2025
+          - validation:
+              id: 20
+              shortName: KSI-MLA-2
+              description: Regularly review and audit logs
+              implementation: Automated log analysis with weekly security reviews
+              implementationStatus: True
+              digitalSignature: 1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/19/2025
+              remarks: Structured log review process with automated alerting
+              Evidences:
+              - evidence:
+                  id: 20.1
+                  name: Log Review Procedures
+                  description: Security log review documentation and schedules
+                  instructions: Review log analysis procedures and audit trail
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/19/2025
+                  remarks: Weekly security reviews documented with findings tracked
+                  Artifacts:
+                  - artifact:
+                      name: Log Review Schedule
+                      reference: log_review_schedule.pdf
+                      outputResults: ""
+                      effectiveDate: 6/18/2025
+                  - artifact:
+                      name: Sample Log Review Report
+                      reference: log_review_sample.pdf
+                      outputResults: ""
+                      effectiveDate: 6/15/2025
+          - validation:
+              id: 21
+              shortName: KSI-MLA-3
+              description: Rapidly detect and remediate or mitigate vulnerabilities
+              implementation: AWS Inspector with automated remediation workflows
+              implementationStatus: True
+              digitalSignature: 2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/20/2025
+              remarks: Vulnerability detection and remediation SLA met consistently
+              Evidences:
+              - evidence:
+                  id: 21.1
+                  name: Vulnerability Detection Metrics
+                  description: Mean time to detection and remediation metrics
+                  instructions: Review vulnerability management KPIs
+                  automated: True
+                  commands: aws inspector2 list-findings --filter-criteria '{"findingStatus":[{"comparison":"EQUALS","value":"ACTIVE"}]}'
+                  scriptName: vuln_metrics.sh
+                  validationRules:
+                  - rule:
+                      id: 21.1.1
+                      textValue: "findings"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/20/2025
+                  remarks: MTTD < 24 hours, MTTR < 72 hours for critical vulnerabilities
+                  Artifacts:
+                  - artifact:
+                      name: Vulnerability Metrics Dashboard
+                      reference: vuln_metrics.json
+                      outputResults: '{"summary":{"totalFindings":45,"criticalFindings":2,"highFindings":8,"mediumFindings":23,"lowFindings":12},"metrics":{"averageMTTD":"18 hours","averageMTTR":"48 hours"}}'
+                      effectiveDate: 6/19/2025
+          - validation:
+              id: 22
+              shortName: KSI-MLA-4
+              description: Perform authenticated vulnerability scanning on publicly accessible components
+              implementation: Nessus authenticated scanning with API integration
+              implementationStatus: True
+              digitalSignature: 3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/20/2025
+              remarks: Monthly authenticated scans of all public-facing systems
+              Evidences:
+              - evidence:
+                  id: 22.1
+                  name: Authenticated Scan Results
+                  description: Nessus authenticated vulnerability scan reports
+                  instructions: Review latest authenticated scan results for public systems
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/20/2025
+                  remarks: Authenticated scans completed with no critical findings
+                  Artifacts:
+                  - artifact:
+                      name: Nessus Scan Report
+                      reference: nessus_auth_scan.pdf
+                      outputResults: ""
+                      effectiveDate: 6/19/2025
+          - validation:
+              id: 23
+              shortName: KSI-MLA-5
+              description: Perform Infrastructure as Code (IaC) and configuration scanning
+              implementation: Checkov and AWS Config for IaC scanning
+              implementationStatus: True
+              digitalSignature: 4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/20/2025
+              remarks: IaC scanning integrated into CI/CD pipeline
+              Evidences:
+              - evidence:
+                  id: 23.1
+                  name: IaC Scan Results
+                  description: Checkov terraform scanning results
+                  instructions: Review IaC security scanning output
+                  automated: True
+                  commands: checkov -f terraform/main.tf --framework terraform
+                  scriptName: run_iac_scan.sh
+                  validationRules:
+                  - rule:
+                      id: 23.1.1
+                      textValue: "PASSED"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/20/2025
+                  remarks: IaC templates pass security policy checks
+                  Artifacts:
+                  - artifact:
+                      name: Checkov Scan Results
+                      reference: checkov_results.json
+                      outputResults: '{"results":{"passed_checks":[{"check_id":"CKV_AWS_79","file_path":"terraform/main.tf","check_name":"Ensure Instance Metadata Service Version 1 is not enabled"}],"failed_checks":[],"skipped_checks":[]}}'
+                      effectiveDate: 6/19/2025
+          - validation:
+              id: 24
+              shortName: KSI-MLA-6
+              description: Centrally track and prioritize the remediation of identified vulnerabilities
+              implementation: Jira integration with vulnerability management workflow
+              implementationStatus: True
+              digitalSignature: 5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/21/2025
+              remarks: Centralized vulnerability tracking with risk-based prioritization
+              Evidences:
+              - evidence:
+                  id: 24.1
+                  name: Vulnerability Tracking System
+                  description: Jira vulnerability management dashboard
+                  instructions: Review vulnerability tracking and prioritization workflow
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/21/2025
+                  remarks: All vulnerabilities tracked with CVSS-based prioritization
+                  Artifacts:
+                  - artifact:
+                      name: Vulnerability Dashboard
+                      reference: vuln_dashboard_screenshot.png
+                      outputResults: ""
+                      effectiveDate: 6/20/2025
+      - KSI:
+          name: Configuration Management
+          shortName: KSI-CM
+          status: Complete
+          Validations:
+          - validation:
+              id: 25
+              shortName: KSI-CM-1
+              description: Log and monitor system modifications
+              implementation: AWS Config and CloudTrail for change tracking
+              implementationStatus: True
+              digitalSignature: 6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/21/2025
+              remarks: All system modifications logged and monitored
+              Evidences:
+              - evidence:
+                  id: 25.1
+                  name: AWS Config Rules
+                  description: Configuration change detection rules
+                  instructions: Review AWS Config rules for change monitoring
+                  automated: True
+                  commands: aws configservice describe-config-rules
+                  scriptName: check_config_rules.sh
+                  validationRules:
+                  - rule:
+                      id: 25.1.1
+                      textValue: "ConfigRules"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/21/2025
+                  remarks: Config rules monitor all critical resource changes
+                  Artifacts:
+                  - artifact:
+                      name: Config Rules Status
+                      reference: config_rules.json
+                      outputResults: '{"ConfigRules":[{"ConfigRuleName":"lorem-security-group-changes","ConfigRuleState":"ACTIVE","Source":{"Owner":"AWS","SourceIdentifier":"INCOMING_SSH_DISABLED"}}]}'
+                      effectiveDate: 6/20/2025
+          - validation:
+              id: 26
+              shortName: KSI-CM-2
+              description: Execute changes though redeployment of version controlled immutable resources rather than direct modification wherever possible
+              implementation: GitOps with Terraform and immutable infrastructure
+              implementationStatus: True
+              digitalSignature: 7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/22/2025
+              remarks: Infrastructure deployed through version-controlled IaC templates
+              Evidences:
+              - evidence:
+                  id: 26.1
+                  name: GitOps Workflow
+                  description: Git-based infrastructure deployment process
+                  instructions: Review GitOps deployment pipeline and version control
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/22/2025
+                  remarks: All infrastructure changes deployed via Git commits and automated pipelines
+                  Artifacts:
+                  - artifact:
+                      name: GitOps Pipeline Documentation
+                      reference: gitops_pipeline.pdf
+                      outputResults: ""
+                      effectiveDate: 6/21/2025
+              - evidence:
+                  id: 26.2
+                  name: Terraform State Management
+                  description: Terraform remote state configuration
+                  instructions: Verify Terraform state is managed remotely with locking
+                  automated: True
+                  commands: terraform show
+                  scriptName: check_terraform_state.sh
+                  validationRules:
+                  - rule:
+                      id: 26.2.1
+                      textValue: "remote"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/22/2025
+                  remarks: Terraform state stored remotely with DynamoDB locking
+                  Artifacts:
+                  - artifact:
+                      name: Terraform Backend Config
+                      reference: terraform_backend.tf
+                      outputResults: 'terraform { backend "s3" { bucket = "lorem-terraform-state" key = "prod/terraform.tfstate" region = "us-east-1" dynamodb_table = "lorem-terraform-locks" encrypt = true } }'
+                      effectiveDate: 6/21/2025
+          - validation:
+              id: 27
+              shortName: KSI-CM-3
+              description: Implement automated testing and validation of changes prior to deployment
+              implementation: CI/CD pipeline with automated testing and security scans
+              implementationStatus: True
+              digitalSignature: 8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/22/2025
+              remarks: Comprehensive automated testing in deployment pipeline
+              Evidences:
+              - evidence:
+                  id: 27.1
+                  name: CI/CD Pipeline Configuration
+                  description: GitHub Actions workflow with testing stages
+                  instructions: Review automated testing in CI/CD pipeline
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/22/2025
+                  remarks: Pipeline includes unit tests, security scans, and infrastructure validation
+                  Artifacts:
+                  - artifact:
+                      name: GitHub Actions Workflow
+                      reference: github_actions.yml
+                      outputResults: "name: Deploy Infrastructure
+
+                        on: push
+
+                        jobs:
+
+                        \  test:
+
+                        \    runs-on: ubuntu-latest
+
+                        \    steps:
+
+                        \      - uses: actions/checkout@v3
+
+                        \      - name: Run Tests
+
+                        \        run: pytest tests/
+
+                        \      - name: Security Scan
+
+                        \        run: checkov -d .
+
+                        \      - name: Terraform Plan
+
+                        \        run: terraform plan"
+                      effectiveDate: 6/21/2025
+          - validation:
+              id: 28
+              shortName: KSI-CM-4
+              description: Have a documented change management procedure
+              implementation: ITIL-based change management with approval workflows
+              implementationStatus: True
+              digitalSignature: 9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/23/2025
+              remarks: Formal change management process documented and followed
+              Evidences:
+              - evidence:
+                  id: 28.1
+                  name: Change Management Policy
+                  description: Documented change management procedures
+                  instructions: Review change management policy and procedures
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/23/2025
+                  remarks: Change management policy covers all system modifications
+                  Artifacts:
+                  - artifact:
+                      name: Change Management Procedure
+                      reference: change_mgmt_policy.pdf
+                      outputResults: ""
+                      effectiveDate: 6/22/2025
+          - validation:
+              id: 29
+              shortName: KSI-CM-5
+              description: Evaluate the risk and potential impact of any change
+              implementation: Risk assessment matrix integrated into change approval process
+              implementationStatus: True
+              digitalSignature: 0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/23/2025
+              remarks: Risk assessment required for all changes with documented impact analysis
+              Evidences:
+              - evidence:
+                  id: 29.1
+                  name: Change Risk Assessment Form
+                  description: Risk evaluation template and examples
+                  instructions: Review change risk assessment documentation
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/23/2025
+                  remarks: Risk assessments completed for all approved changes
+                  Artifacts:
+                  - artifact:
+                      name: Risk Assessment Template
+                      reference: risk_assessment_template.pdf
+                      outputResults: ""
+                      effectiveDate: 6/22/2025
+                  - artifact:
+                      name: Sample Risk Assessment
+                      reference: sample_risk_assessment.pdf
+                      outputResults: ""
+                      effectiveDate: 6/20/2025
+      - KSI:
+        name: Policy and Inventory
+        shortName: KSI-PI
+        status: Complete
+        Validations:
+        - validation:
+            id: 30
+            shortName: KSI-PI-1
+            description: Have an up-to-date asset inventory or code defining all deployed assets
+            implementation: AWS Config and Terraform state for asset inventory
+            implementationStatus: True
+            digitalSignature: 1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/24/2025
+            remarks: Comprehensive asset inventory maintained through automated discovery
+            Evidences:
+            - evidence:
+                id: 30.1
+                name: Asset Inventory Report
+                description: AWS resource discovery and inventory
+                instructions: Generate current asset inventory from AWS Config
+                automated: True
+                commands: aws configservice get-resource-config-history --resource-type AWS::EC2::Instance
+                scriptName: generate_asset_inventory.sh
+                validationRules:
+                - rule:
+                    id: 30.1.1
+                    textValue: "resourceType"
+                validatedBy: Jane Consectetur
+                validateDate: 6/24/2025
+                remarks: Asset inventory updated daily with 100% coverage
+                Artifacts:
+                - artifact:
+                    name: Current Asset Inventory
+                    reference: asset_inventory.json
+                    outputResults: '{"assets":[{"resourceType":"AWS::EC2::Instance","resourceId":"i-1234567890abcdef0","resourceName":"lorem-web-server","tags":[{"key":"Environment","value":"Production"}],"region":"us-east-1"}],"totalAssets":247,"lastUpdated":"2025-06-24T10:00:00Z"}'
+                    effectiveDate: 6/24/2025
+        - validation:
+            id: 31
+            shortName: KSI-PI-2
+            description: Have policies outlining their security objectives
+            implementation: Comprehensive security policy framework
+            implementationStatus: True
+            digitalSignature: 2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/24/2025
+            remarks: Security policies documented and regularly reviewed
+            Evidences:
+            - evidence:
+                id: 31.1
+                name: Security Policy Framework
+                description: Complete set of security policies and procedures
+                instructions: Review security policy documentation suite
+                automated: False
+                commands: ""
+                scriptName: ""
+                validationRules: []
+                validatedBy: Jane Consectetur
+                validateDate: 6/24/2025
+                remarks: Comprehensive security policies covering all major domains
+                Artifacts:
+                - artifact:
+                    name: Security Policy Index
+                    reference: security_policies_index.pdf
+                    outputResults: ""
+                    effectiveDate: 6/23/2025
+        - validation:
+            id: 32
+            shortName: KSI-PI-3
+            description: Maintain a vulnerability disclosure program
+            implementation: Public vulnerability disclosure policy and bug bounty program
+            implementationStatus: True
+            digitalSignature: 3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/25/2025
+            remarks: Active vulnerability disclosure program with clear reporting procedures
+            Evidences:
+            - evidence:
+                id: 32.1
+                name: Vulnerability Disclosure Policy
+                description: Public vulnerability reporting policy
+                instructions: Review public vulnerability disclosure documentation
+                automated: False
+                commands: ""
+                scriptName: ""
+                validationRules: []
+                validatedBy: Jane Consectetur
+                validateDate: 6/25/2025
+                remarks: Vulnerability disclosure policy publicly available with clear SLAs
+                Artifacts:
+                - artifact:
+                    name: Vulnerability Disclosure Policy
+                    reference: vuln_disclosure_policy.pdf
+                    outputResults: ""
+                    effectiveDate: 6/24/2025
+        - validation:
+            id: 33
+            shortName: KSI-PI-4
+            description: Build security considerations into the Software Development Lifecycle (SDLC) and aligning with Secure By Design principles
+            implementation: DevSecOps practices with security integrated throughout SDLC
+            implementationStatus: True
+            digitalSignature: 4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/25/2025
+            remarks: Security controls integrated throughout development lifecycle
+            Evidences:
+            - evidence:
+                id: 33.1
+                name: Secure SDLC Documentation
+                description: DevSecOps practices and security gates
+                instructions: Review secure development lifecycle procedures
+                automated: False
+                commands: ""
+                scriptName: ""
+                validationRules: []
+                validatedBy: Jane Consectetur
+                validateDate: 6/25/2025
+                remarks: Security gates implemented at each SDLC phase
+                Artifacts:
+                - artifact:
+                    name: Secure SDLC Process
+                    reference: secure_sdlc.pdf
+                    outputResults: ""
+                    effectiveDate: 6/24/2025
+            - evidence:
+                id: 33.2
+                name: Security Code Review Results
+                description: Static application security testing results
+                instructions: Review SAST scan results from recent builds
+                automated: True
+                commands: sonar-scanner -Dsonar.projectKey=lorem-app
+                scriptName: run_sast_scan.sh
+                validationRules:
+                - rule:
+                    id: 33.2.1
+                    textValue: "security_hotspots"
+                validatedBy: Jane Consectetur
+                validateDate: 6/25/2025
+                remarks: SAST scans integrated into CI/CD with security gate enforcement
+                Artifacts:
+                - artifact:
+                    name: SAST Scan Results
+                    reference: sast_results.json
+                    outputResults: '{"summary":{"security_hotspots":2,"vulnerabilities":0,"bugs":3,"code_smells":12},"security_rating":"A","status":"PASSED"}'
+                    effectiveDate: 6/24/2025
+        - validation:
+            id: 34
+            shortName: KSI-PI-5
+            description: Document methods used to automatically evaluate implementations
+            implementation: Automated compliance scanning and continuous monitoring
+            implementationStatus: True
+            digitalSignature: 5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/25/2025
+            remarks: Automated evaluation methods documented and operational
+            Evidences:
+            - evidence:
+                id: 34.1
+                name: Automated Evaluation Framework
+                description: Documentation of automated assessment tools and methods
+                instructions: Review automated compliance evaluation documentation
+                automated: False
+                commands: ""
+                scriptName: ""
+                validationRules: []
+                validatedBy: Jane Consectetur
+                validateDate: 6/25/2025
+                remarks: Comprehensive documentation of automated evaluation methods
+                Artifacts:
+                - artifact:
+                    name: Automated Evaluation Methods
+                    reference: automated_evaluation.pdf
+                    outputResults: ""
+                    effectiveDate: 6/24/2025
+        - validation:
+            id: 35
+            shortName: KSI-PI-6
+            description: Have a dedicated staff and budget for security
+            implementation: Security team with defined roles and allocated budget
+            implementationStatus: True
+            digitalSignature: 6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f
+            assessmentStatus: True
+            assessedBy: Jane Consectetur
+            assessedOn: 6/26/2025
+            remarks: Dedicated security organization with appropriate staffing and budget
+            Evidences:
+            - evidence:
+                id: 35.1
+                name: Security Organization Chart
+                description: Security team structure and roles
+                instructions: Review security organization structure and responsibilities
+                automated: False
+                commands: ""
+                scriptName: ""
+                validationRules: []
+                validatedBy: Jane Consectetur
+                validateDate: 6/26/2025
+                remarks: Security team with CISO reporting to CEO and dedicated budget
+                Artifacts:
+                - artifact:
+                    name: Security Org Chart
+                    reference: security_org_chart.pdf
+                    outputResults: ""
+                    effectiveDate: 6/25/2025
+      - KSI:
+          name: Third Party Information Resources
+          shortName: KSI-3IR
+          status: Complete
+          Validations:
+          - validation:
+              id: 36
+              shortName: KSI-3IR-1
+              description: Regularly confirm that services storing Federal information are all FedRAMP authorized and securely configured
+              implementation: FedRAMP marketplace verification and configuration audits
+              implementationStatus: True
+              digitalSignature: 7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/26/2025
+              remarks: All third-party services verified against FedRAMP marketplace
+              Evidences:
+              - evidence:
+                  id: 36.1
+                  name: FedRAMP Service Inventory
+                  description: List of FedRAMP authorized services in use
+                  instructions: Review current third-party services against FedRAMP marketplace
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/26/2025
+                  remarks: All services verified as FedRAMP authorized with current ATOs
+                  Artifacts:
+                  - artifact:
+                      name: FedRAMP Services List
+                      reference: fedramp_services.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/26/2025
+          - validation:
+              id: 37
+              shortName: KSI-3IR-2
+              description: Identify and prioritize potential supply chain risks
+              implementation: Supply chain risk assessment framework with vendor evaluation
+              implementationStatus: True
+              digitalSignature: 8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/26/2025
+              remarks: Comprehensive supply chain risk management program implemented
+              Evidences:
+              - evidence:
+                  id: 37.1
+                  name: Supply Chain Risk Assessment
+                  description: Vendor risk evaluation and prioritization matrix
+                  instructions: Review supply chain risk assessment documentation
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/26/2025
+                  remarks: Supply chain risks identified and mitigation strategies implemented
+                  Artifacts:
+                  - artifact:
+                      name: Supply Chain Risk Matrix
+                      reference: supply_chain_risk_matrix.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/25/2025
+          - validation:
+              id: 38
+              shortName: KSI-3IR-3
+              description: Obtain a Software Bill of Materials (SBOM) for third party commercial software components
+              implementation: SBOM collection and management for all third-party components
+              implementationStatus: True
+              digitalSignature: 9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/27/2025
+              remarks: SBOMs obtained for all critical software components
+              Evidences:
+              - evidence:
+                  id: 38.1
+                  name: SBOM Repository
+                  description: Collection of software bills of materials
+                  instructions: Review SBOM documentation for third-party components
+                  automated: True
+                  commands: syft dir:. -o spdx-json
+                  scriptName: generate_sbom.sh
+                  validationRules:
+                  - rule:
+                      id: 38.1.1
+                      textValue: "spdxVersion"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/27/2025
+                  remarks: SBOMs maintained for all production software components
+                  Artifacts:
+                  - artifact:
+                      name: Master SBOM Inventory
+                      reference: sbom_inventory.json
+                      outputResults: '{"spdxVersion":"SPDX-2.3","packages":[{"SPDXID":"SPDXRef-Package-nodejs","name":"nodejs","downloadLocation":"https://nodejs.org","filesAnalyzed":false,"packageVerificationCode":{"packageVerificationCodeValue":"abc123"}}],"totalPackages":156}'
+                      effectiveDate: 6/27/2025
+          - validation:
+              id: 39
+              shortName: KSI-3IR-4
+              description: Confirm that third party information resources have a Secure Software Development Attestation with CISA
+              implementation: CISA attestation verification for all third-party software providers
+              implementationStatus: True
+              digitalSignature: 0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/27/2025
+              remarks: All critical third-party providers have valid CISA attestations
+              Evidences:
+              - evidence:
+                  id: 39.1
+                  name: CISA Attestation Registry
+                  description: Tracking of vendor CISA secure development attestations
+                  instructions: Verify CISA attestation status for all third-party providers
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/27/2025
+                  remarks: CISA attestations verified for all applicable vendors
+                  Artifacts:
+                  - artifact:
+                      name: Vendor Attestation Status
+                      reference: cisa_attestations.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/27/2025
+          - validation:
+              id: 40
+              shortName: KSI-3IR-5
+              description: Implement zero trust design principles
+              implementation: Zero trust architecture with continuous verification and least privilege access
+              implementationStatus: True
+              digitalSignature: 1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/27/2025
+              remarks: Zero trust principles implemented across all system components
+              Evidences:
+              - evidence:
+                  id: 40.1
+                  name: Zero Trust Architecture Assessment
+                  description: Implementation of zero trust design principles
+                  instructions: Review zero trust architecture documentation and controls
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/27/2025
+                  remarks: Zero trust architecture fully implemented with continuous monitoring
+                  Artifacts:
+                  - artifact:
+                      name: Zero Trust Architecture Plan
+                      reference: zero_trust_architecture.pdf
+                      outputResults: ""
+                      effectiveDate: 6/26/2025
+      - KSI:
+          name: Cybersecurity Education
+          shortName: KSI-CE
+          status: Complete
+          Validations:
+          - validation:
+              id: 41
+              shortName: KSI-CE-1
+              description: Ensure all employees receive security awareness training
+              implementation: Mandatory annual security awareness training program
+              implementationStatus: True
+              digitalSignature: 2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/28/2025
+              remarks: 100% completion rate for mandatory security training
+              Evidences:
+              - evidence:
+                  id: 41.1
+                  name: Security Training Completion Records
+                  description: Employee security awareness training status
+                  instructions: Review training completion records and certificates
+                  automated: True
+                  commands: 'curl -H "Authorization: Bearer $API_TOKEN" https://training.api/completion-status'
+                  scriptName: check_training_completion.sh
+                  validationRules:
+                  - rule:
+                      id: 41.1.1
+                      textValue: "completion_rate"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/28/2025
+                  remarks: All employees completed required security awareness training
+                  Artifacts:
+                  - artifact:
+                      name: Training Completion Report
+                      reference: training_completion.json
+                      outputResults: '{"total_employees":245,"completed_training":245,"completion_rate":"100%","last_updated":"2025-06-28T09:00:00Z"}'
+                      effectiveDate: 6/28/2025
+          - validation:
+              id: 42
+              shortName: KSI-CE-2
+              description: Require role-specific training for high risk roles
+              implementation: Specialized security training for privileged and high-risk positions
+              implementationStatus: True
+              digitalSignature: 3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/28/2025
+              remarks: Role-specific training completed for all high-risk positions
+              Evidences:
+              - evidence:
+                  id: 42.1
+                  name: Role-Specific Training Matrix
+                  description: Specialized training requirements by role
+                  instructions: Review role-specific training completion for high-risk positions
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/28/2025
+                  remarks: All high-risk roles completed specialized security training
+                  Artifacts:
+                  - artifact:
+                      name: High-Risk Role Training Status
+                      reference: role_specific_training.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/28/2025
+      - KSI:
+          name: Incident Response
+          shortName: KSI-IR
+          status: Complete
+          Validations:
+          - validation:
+              id: 43
+              shortName: KSI-IR-1
+              description: Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)
+              implementation: Documented RTO and RPO targets for all critical systems
+              implementationStatus: True
+              digitalSignature: 4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/29/2025
+              remarks: RTO and RPO objectives defined and documented for all systems
+              Evidences:
+              - evidence:
+                  id: 43.1
+                  name: Business Continuity Plan
+                  description: RTO and RPO definitions for critical systems
+                  instructions: Review business continuity documentation
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/29/2025
+                  remarks: RTO and RPO targets meet business requirements
+                  Artifacts:
+                  - artifact:
+                      name: RTO/RPO Matrix
+                      reference: rto_rpo_matrix.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/28/2025
+          - validation:
+              id: 44
+              shortName: KSI-IR-2
+              description: Perform system backups aligned with the RTO and RPO
+              implementation: Automated backup system with RTO/RPO compliance monitoring
+              implementationStatus: True
+              digitalSignature: 5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/29/2025
+              remarks: Backup system meets all defined RTO and RPO requirements
+              Evidences:
+              - evidence:
+                  id: 44.1
+                  name: Backup Verification Report
+                  description: Backup system performance against RTO/RPO targets
+                  instructions: Verify backup completion and recovery capabilities
+                  automated: True
+                  commands: aws s3 ls s3://backup-bucket --recursive | grep $(date +%Y-%m-%d)
+                  scriptName: verify_backups.sh
+                  validationRules:
+                  - rule:
+                      id: 44.1.1
+                      textValue: "backup_status"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/29/2025
+                  remarks: All systems backed up within RPO requirements
+                  Artifacts:
+                  - artifact:
+                      name: Backup Status Report
+                      reference: backup_status.json
+                      outputResults: '{"backup_jobs":{"completed":47,"failed":0,"in_progress":0},"rpo_compliance":"100%","last_backup":"2025-06-29T02:00:00Z"}'
+                      effectiveDate: 6/29/2025
+          - validation:
+              id: 45
+              shortName: KSI-IR-3
+              description: Test the capability to recover from incidents and contingencies
+              implementation: Regular disaster recovery testing and tabletop exercises
+              implementationStatus: True
+              digitalSignature: 6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/30/2025
+              remarks: Quarterly disaster recovery tests demonstrate full recovery capability
+              Evidences:
+              - evidence:
+                  id: 45.1
+                  name: Disaster Recovery Test Results
+                  description: Results from recent DR testing exercises
+                  instructions: Review disaster recovery test documentation
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/30/2025
+                  remarks: All DR tests successful with RTO objectives met
+                  Artifacts:
+                  - artifact:
+                      name: DR Test Report Q2 2025
+                      reference: dr_test_q2_2025.pdf
+                      outputResults: ""
+                      effectiveDate: 6/29/2025
+          - validation:
+              id: 46
+              shortName: KSI-IR-4
+              description: Report incidents according to federal requirements
+              implementation: Automated incident reporting system with federal compliance
+              implementationStatus: True
+              digitalSignature: 7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/30/2025
+              remarks: Incident reporting procedures comply with all federal requirements
+              Evidences:
+              - evidence:
+                  id: 46.1
+                  name: Incident Reporting Procedures
+                  description: Federal incident reporting compliance documentation
+                  instructions: Review incident reporting procedures and compliance records
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/30/2025
+                  remarks: All incidents reported within required timeframes
+                  Artifacts:
+                  - artifact:
+                      name: Incident Reporting Log
+                      reference: incident_reporting_log.xlsx
+                      outputResults: ""
+                      effectiveDate: 6/30/2025
+          - validation:
+              id: 47
+              shortName: KSI-IR-5
+              description: Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities
+              implementation: Centralized incident logging with trend analysis and pattern recognition
+              implementationStatus: True
+              digitalSignature: 8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/30/2025
+              remarks: Comprehensive incident logging with monthly trend analysis
+              Evidences:
+              - evidence:
+                  id: 47.1
+                  name: Incident Trend Analysis
+                  description: Quarterly review of incident patterns and trends
+                  instructions: Review incident log analysis and pattern identification
+                  automated: True
+                  commands: python3 analyze_incidents.py --period quarterly
+                  scriptName: analyze_incidents.py
+                  validationRules:
+                  - rule:
+                      id: 47.1.1
+                      textValue: "incident_count"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/30/2025
+                  remarks: Incident patterns identified and preventive measures implemented
+                  Artifacts:
+                  - artifact:
+                      name: Q2 2025 Incident Analysis
+                      reference: incident_analysis_q2_2025.json
+                      outputResults: '{"total_incidents":12,"critical":1,"high":3,"medium":5,"low":3,"common_patterns":["phishing attempts","failed authentication"],"trends":"decreasing"}'
+                      effectiveDate: 6/30/2025
+          - validation:
+              id: 48
+              shortName: KSI-IR-6
+              description: Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents
+              implementation: Automated MTTD and MTTR calculation with performance dashboards
+              implementationStatus: True
+              digitalSignature: 9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a
+              assessmentStatus: True
+              assessedBy: Jane Consectetur
+              assessedOn: 6/30/2025
+              remarks: MTTD and MTTR metrics tracked and continuously improved
+              Evidences:
+              - evidence:
+                  id: 48.1
+                  name: Incident Response Metrics Dashboard
+                  description: Real-time MTTD and MTTR performance metrics
+                  instructions: Review incident response performance metrics
+                  automated: True
+                  commands: 'curl -H "Authorization: Bearer $API_TOKEN" https://metrics.api/incident-response'
+                  scriptName: get_ir_metrics.sh
+                  validationRules:
+                  - rule:
+                      id: 48.1.1
+                      textValue: "avg_mttd"
+                  - rule:
+                      id: 48.1.2
+                      textValue: "avg_mttr"
+                  validatedBy: Jane Consectetur
+                  validateDate: 6/30/2025
+                  remarks: MTTD and MTTR metrics exceed industry benchmarks
+                  Artifacts:
+                  - artifact:
+                      name: Incident Response Metrics
+                      reference: ir_metrics.json
+                      outputResults: '{"avg_mttd":"15 minutes","avg_mttr":"2.5 hours","incidents_resolved":47,"sla_compliance":"98%","period":"Q2 2025"}'
+                      effectiveDate: 6/30/2025

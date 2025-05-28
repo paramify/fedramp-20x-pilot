@@ -1,0 +1,52 @@
+Package:
+  CSPName: <Company name of Cloud Service Provider>
+  CSO: <Cloud Service Offering / Name of application>
+  impact: <Low | Moderate | High>
+  summaryOfCSO: <Description of CSO>
+  Assessments:
+  - Assessment:
+    digitalSignature: <SHA hash of assessment elements below>
+    assessorOrg: <Third Party Assessment Organization>
+    date: <date of assessment>
+    leadAssessor: <name of lead assessor>
+    recommendation: <Authorize | Do Not Authorize>
+    remarks: <assessment remarks>
+    KSIs:
+    - KSI:
+      name: <name of KSI>
+      shortName: <shortname of KSI>
+      status: <status of implementation - Complete | Incomplete>
+      Validations:
+      - validation:
+        id: <validation id>
+        shortName: <shortname of validation>
+        description: <description of validation>
+        implementation: <short description of approach>
+        implementationStatus: <True | False | Partial>
+        digitalSignature: <SHA hash of validation elements>
+        assessmentStatus: <True | False | Partial >
+        assessedBy: <name of assessor>
+        assessedOn: <date validation was assessed>
+        remarks: <remarks from assessor>
+        Evidences:
+        - evidence:
+          id: <evidence id>
+          name: <name of evidence>
+          description: <description of evidence>
+          instructions: <how to retrieve evidence>
+          automated: <True | False>
+          commands: <computer instruction used if automated>
+          scriptName: <filename>
+          validationRules:
+          - rule:
+            id: <rule id>
+            textValue: <value to look for in output file>
+          validatedBy: <name of assessor>
+          validateDate: <date evidence was validated>
+          remarks: <remarks from assessor>
+          Artifacts:
+          - artifact:
+            name: <name of artifact>
+            reference: <evidence file>
+            outputResults: <output of script if automated>
+            effectiveDate: <date of evidence>

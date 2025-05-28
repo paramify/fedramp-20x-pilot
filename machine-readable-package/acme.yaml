@@ -1,0 +1,382 @@
+Package:
+  CSPName: Acme Digital Solutions Corp
+  CSO: Acme SecureCloud Enterprise
+  impact: Low
+  summaryOfCSO: Acme SecureCloud Enterprise delivers enterprise-grade cloud infrastructure with advanced threat detection, automated compliance monitoring, and multi-region disaster recovery capabilities for government and commercial clients.
+  Assessments:
+  - Assessment:
+      digitalSignature: 3e7f1a8b9c2d4f5e6a7b8c9d0e1f2a3b4c5d6e7f
+      assessorOrg: CyberGuard Security Associates
+      date: 7/10/2025
+      leadAssessor: Michael Rodriguez
+      recommendation: Conditional
+      remarks: Several KSIs require remediation before full authorization can be granted. Critical gaps identified in security controls implementation.
+      KSIs:
+      - KSI:
+          name: Policy and Inventory
+          shortName: KSI-PI
+          status: Complete
+          Validations:
+          - validation:
+              id: 50
+              shortName: KSI-PI-1
+              description: Have an up-to-date asset inventory or code defining all deployed assets
+              implementation: Comprehensive asset discovery using Azure Resource Graph and Ansible inventory
+              implementationStatus: "True"
+              digitalSignature: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0
+              assessmentStatus: "True"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/12/2025
+              remarks: Real-time asset inventory with automated discovery and configuration management
+              Evidences:
+              - evidence:
+                  id: 50.1
+                  name: Azure Asset Discovery Report
+                  description: Complete inventory of Azure cloud resources
+                  instructions: Execute Azure Resource Graph query for comprehensive asset enumeration
+                  automated: True
+                  commands: az graph query -q "Resources | project name, type, resourceGroup, location, tags"
+                  scriptName: azure_asset_discovery.sh
+                  validationRules:
+                  - rule:
+                      id: 50.1.1
+                      textValue: "resourceType"
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/12/2025
+                  remarks: Asset inventory covers 100% of deployed resources with real-time updates
+                  Artifacts:
+                  - artifact:
+                      name: Azure Resource Inventory
+                      reference: azure_resources.json
+                      outputResults: '{"resources":[{"name":"acme-web-app","type":"Microsoft.Web/sites","resourceGroup":"production-rg","location":"eastus","tags":{"Environment":"Production","Owner":"DevOps"}}],"totalResources":892,"lastSync":"2025-07-12T14:30:00Z"}'
+                      effectiveDate: 7/12/2025
+          - validation:
+              id: 51
+              shortName: KSI-PI-2
+              description: Have policies outlining their security objectives
+              implementation: Incomplete security governance framework with outdated policies requiring review
+              implementationStatus: "False"
+              digitalSignature: b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1
+              assessmentStatus: "False"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/12/2025
+              remarks: Security policies are outdated and lack executive approval for recent updates
+              Evidences:
+              - evidence:
+                  id: 51.1
+                  name: Enterprise Security Policy Suite
+                  description: Board-approved security policies and standards
+                  instructions: Review complete security policy documentation and approval records
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/12/2025
+                  remarks: Multiple security policies have not been updated in over 18 months
+                  Artifacts:
+                  - artifact:
+                      name: Security Policy Catalog
+                      reference: security_policy_catalog.pdf
+                      outputResults: ""
+                      effectiveDate: 7/10/2025
+          - validation:
+              id: 52
+              shortName: KSI-PI-6
+              description: Have a dedicated staff and budget for security
+              implementation: Centralized security organization with C-level leadership and dedicated budget allocation
+              implementationStatus: "True"
+              digitalSignature: c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2
+              assessmentStatus: "True"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/13/2025
+              remarks: Robust security organization with appropriate funding and executive support
+              Evidences:
+              - evidence:
+                  id: 52.1
+                  name: Security Organization Structure
+                  description: Security team hierarchy and budget allocation
+                  instructions: Review security organization chart and budget documentation
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/13/2025
+                  remarks: Security team led by CISO with direct CEO reporting and dedicated budget
+                  Artifacts:
+                  - artifact:
+                      name: Security Team Structure
+                      reference: security_team_chart.pdf
+                      outputResults: ""
+                      effectiveDate: 7/12/2025
+      - KSI:
+          name: Third Party Information Resources
+          shortName: KSI-3IR
+          status: Partial
+          Validations:
+          - validation:
+              id: 53
+              shortName: KSI-3IR-2
+              description: Identify and prioritize potential supply chain risks
+              implementation: Basic vendor assessment program lacking continuous monitoring capabilities
+              implementationStatus: "Partial"
+              digitalSignature: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3
+              assessmentStatus: "Partial"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/13/2025
+              remarks: Initial vendor assessments completed but ongoing monitoring program not fully implemented
+              Evidences:
+              - evidence:
+                  id: 53.1
+                  name: Vendor Risk Assessment Matrix
+                  description: Comprehensive supplier risk evaluation and monitoring
+                  instructions: Review vendor risk assessments and mitigation strategies
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/13/2025
+                  remarks: Critical vendors assessed but automated monitoring tools not deployed
+                  Artifacts:
+                  - artifact:
+                      name: Supplier Risk Dashboard
+                      reference: vendor_risk_assessment.xlsx
+                      outputResults: ""
+                      effectiveDate: 7/12/2025
+          - validation:
+              id: 54
+              shortName: KSI-3IR-3
+              description: Obtain a Software Bill of Materials (SBOM) for third party commercial software components
+              implementation: Partial SBOM implementation covering only critical applications
+              implementationStatus: "Partial"
+              digitalSignature: e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4
+              assessmentStatus: "Partial"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/14/2025
+              remarks: SBOMs generated for 60% of applications, remaining systems require coverage
+              Evidences:
+              - evidence:
+                  id: 54.1
+                  name: Software Component Inventory
+                  description: Comprehensive SBOM for all third-party software
+                  instructions: Generate and review software bill of materials
+                  automated: True
+                  commands: cyclonedx-bom -o sbom.json
+                  scriptName: generate_comprehensive_sbom.sh
+                  validationRules:
+                  - rule:
+                      id: 54.1.1
+                      textValue: "bomFormat"
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/14/2025
+                  remarks: SBOMs available for high-priority applications only, full coverage pending
+                  Artifacts:
+                  - artifact:
+                      name: Enterprise SBOM Registry
+                      reference: enterprise_sbom.json
+                      outputResults: '{"bomFormat":"CycloneDX","specVersion":"1.4","serialNumber":"urn:uuid:12345678-1234-5678-9012-123456789012","components":[{"type":"library","name":"express","version":"4.18.2","purl":"pkg:npm/express@4.18.2"}],"totalComponents":748,"coverage":"60%"}'
+                      effectiveDate: 7/14/2025
+          - validation:
+              id: 55
+              shortName: KSI-3IR-5
+              description: Implement zero trust design principles
+              implementation: Zero trust architecture in early implementation phase with gaps in network micro-segmentation
+              implementationStatus: "Partial"
+              digitalSignature: f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5
+              assessmentStatus: "Partial"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/14/2025
+              remarks: Identity controls implemented but network segmentation and device trust verification incomplete
+              Evidences:
+              - evidence:
+                  id: 55.1
+                  name: Zero Trust Implementation Assessment
+                  description: Zero trust architecture validation and maturity assessment
+                  instructions: Review zero trust implementation across all system components
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/14/2025
+                  remarks: Zero trust identity controls functional, network and device pillars require completion
+                  Artifacts:
+                  - artifact:
+                      name: Zero Trust Maturity Assessment
+                      reference: zero_trust_maturity.pdf
+                      outputResults: ""
+                      effectiveDate: 7/13/2025
+      - KSI:
+          name: Cybersecurity Education
+          shortName: KSI-CE
+          status: Complete
+          Validations:
+          - validation:
+              id: 56
+              shortName: KSI-CE-1
+              description: Ensure all employees receive security awareness training
+              implementation: Interactive security awareness program with phishing simulation and continuous education
+              implementationStatus: "True"
+              digitalSignature: a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6
+              assessmentStatus: "True"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/15/2025
+              remarks: Comprehensive security awareness program with 100% employee participation
+              Evidences:
+              - evidence:
+                  id: 56.1
+                  name: Security Awareness Training Analytics
+                  description: Employee training completion and effectiveness metrics
+                  instructions: Review security training completion rates and assessment scores
+                  automated: True
+                  commands: 'curl -X GET "https://training.acme.com/api/v1/analytics" -H "Authorization: Bearer $TOKEN"'
+                  scriptName: get_training_analytics.sh
+                  validationRules:
+                  - rule:
+                      id: 56.1.1
+                      textValue: "completion_percentage"
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/15/2025
+                  remarks: All employees completed mandatory training with high assessment scores
+                  Artifacts:
+                  - artifact:
+                      name: Training Analytics Dashboard
+                      reference: training_analytics.json
+                      outputResults: '{"total_employees":387,"completed_training":387,"completion_percentage":"100%","average_score":94.2,"phishing_simulation_pass_rate":"89%","last_updated":"2025-07-15T11:30:00Z"}'
+                      effectiveDate: 7/15/2025
+      - KSI:
+          name: Incident Response
+          shortName: KSI-IR
+          status: Partial
+          Validations:
+          - validation:
+              id: 57
+              shortName: KSI-IR-1
+              description: Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)
+              implementation: Service-level RTO and RPO definitions with automated monitoring and alerting
+              implementationStatus: "True"
+              digitalSignature: b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7
+              assessmentStatus: "True"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/15/2025
+              remarks: RTO and RPO objectives defined for all critical services with continuous monitoring
+              Evidences:
+              - evidence:
+                  id: 57.1
+                  name: Service Recovery Objectives
+                  description: Comprehensive RTO and RPO documentation by service tier
+                  instructions: Review business continuity and disaster recovery objectives
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/15/2025
+                  remarks: Recovery objectives align with business requirements and SLA commitments
+                  Artifacts:
+                  - artifact:
+                      name: Service Recovery Matrix
+                      reference: service_recovery_objectives.xlsx
+                      outputResults: ""
+                      effectiveDate: 7/14/2025
+          - validation:
+              id: 58
+              shortName: KSI-IR-3
+              description: Test the capability to recover from incidents and contingencies
+              implementation: Limited disaster recovery testing with manual processes and inconsistent scheduling
+              implementationStatus: "False"
+              digitalSignature: c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8
+              assessmentStatus: "False"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/16/2025
+              remarks: DR testing irregular and last test exceeded RTO targets by 40%
+              Evidences:
+              - evidence:
+                  id: 58.1
+                  name: Disaster Recovery Test Results
+                  description: Quarterly DR exercise outcomes and performance metrics
+                  instructions: Review disaster recovery test documentation and lessons learned
+                  automated: False
+                  commands: ""
+                  scriptName: ""
+                  validationRules: []
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/16/2025
+                  remarks: Last DR test failed to meet recovery objectives, corrective actions pending
+                  Artifacts:
+                  - artifact:
+                      name: Q2 2025 DR Test Report
+                      reference: dr_test_results_q2_2025.pdf
+                      outputResults: ""
+                      effectiveDate: 7/15/2025
+          - validation:
+              id: 59
+              shortName: KSI-IR-5
+              description: Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities
+              implementation: Basic incident logging system without automated pattern analysis capabilities
+              implementationStatus: "Partial"
+              digitalSignature: d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9
+              assessmentStatus: "Partial"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/16/2025
+              remarks: Incident logging functional but pattern analysis conducted manually on quarterly basis only
+              Evidences:
+              - evidence:
+                  id: 59.1
+                  name: Incident Pattern Analysis System
+                  description: Machine learning-based incident trend analysis and reporting
+                  instructions: Review incident correlation and pattern detection capabilities
+                  automated: True
+                  commands: python3 /opt/security/scripts/incident_ml_analysis.py --timeframe quarterly
+                  scriptName: incident_ml_analysis.py
+                  validationRules:
+                  - rule:
+                      id: 59.1.1
+                      textValue: "patterns_detected"
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/16/2025
+                  remarks: Manual incident reviews identify some patterns but lack automated correlation
+                  Artifacts:
+                  - artifact:
+                      name: Incident Intelligence Report
+                      reference: incident_intelligence_q2_2025.json
+                      outputResults: '{"analysis_period":"Q2 2025","total_incidents":12,"severity_distribution":{"critical":1,"high":4,"medium":3,"low":4},"patterns_detected":["manual_review_only"],"automation_status":"pending"}'
+                      effectiveDate: 7/16/2025
+          - validation:
+              id: 60
+              shortName: KSI-IR-6
+              description: Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents
+              implementation: Manual incident response metrics tracking with delayed reporting and no automated SLA monitoring
+              implementationStatus: "False"
+              digitalSignature: e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0
+              assessmentStatus: "False"
+              assessedBy: Michael Rodriguez
+              assessedOn: 7/16/2025
+              remarks: MTTD and MTTR metrics not consistently tracked, no real-time visibility into response performance
+              Evidences:
+              - evidence:
+                  id: 60.1
+                  name: Incident Response Performance Dashboard
+                  description: Real-time MTTD and MTTR metrics with trend analysis
+                  instructions: Review incident response time metrics and performance trends
+                  automated: True
+                  commands: 'curl -H "Authorization: Bearer $SPLUNK_TOKEN" "https://splunk.acme.com/services/search/jobs/export" -d "search=index=security | stats avg(detection_time) avg(resolution_time)"'
+                  scriptName: get_incident_metrics.sh
+                  validationRules:
+                  - rule:
+                      id: 60.1.1
+                      textValue: "avg_detection_time"
+                  - rule:
+                      id: 60.1.2
+                      textValue: "avg_resolution_time"
+                  validatedBy: Michael Rodriguez
+                  validateDate: 7/16/2025
+                  remarks: Metrics tracking inconsistent, automated dashboards not implemented
+                  Artifacts:
+                  - artifact:
+                      name: IR Performance Metrics
+                      reference: ir_performance_metrics.json
+                      outputResults: '{"period":"Q2 2025","avg_mttd":"unknown","avg_mttr":"unknown","incidents_handled":12,"sla_compliance":"not_tracked","status":"manual_tracking_only"}'
+                      effectiveDate: 7/16/2025
