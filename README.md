@@ -2,7 +2,7 @@
 
 ## Paramify Overview
 
-![Paramify Logo Horizontal Blue](Paramify_logo_horizontal_blue.svg)
+![Paramify Logo Horizontal Blue](images/Paramify_logo_horizontal_blue.svg)
 
 The **Paramify Cloud** (Paramify) is a software platform running in AWS GovCloud that automates risk management processes—including compliance planning, solution implementation, gap assessments, and documentation—for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). It supports compliance with NIST 800-53 (FedRAMP, FISMA, GovRAMP), NIST 800-171 (CMMC), SOC 2, HIPAA, ISO 27001, and more.
 
@@ -52,9 +52,13 @@ Our approach can be summarized with the following steps:
 
 ### Step 1 – Lightweight Documentation
 Document the implementation of our KSIs using Paramify Cloud using our FedRAMP 20x control set.
+![KSI_implementation_1](images/KSI_implementation_1.png)
+![KSI_implementation_2](images/KSI_implementation_2.png)
 
 ### Step 2 – Key Security Indicators and Validations
 Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible.
+![evidence_1](images/evidence_1.png)
+![evidence_2](images/evidence_2.png)
 
 ### Step 3 – Validate Evidence
 Meet with 3PAO and have them review and validate evidence in Paramify Cloud.
