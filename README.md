@@ -20,7 +20,7 @@ The **Paramify Cloud** (Paramify) is a software platform running in AWS GovCloud
 Our approach can be summarized with the following steps:
 
 1. **Lightweight Documentation**  
-   Document the implementation of our KSIs using Paramify Cloud with the FedRAMP 20x validations set.
+   Document the implementation of KSIs using Paramify Cloud with the FedRAMP 20x validations set.
 
 2. **Key Security Indicators and Validations**  
    Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible.
@@ -51,16 +51,16 @@ Our approach can be summarized with the following steps:
 ## Step-by-Step Details
 
 ### Step 1 – Lightweight Documentation
-Document the implementation of our KSIs using Paramify Cloud using our FedRAMP 20x control set.
+Document the implementation of our KSIs using Paramify Cloud with the FedRAMP 20x validations set.
 ![KSI_implementation_1](images/KSI_implementation_1.png)
 ![KSI_implementation_2](images/KSI_implementation_2.png)
 
 ### Step 2 – Key Security Indicators and Validations
-Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible.
+Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible. Instructions and commands for each evidence object are included to provide context to the evidence process and results.
 ![evidence_1](images/evidence_1.png)
 
 ### Step 3 – Validate Evidence
-Meet with 3PAO and have them review and validate evidence in Paramify Cloud.
+Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PAO can set Assurance Steps, Assurance Status, remarks, etc. 
 ![evidence_2](images/evidence_2.png)
 
 ### Step 4 – Automate Machine Readable Package
@@ -204,20 +204,35 @@ Package:
 ```
 
 ### Step 5 - 3PAO Review
-3PAO reviews package and adds attestation.
+3PAO reviews package and adds attestation. This is included at the Assessment level in the machine-readable package
+```
+  - Assessment:
+    digitalSignature: <SHA hash of assessment elements below>
+    assessorOrg: <Third Party Assessment Organization>
+    date: <date of assessment>
+    leadAssessor: <name of lead assessor>
+    recommendation: <Authorize | Do Not Authorize>
+    remarks: <assessment remarks>
+```
 
 ### Step 6 - Continuous Reporting Indication
-Either on demand or per an automated schedule, a new package will be generated with the most current evidence.
+Either on demand or per an automated schedule, a new package will be generated with the most current evidence using Paramify's DocRobot capability.
 
 ### Step 7 - Prototype for Continuous Reporting
-It is anticipated that Paramify Cloud will allow for a shareable link that shows the KSI dashboard.
+It is anticipated that Paramify Cloud will allow for a shareable link that shows the KSI dashboard. The view will look similar to the following images.
+![KSI_implementation_status](images/KSI_implementation_status.png)
+![con_reporting_1](images/con_reporting_1.png)
+![issues_dashboard](images/issues.png)
 
 ### Step 8 - CSP Rationale and Summary
-Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods.
+Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods is provided with the machine-readable package file.
 
 ### Step 9 - CSP Submission
-Similar to the Continuous Reporting capability, the package will be available either with a viewable link or through the machine-readable package file with a friendly HTML viewer.
+Similar to the Continuous Reporting capability, the package will be available either with a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
 
+An example of the HTML viewer can be seen at: <githubpages link>
+
+---
 
 ## 📩 Contact
 Reach out to federal@paramify.com for questions, demos, or 3PAO access.
