@@ -1,0 +1,3190 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FedRAMP 20x Compliance Dashboard</title>
+        <style>
+            :root {
+                --primary: #2c3e50;
+                --secondary: #3498db;
+                --accent: #e74c3c;
+                --success: #2ecc71;
+                --warning: #f39c12;
+                --light: #ecf0f1;
+                --dark: #34495e;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            body {
+                background-color: #f5f7fa;
+                color: #333;
+                line-height: 1.6;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                flex: 1;
+            }
+            
+            header {
+                background-color: var(--primary);
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 40px;
+            }
+            
+            .package-info {
+                flex: 1;
+                max-width: 40%;
+            }
+            
+            .assessment-summary {
+                background-color: var(--dark);
+                padding: 15px;
+                border-radius: 8px;
+                width: 250px;
+                text-align: center;
+            }
+            
+            .card {
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+                overflow: hidden;
+            }
+            
+            .card-header {
+                background-color: var(--secondary);
+                color: white;
+                padding: 15px;
+                font-weight: bold;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .card-header:hover {
+                background-color: #2980b9;
+            }
+            
+            .card-content {
+                padding: 15px;
+                display: none;
+            }
+            
+            .card-content.show {
+                display: block;
+            }
+            
+            .ksi-item {
+                border-left: 4px solid var(--secondary);
+                padding: 10px;
+                margin-bottom: 10px;
+                background-color: var(--light);
+                border-radius: 0 4px 4px 0;
+            }
+            
+            .ksi-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                font-weight: bold;
+                gap: 16px;
+            }
+            
+            .ksi-header > div:first-child {
+                flex: 1;
+                min-width: 0; /* Allows text to wrap */
+            }
+            
+            .ksi-header > div:last-child {
+                display: flex;
+                align-items: center;
+                flex-shrink: 0; /* Prevents the status from shrinking */
+                white-space: nowrap; /* Keeps status and arrow on one line */
+            }
+            
+            .ksi-content {
+                display: none;
+                padding-top: 10px;
+            }
+            
+            .ksi-content.show {
+                display: block;
+            }
+            
+            .validation-item {
+                border-left: 3px solid var(--dark);
+                padding: 10px;
+                margin: 10px 0;
+                background-color: white;
+                border-radius: 0 4px 4px 0;
+            }
+            
+            .validation-header {
+                cursor: pointer;
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+            }
+            
+            .validation-header > div:first-child {
+                flex: 1;
+                min-width: 0; /* Allows text to wrap */
+            }
+            
+            .validation-header > div:last-child {
+                display: flex;
+                align-items: center;
+                flex-shrink: 0; /* Prevents the status from shrinking */
+                white-space: nowrap; /* Keeps status and arrow on one line */
+            }
+            
+            .validation-header .status {
+                margin-right: 8px;
+            }
+            
+            .validation-content {
+                display: none;
+                padding-top: 10px;
+            }
+            
+            .validation-content.show {
+                display: block;
+            }
+            
+            .evidence-item {
+                border-left: 2px solid var(--accent);
+                padding: 10px;
+                margin: 10px 0;
+                background-color: var(--light);
+                border-radius: 0 4px 4px 0;
+            }
+            
+            .evidence-header {
+                cursor: pointer;
+                font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .evidence-content {
+                display: none;
+                padding-top: 10px;
+            }
+            
+            .evidence-content.show {
+                display: block;
+            }
+            
+            .artifact-item {
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin: 10px 0;
+                background-color: white;
+                border-radius: 4px;
+            }
+            
+            .status {
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 0.8em;
+                font-weight: bold;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .status-complete, .status-pass, .status-true {
+                background-color: var(--success);
+                color: white;
+            }
+            
+            .status-pending, .status-partial {
+                background-color: var(--warning);
+                color: white;
+            }
+            
+            .status-failed, .status-false {
+                background-color: var(--accent);
+                color: white;
+            }
+            
+            .details-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .details-item {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                margin-bottom: 5px;
+            }
+            
+            .details-label {
+                font-weight: bold;
+                color: var(--dark);
+                min-width: 160px; white-space: nowrap;
+                margin-right: 5px;
+                word-break: break-word;
+                width: 120px;
+                color: var(--dark);
+            }
+            
+            .chevron {
+        transition: transform 0.3s ease;
+        margin-left: 8px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+            
+            .active .chevron {
+                transform: rotate(180deg);
+            }
+            
+            @media (max-width: 768px) {
+                .header-content {
+                    flex-direction: column;
+                }
+                
+                .assessment-summary {
+                    width: 100%;
+                    margin-top: 15px;
+                }
+                
+                .details-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+    
+            .dashboard-footer {
+                background-color: var(--primary);
+                color: white;
+                padding: 8px 0;
+                margin-top: auto;
+                text-align: center;
+                width: 100%;
+            }
+    
+            .dashboard-footer a {
+                color: white;
+                text-decoration: underline;
+                transition: opacity 0.3s ease;
+            }
+    
+            .dashboard-footer a:hover {
+                opacity: 0.8;
+            }
+    
+            .dashboard-footer p {
+                margin: 0;
+                font-size: 0.8em;
+            }
+    
+            .file-upload-container {
+                margin: 20px 0;
+                text-align: center;
+                display: none;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+    
+            .file-upload-container.visible {
+                display: block;
+            }
+    
+            .file-upload-label {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 20px;
+                background-color: var(--secondary);
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+    
+            .file-upload-label:hover {
+                background-color: #2980b9;
+                transform: translateY(-1px);
+            }
+    
+            .file-upload-label::before {
+                content: "📁";
+                font-size: 1.2em;
+            }
+    
+            #yaml-upload {
+                display: none;
+            }
+    
+            .file-name {
+                margin-top: 8px;
+                font-size: 0.9em;
+                color: var(--dark);
+            }
+    
+            .upload-error {
+                color: var(--accent);
+                margin-top: 8px;
+                font-size: 0.9em;
+                display: none;
+            }
+    
+            .upload-toggle, .help-toggle {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+                font-size: 0.9em;
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 10px;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+    
+            .upload-toggle:hover, .help-toggle:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+    
+            .actions-menu {
+                position: relative;
+                display: inline-block;
+                margin-top: 15px;
+            }
+    
+            .actions-menu-button {
+                background: var(--primary);
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 0.9em;
+            }
+    
+            .actions-menu-content {
+                display: none;
+                position: absolute;
+                right: 0;
+                background-color: white;
+                min-width: 200px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                border-radius: 4px;
+                z-index: 1000;
+                margin-top: 5px;
+            }
+    
+            .actions-menu-content.show {
+                display: block;
+            }
+    
+            .actions-menu-item {
+                color: var(--dark);
+                padding: 12px 15px;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: background-color 0.3s ease;
+            }
+    
+            .actions-menu-item:hover {
+                background-color: #f5f5f5;
+            }
+    
+            .help-content {
+                position: relative;
+                display: none;
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            .help-content.visible {
+                display: block;
+            }
+    
+            .help-content h3 {
+                color: var(--primary);
+                margin-bottom: 15px;
+            }
+    
+            .help-content .example {
+                background: #f3f6fa;
+                border: 2px solid #cfd8dc;
+                border-radius: 10px;
+                margin: 36px 0;
+                padding: 28px 24px 18px 24px;
+                position: relative;
+            }
+            .help-content .example h4 {
+                margin-bottom: 6px;
+                font-size: 1.08em;
+                font-weight: 600;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 12px;
+            }
+            .help-content pre {
+                background: #fff;
+                border: 2px solid #e0e0e0;
+                border-radius: 7px;
+                font-size: 1.08em;
+                margin: 20px 0 0 0;
+                padding: 20px;
+                overflow-x: auto;
+            }
+            .help-content code {
+                font-size: 0.98em;
+                color: #222;
+                font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+                font-weight: 400;
+                display: block;
+                white-space: pre;
+            }
+            .copy-button {
+                position: absolute;
+                top: 12px;
+                right: 16px;
+                background: var(--secondary);
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9em;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                box-shadow: 0 2px 6px rgba(44,62,80,0.15);
+                transition: all 0.2s ease;
+                z-index: 2;
+            }
+    
+            .copy-button:hover {
+                background: #2980b9;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 8px rgba(44,62,80,0.2);
+            }
+    
+            .copy-success {
+                position: absolute;
+                top: 12px;
+                right: 16px;
+                background: var(--success);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 4px;
+                font-size: 0.9em;
+                font-weight: 500;
+                display: none;
+                z-index: 2;
+                box-shadow: 0 2px 6px rgba(44,62,80,0.15);
+            }
+            .close-help {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 1.2em;
+                cursor: pointer;
+                color: var(--dark);
+                padding: 5px;
+                line-height: 1;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background-color 0.3s ease;
+            }
+    
+            .close-help:hover {
+                background-color: #f5f5f5;
+            }
+    
+            .copy-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: var(--secondary);
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.8em;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                transition: background-color 0.3s ease;
+            }
+    
+            .copy-button:hover {
+                background-color: #2980b9;
+            }
+    
+            .example {
+                position: relative;
+            }
+    
+            .close-upload {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background: none;
+                border: none;
+                font-size: 1.2em;
+                cursor: pointer;
+                color: var(--dark);
+                padding: 5px;
+                line-height: 1;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background-color 0.3s ease;
+            }
+    
+            .close-upload:hover {
+                background-color: #f5f5f5;
+            }
+    
+            .save-yaml-button {
+                display: none;
+                margin-top: 15px;
+                padding: 8px 16px;
+                background-color: var(--success);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9em;
+                transition: background-color 0.3s ease;
+            }
+    
+            .save-yaml-button.visible {
+                display: inline-block;
+            }
+    
+            .modal-overlay {
+                display: none !important;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .modal-overlay.visible {
+                display: flex !important;
+            }
+    
+            .modal-content {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                max-width: 500px;
+                width: 90%;
+                position: relative;
+            }
+    
+            .modal-header {
+                margin-bottom: 15px;
+            }
+    
+            .modal-header h3 {
+                color: var(--primary);
+                margin: 0;
+            }
+    
+            .modal-body {
+                margin-bottom: 20px;
+            }
+    
+            .modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+            }
+    
+            .modal-button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9em;
+                transition: background-color 0.3s ease;
+            }
+    
+            .modal-button.confirm {
+                background-color: var(--accent);
+                color: white;
+            }
+    
+            .modal-button.confirm:hover {
+                background-color: #c0392b;
+            }
+    
+            .modal-button.cancel {
+                background-color: #95a5a6;
+                color: white;
+            }
+    
+            .modal-button.cancel:hover {
+                background-color: #7f8c8d;
+            }
+    
+            .kpi-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+    
+            .ksi-card {
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+    
+            .ksi-card h3 {
+                color: var(--primary);
+                margin: 0 0 10px 0;
+                font-size: 1.1em;
+            }
+    
+            .ksi-card .value {
+                font-size: 2em;
+                font-weight: bold;
+                color: var(--secondary);
+                margin: 10px 0;
+            }
+    
+            .ksi-card .subtext {
+                color: var(--dark);
+                font-size: 0.9em;
+            }
+    
+            .metrics-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                margin: 20px 0;
+            }
+    
+            .metric-card {
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-direction: column;
+            }
+    
+            .metric-card h3 {
+                color: var(--primary);
+                margin: 0 0 15px 0;
+                font-size: 1.1em;
+            }
+    
+            .chart-container {
+                flex: 1;
+                min-height: 200px;
+                max-height: 200px;
+                position: relative;
+                background: white;
+                border-radius: 8px;
+            }
+    
+            .chart-wrapper {
+                position: relative;
+                width: 100%;
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .status-legend {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 15px;
+            }
+    
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-size: 0.9em;
+            }
+    
+            .legend-color {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+    
+            .progress-bar {
+                width: 100%;
+                height: 8px;
+                background: #eee;
+                border-radius: 4px;
+                overflow: hidden;
+                margin: 10px 0;
+            }
+    
+            .progress-fill {
+                height: 100%;
+                background: var(--success);
+                transition: width 0.3s ease;
+            }
+    
+            .details-toggle {
+                margin: 10px 0;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .details-toggle-header {
+                padding: 8px 12px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 0.9em;
+            }
+            .details-toggle-header:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .details-toggle-content {
+                padding: 12px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+            .details-toggle .details-item {
+                margin: 8px 0;
+            }
+            .details-toggle .details-label {
+                font-weight: bold;
+                margin-right: 8px;
+            }
+            .package-subtitle {
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.9em;
+                margin: 4px 0;
+            }
+            .package-description {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.85em;
+                margin: 8px 0;
+                line-height: 1.4;
+            }
+            .digital-signature {
+                font-size: 0.75em;
+                color: rgba(255, 255, 255, 0.5);
+                font-family: monospace;
+                word-break: break-all;
+                margin-top: 4px;
+            }
+            .signature-container {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .signature-text {
+                font-family: monospace;
+                font-size: 0.85em;
+                color: #666;
+            }
+            .copy-button {
+                background: none;
+                border: none;
+                padding: 2px 6px;
+                cursor: pointer;
+                opacity: 0.6;
+                transition: opacity 0.2s;
+            }
+            .copy-button:hover {
+                opacity: 1;
+            }
+            .artifacts-list {
+                margin-left: 0;
+            }
+            .artifact-item {
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin: 10px 0;
+                background-color: white;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="package-info"><h1 id="package-name">Acme Digital Solutions Corp</h1><p>Impact Level: <span id="impact-level">High</span></p><p class="package-subtitle">Acme SecureCloud Enterprise</p><p class="package-description">Acme SecureCloud Enterprise delivers enterprise-grade cloud infrastructure with advanced threat detection, automated compliance monitoring, and multi-region disaster recovery capabilities for government and commercial clients.</p><div class="actions-menu">
+                        <button class="actions-menu-button">
+                            <span>⚙️</span> Actions
+                        </button>
+                        <div class="actions-menu-content" id="actions-menu">
+                            <a class="actions-menu-item" id="upload-toggle">
+                                <span>📤</span> Upload New YAML
+                            </a>
+                            <a class="actions-menu-item" id="export-yaml">
+                                <span>💾</span> Export YAML Data
+                            </a>
+                            <a class="actions-menu-item" id="help-toggle">
+                                <span>❓</span> YAML Help
+                            </a>
+                        </div>
+                    </div></div>
+                <div class="assessment-summary">
+                    <h3>Last Assessment</h3>
+                    <p id="assessment-date">7/10/2025</p>
+                    <p>Recommendation: <span id="recommendation">Conditional</span></p>
+                    <div id="compliance-progress" style="margin-top: 15px;">
+                <svg width="120" height="120">
+                    <circle cx="60" cy="60" r="54" stroke="#eee" stroke-width="12" fill="none"></circle>
+                    <circle cx="60" cy="60" r="54" stroke="#2ecc71" stroke-width="12" fill="none" stroke-dasharray="339.29200658769764" stroke-dashoffset="217.1468842161265" transform="rotate(-90 60 60)"></circle>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="16" fill="white">4/11</text>
+                </svg>
+            </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="file-upload-container visible" id="file-upload-container">
+            <button class="close-upload" id="close-upload">×</button>
+            <label for="yaml-upload" class="file-upload-label">Choose YAML File</label>
+            <input type="file" id="yaml-upload" accept=".yaml,.yml">
+            <div id="file-name" class="file-name">Selected file: acme.yaml</div>
+            <div id="upload-error" class="upload-error" style="display: none;"></div>
+            <button id="save-yaml-button" class="save-yaml-button" style="display: inline-block;">💾 Save YAML to Dashboard</button>
+        </div>
+
+        <div class="help-content" id="help-content">
+            <button class="close-help" id="close-help">×</button>
+            <h3>YAML Structure Guide</h3>
+            <p>The YAML file should follow this structure:</p>
+            <pre><code>Package:
+    CSPName: &lt;Company name of Cloud Service Provider&gt; 
+    CSO: &lt;Cloud Service Offering / Name of application&gt;
+    impact: &lt;Low | Moderate | High&gt;
+    summaryOfCSO: &lt;Description of CSO&gt;
+    Assessments:
+    - Assessment:
+        digitalSignature: &lt;SHA hash of assessment elements below&gt;
+        assessorOrg: &lt;Third Party Assessment Organization&gt;
+        date: &lt;date of assessment&gt;
+        leadAssessor: &lt;name of lead assessor&gt;
+        recommendation: &lt;Authorize | Do Not Authorize&gt;
+        remarks: &lt;assessment remarks&gt;
+        KSIs:
+        - KSI:
+        name: &lt;name of KSI&gt;
+        shortName: &lt;shortname of KSI&gt;
+        status: &lt;status of implementation - Complete | Incomplete&gt;
+        Validations:
+        - validation:
+            id: &lt;validation id&gt;
+            shortName: &lt;shortname of validation&gt;
+            description: &lt;description of validation&gt;
+            implementation: &lt;short description of approach&gt;
+            implementationStatus: &lt;True | False | Partial&gt;
+            digitalSignature: &lt;SHA hash of validation elements&gt;
+            assessmentStatus: &lt;True | False | Partial &gt;
+            assessedBy: &lt;name of assessor&gt;
+            assessedOn: &lt;date validation was assessed&gt;
+            remarks: &lt;remarks from assessor&gt;
+            Evidences:
+            - evidence:
+            id: &lt;evidence id&gt;
+            name: &lt;name of evidence&gt;
+            description: &lt;description of evidence&gt;
+            instructions: &lt;how to retrieve evidence&gt;
+            automated: &lt;True | False&gt;
+            commands: &lt;computer instruction used if automated&gt;
+            scriptName: &lt;filename&gt;
+            validationRules:
+            - rule:
+                id: &lt;rule id&gt;
+                textValue: &lt;value to look for in output file&gt;
+            validatedBy: &lt;name of assessor&gt;
+            validateDate: &lt;date evidence was validated&gt;
+            remarks: &lt;remarks from assessor&gt;
+            Artifacts:
+            - artifact:
+                name: &lt;name of artifact&gt;
+                reference: &lt;evidence file&gt;
+                outputResults: &lt;output of script if automated&gt;
+                effectiveDate: &lt;date of evidence&gt;
+
+            <div class="example">
+                <h4>Example 1: Lorem Ipsum</h4>
+                <pre><code>Package:
+  CSPName: Lorem Technologies Inc
+  CSO: Lorem Cloud Platform
+  impact: Low
+  summaryOfCSO: Lorem Cloud Platform provides scalable infrastructure services with integrated security monitoring and compliance automation for federal agencies and commercial enterprises.
+  Assessments:
+    - Assessment:
+        digitalSignature: 9f4e2207df7d2b9f5a8c6b1e3d4a5f7c8e9b2a1d
+        assessorOrg: Ipsum Security Partners
+        date: 6/15/2025
+        leadAssessor: Jane Consectetur
+        recommendation: Authorize
+        remarks: All KSIs demonstrated adequate implementation with minor findings addressed during assessment period.
+        KSIs:
+          - KSI:
+              name: Cloud Native Architecture
+              shortName: KSI-CNA
+              status: Complete
+              Validations:
+                - validation:
+                    id: 1
+                    shortName: KSI-CNA-1
+                    description: Have denial of service (DoS) protection
+                    implementation: AWS WAF with rate limiting
+                    implementationStatus: True
+                    digitalSignature: 2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b
+                    assessmentStatus: True
+                    assessedBy: Jane Consectetur
+                    assessedOn: 6/12/2025
+                    remarks: WAF rules properly configured with rate limiting
+                    Evidences:
+                      - evidence:
+                          id: 1.1
+                          name: WAF Configuration
+                          description: Web application firewall DoS protection rules
+                          instructions: Review WAF rate limiting configuration
+                          automated: True
+                          commands: aws wafv2 list-web-acls --scope CLOUDFRONT
+                          scriptName: check_waf_dos.sh
+                          validationRules:
+                            - rule:
+                                id: 1.1.1
+                                textValue: RateBasedStatement
+                          validatedBy: Jane Consectetur
+                          validateDate: 6/12/2025
+                          remarks: Rate limiting rule found with 2000 requests per 5 minutes
+                          Artifacts:
+                            - artifact:
+                                name: WAF Rules Output
+                                reference: waf_rules_output.json
+                                outputResults: '{"WebACLs":[{"Name":"lorem-waf","Id":"abc123","DefaultAction":{"Allow":{}},"Rules":[{"Name":"RateLimitRule","Priority":1,"Statement":{"RateBasedStatement":{"Limit":2000,"AggregateKeyType":"IP"}},"Action":{"Block":{}}}]}]}'
+                                effectiveDate: 6/10/2025</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example 2: ACME SecureCloud Enterprise</h4>
+                <pre><code>Package:
+  CSPName: Acme Digital Solutions Corp
+  CSO: Acme SecureCloud Enterprise
+  impact: Low
+  summaryOfCSO: Acme SecureCloud Enterprise delivers enterprise-grade cloud infrastructure with advanced threat detection, automated compliance monitoring, and multi-region disaster recovery capabilities for government and commercial clients.
+  Assessments:
+    - Assessment:
+        digitalSignature: 3e7f1a8b9c2d4f5e6a7b8c9d0e1f2a3b4c5d6e7f
+        assessorOrg: CyberGuard Security Associates
+        date: 7/10/2025
+        leadAssessor: Michael Rodriguez
+        recommendation: Conditional
+        remarks: Several KSIs require remediation before full authorization can be granted. Critical gaps identified in security controls implementation.
+        KSIs:
+          - KSI:
+              name: Policy and Inventory
+              shortName: KSI-PI
+              status: Complete
+              Validations:
+                - validation:
+                    id: 50
+                    shortName: KSI-PI-1
+                    description: Have an up-to-date asset inventory or code defining all deployed assets
+                    implementation: Comprehensive asset discovery using Azure Resource Graph and Ansible inventory
+                    implementationStatus: "True"
+                    digitalSignature: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0
+                    assessmentStatus: "True"
+                    assessedBy: Michael Rodriguez
+                    assessedOn: 7/12/2025
+                    remarks: Real-time asset inventory with automated discovery and configuration management
+                    Evidences:
+                      - evidence:
+                          id: 50.1
+                          name: Azure Asset Discovery Report
+                          description: Complete inventory of Azure cloud resources
+                          instructions: Execute Azure Resource Graph query for comprehensive asset enumeration
+                          automated: True
+                          commands: az graph query -q "Resources | project name, type, resourceGroup, location, tags"
+                          scriptName: azure_asset_discovery.sh
+                          validationRules:
+                            - rule:
+                                id: 50.1.1
+                                textValue: "resourceType"
+                          validatedBy: Michael Rodriguez
+                          validateDate: 7/12/2025
+                          remarks: Asset inventory covers 100% of deployed resources with real-time updates
+                          Artifacts:
+                            - artifact:
+                                name: Azure Resource Inventory
+                                reference: azure_resources.json
+                                outputResults: '{"resources":[{"name":"acme-web-app","type":"Microsoft.Web/sites","resourceGroup":"production-rg","location":"eastus","tags":{"Environment":"Production","Owner":"DevOps"}}],"totalResources":892,"lastSync":"2025-07-12T14:30:00Z"}'
+                                effectiveDate: 7/12/2025</code></pre>
+            </div>
+        </div>
+
+
+        <div class="kpi-cards">
+            <div class="ksi-card">
+                <h3>Total KSIs</h3>
+                <div class="value" id="total-ksis">4</div>
+                <div class="subtext">Key Security Indicators</div>
+            </div>
+            <div class="ksi-card">
+                <h3>Validations</h3>
+                <div class="value" id="total-validations">11</div>
+                <div class="subtext">Total Validations</div>
+            </div>
+            <div class="ksi-card">
+                <h3>Success Rate</h3>
+                <div class="value" id="success-rate">36%</div>
+                <div class="subtext">Passed Validations</div>
+            </div>
+            <div class="ksi-card">
+                <h3>Automation</h3>
+                <div class="value" id="automation-rate">45%</div>
+                <div class="subtext">Automated Evidence</div>
+            </div>
+        </div>
+
+        <div class="metrics-container">
+            <div class="metric-card">
+                <h3>Validation Status Distribution</h3>
+                <div class="chart-wrapper">
+                    <canvas id="validation-chart" class="chart-container" style="box-sizing: border-box; display: block; height: 200px; width: 530px;" width="476" height="179"></canvas>
+                </div>
+                <div class="status-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--success);"></div>
+                        <span>Pass</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--accent);"></div>
+                        <span>Fail</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--warning);"></div>
+                        <span>Pending</span>
+                    </div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <h3>Evidence Coverage</h3>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Automated Evidence</span>
+                        <span id="automated-count">5/11</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="automated-progress" style="width: 45.4545%;"></div>
+                    </div>
+                </div>
+                <div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Manual Evidence</span>
+                        <span id="manual-count">6/11</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="manual-progress" style="width: 54.5455%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span>Assessment Information</span>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-content show">
+                <div class="details-grid">
+                    <div class="details-item">
+                        <span class="details-label">Assessor Org:</span>
+                        <span id="assessor-org">CyberGuard Security Associates</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Lead Assessor:</span>
+                        <span id="lead-assessor">Michael Rodriguez</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Assessment Date:</span>
+                        <span id="assessment-date-detail">7/10/2025</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Recommendation:</span>
+                        <span id="recommendation-detail">Conditional</span>
+                    </div>
+                <div class="details-item">
+                <span class="details-label">Digital Signature:</span>
+                <span class="signature-text">3e7f1a8b9c2d4f5e6a7b8c9d0e1f2a3b4c5d6e7f</span>
+            </div></div>
+                <div class="details-item" style="margin-top: 10px;">
+                    <span class="details-label">Remarks:</span>
+                    <span id="assessment-remarks">Several KSIs require remediation before full authorization can be granted. Critical gaps identified in security controls implementation.</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <span>Key Security Indicators (KSIs)</span>
+                <span class="chevron">▼</span>
+            </div>
+            <div class="card-content show" id="ksi-container"><div class="ksi-item"><div class="ksi-header">
+                    <div>Policy and Inventory (KSI-PI)</div>
+                    <div>
+                        <span class="status status-complete">Complete</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                </div><div class="ksi-content"><div class="validation-item"><div class="validation-header">
+                            <div>KSI-PI-1: Have an up-to-date asset inventory or code defining all deployed assets</div>
+                            <div>
+                                <span class="status status-true">True</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Comprehensive asset discovery using Azure Resource Graph and Ansible inventory</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>True</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/12/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Real-time asset inventory with automated discovery and configuration management</span></div><div class="evidence-item"><div class="evidence-header"><div>Azure Asset Discovery Report: Complete inventory of Azure cloud resources</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>50.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Execute Azure Resource Graph query for comprehensive asset enumeration</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>az graph query -q "Resources | project name, type, resourceGroup, location, tags"</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>true</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>azure_asset_discovery.sh</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/12/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 50.1.1:</strong> resourceType
+                                                </div>
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Azure Resource Inventory</strong></div>
+                                                    <div>Reference: azure_resources.json</div>
+                                                    <div>Effective Date: 7/12/2025</div>
+                                                    <div>Results: {"resources":[{"name":"acme-web-app","type":"Microsoft.Web/sites","resourceGroup":"production-rg","location":"eastus","tags":{"Environment":"Production","Owner":"DevOps"}}],"totalResources":892,"lastSync":"2025-07-12T14:30:00Z"}</div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-PI-2: Have policies outlining their security objectives</div>
+                            <div>
+                                <span class="status status-false">False</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Incomplete security governance framework with outdated policies requiring review</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>False</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/12/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Security policies are outdated and lack executive approval for recent updates</span></div><div class="evidence-item"><div class="evidence-header"><div>Enterprise Security Policy Suite: Board-approved security policies and standards</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>51.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review complete security policy documentation and approval records</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/12/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Security Policy Catalog</strong></div>
+                                                    <div>Reference: security_policy_catalog.pdf</div>
+                                                    <div>Effective Date: 7/10/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-PI-6: Have a dedicated staff and budget for security</div>
+                            <div>
+                                <span class="status status-true">True</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Centralized security organization with C-level leadership and dedicated budget allocation</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>True</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/13/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Robust security organization with appropriate funding and executive support</span></div><div class="evidence-item"><div class="evidence-header"><div>Security Organization Structure: Security team hierarchy and budget allocation</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>52.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review security organization chart and budget documentation</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/13/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Security Team Structure</strong></div>
+                                                    <div>Reference: security_team_chart.pdf</div>
+                                                    <div>Effective Date: 7/12/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div></div></div><div class="ksi-item"><div class="ksi-header">
+                    <div>Third Party Information Resources (KSI-3IR)</div>
+                    <div>
+                        <span class="status status-partial">Partial</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                </div><div class="ksi-content"><div class="validation-item"><div class="validation-header">
+                            <div>KSI-3IR-2: Identify and prioritize potential supply chain risks</div>
+                            <div>
+                                <span class="status status-partial">Partial</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Basic vendor assessment program lacking continuous monitoring capabilities</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>Partial</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/13/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Initial vendor assessments completed but ongoing monitoring program not fully implemented</span></div><div class="evidence-item"><div class="evidence-header"><div>Vendor Risk Assessment Matrix: Comprehensive supplier risk evaluation and monitoring</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>53.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review vendor risk assessments and mitigation strategies</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/13/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Supplier Risk Dashboard</strong></div>
+                                                    <div>Reference: vendor_risk_assessment.xlsx</div>
+                                                    <div>Effective Date: 7/12/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-3IR-3: Obtain a Software Bill of Materials (SBOM) for third party commercial software components</div>
+                            <div>
+                                <span class="status status-partial">Partial</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Partial SBOM implementation covering only critical applications</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>Partial</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/14/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>SBOMs generated for 60% of applications, remaining systems require coverage</span></div><div class="evidence-item"><div class="evidence-header"><div>Software Component Inventory: Comprehensive SBOM for all third-party software</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>54.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Generate and review software bill of materials</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>cyclonedx-bom -o sbom.json</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>true</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>generate_comprehensive_sbom.sh</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/14/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 54.1.1:</strong> bomFormat
+                                                </div>
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Enterprise SBOM Registry</strong></div>
+                                                    <div>Reference: enterprise_sbom.json</div>
+                                                    <div>Effective Date: 7/14/2025</div>
+                                                    <div>Results: {"bomFormat":"CycloneDX","specVersion":"1.4","serialNumber":"urn:uuid:12345678-1234-5678-9012-123456789012","components":[{"type":"library","name":"express","version":"4.18.2","purl":"pkg:npm/express@4.18.2"}],"totalComponents":748,"coverage":"60%"}</div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-3IR-5: Implement zero trust design principles</div>
+                            <div>
+                                <span class="status status-partial">Partial</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Zero trust architecture in early implementation phase with gaps in network micro-segmentation</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>Partial</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/14/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Identity controls implemented but network segmentation and device trust verification incomplete</span></div><div class="evidence-item"><div class="evidence-header"><div>Zero Trust Implementation Assessment: Zero trust architecture validation and maturity assessment</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>55.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review zero trust implementation across all system components</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/14/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Zero Trust Maturity Assessment</strong></div>
+                                                    <div>Reference: zero_trust_maturity.pdf</div>
+                                                    <div>Effective Date: 7/13/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div></div></div><div class="ksi-item"><div class="ksi-header">
+                    <div>Cybersecurity Education (KSI-CE)</div>
+                    <div>
+                        <span class="status status-complete">Complete</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                </div><div class="ksi-content"><div class="validation-item"><div class="validation-header">
+                            <div>KSI-CE-1: Ensure all employees receive security awareness training</div>
+                            <div>
+                                <span class="status status-true">True</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Interactive security awareness program with phishing simulation and continuous education</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>True</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/15/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Comprehensive security awareness program with 100% employee participation</span></div><div class="evidence-item"><div class="evidence-header"><div>Security Awareness Training Analytics: Employee training completion and effectiveness metrics</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>56.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review security training completion rates and assessment scores</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>curl -X GET "https://training.acme.com/api/v1/analytics" -H "Authorization: Bearer $TOKEN"</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>true</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>get_training_analytics.sh</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/15/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 56.1.1:</strong> completion_percentage
+                                                </div>
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Training Analytics Dashboard</strong></div>
+                                                    <div>Reference: training_analytics.json</div>
+                                                    <div>Effective Date: 7/15/2025</div>
+                                                    <div>Results: {"total_employees":387,"completed_training":387,"completion_percentage":"100%","average_score":94.2,"phishing_simulation_pass_rate":"89%","last_updated":"2025-07-15T11:30:00Z"}</div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div></div></div><div class="ksi-item"><div class="ksi-header">
+                    <div>Incident Response (KSI-IR)</div>
+                    <div>
+                        <span class="status status-partial">Partial</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                </div><div class="ksi-content"><div class="validation-item"><div class="validation-header">
+                            <div>KSI-IR-1: Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)</div>
+                            <div>
+                                <span class="status status-true">True</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Service-level RTO and RPO definitions with automated monitoring and alerting</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>True</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/15/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>RTO and RPO objectives defined for all critical services with continuous monitoring</span></div><div class="evidence-item"><div class="evidence-header"><div>Service Recovery Objectives: Comprehensive RTO and RPO documentation by service tier</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>57.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review business continuity and disaster recovery objectives</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/15/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Service Recovery Matrix</strong></div>
+                                                    <div>Reference: service_recovery_objectives.xlsx</div>
+                                                    <div>Effective Date: 7/14/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-IR-3: Test the capability to recover from incidents and contingencies</div>
+                            <div>
+                                <span class="status status-false">False</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Limited disaster recovery testing with manual processes and inconsistent scheduling</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>False</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/16/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>DR testing irregular and last test exceeded RTO targets by 40%</span></div><div class="evidence-item"><div class="evidence-header"><div>Disaster Recovery Test Results: Quarterly DR exercise outcomes and performance metrics</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>58.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review disaster recovery test documentation and lessons learned</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>N/A</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/16/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Q2 2025 DR Test Report</strong></div>
+                                                    <div>Reference: dr_test_results_q2_2025.pdf</div>
+                                                    <div>Effective Date: 7/15/2025</div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-IR-5: Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities</div>
+                            <div>
+                                <span class="status status-partial">Partial</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Basic incident logging system without automated pattern analysis capabilities</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>Partial</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/16/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>Incident logging functional but pattern analysis conducted manually on quarterly basis only</span></div><div class="evidence-item"><div class="evidence-header"><div>Incident Pattern Analysis System: Machine learning-based incident trend analysis and reporting</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>59.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review incident correlation and pattern detection capabilities</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>python3 /opt/security/scripts/incident_ml_analysis.py --timeframe quarterly</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>true</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>incident_ml_analysis.py</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/16/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 59.1.1:</strong> patterns_detected
+                                                </div>
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>Incident Intelligence Report</strong></div>
+                                                    <div>Reference: incident_intelligence_q2_2025.json</div>
+                                                    <div>Effective Date: 7/16/2025</div>
+                                                    <div>Results: {"analysis_period":"Q2 2025","total_incidents":12,"severity_distribution":{"critical":1,"high":4,"medium":3,"low":4},"patterns_detected":["manual_review_only"],"automation_status":"pending"}</div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div><div class="validation-item"><div class="validation-header">
+                            <div>KSI-IR-6: Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents</div>
+                            <div>
+                                <span class="status status-false">False</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        </div><div class="validation-content"><div class="details-grid">
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>Manual incident response metrics tracking with delayed reporting and no automated SLA monitoring</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>False</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>Michael Rodriguez</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>7/16/2025</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</span></div>
+                        </div><div class="details-item" style="margin-top: 10px;"><span class="details-label">Remarks:</span><span>MTTD and MTTR metrics not consistently tracked, no real-time visibility into response performance</span></div><div class="evidence-item"><div class="evidence-header"><div>Incident Response Performance Dashboard: Real-time MTTD and MTTR metrics with trend analysis</div><span class="chevron">▼</span></div><div class="evidence-content"><div class="details-grid">
+                                    <div class="details-item"><span class="details-label">ID:</span><span>60.1</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>Review incident response time metrics and performance trends</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>curl -H "Authorization: Bearer $SPLUNK_TOKEN" "https://splunk.acme.com/services/search/jobs/export" -d "search=index=security | stats avg(detection_time) avg(resolution_time)"</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>true</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>get_incident_metrics.sh</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>Michael Rodriguez</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>7/16/2025</span></div>
+                                </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 60.1.1:</strong> avg_detection_time
+                                                </div>
+                                            
+                                                <div class="validation-rule">
+                                                    <strong>Rule 60.1.2:</strong> avg_resolution_time
+                                                </div>
+                                            
+                                        </div>
+                                    </div><div class="details-item" style="margin-top: 10px;">
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            
+                                                <div class="artifact-item">
+                                                    <div><strong>IR Performance Metrics</strong></div>
+                                                    <div>Reference: ir_performance_metrics.json</div>
+                                                    <div>Effective Date: 7/16/2025</div>
+                                                    <div>Results: {"period":"Q2 2025","avg_mttd":"unknown","avg_mttr":"unknown","incidents_handled":12,"sla_compliance":"not_tracked","status":"manual_tracking_only"}</div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div></div></div></div></div></div></div></div>
+        </div>
+    </div>
+
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>Powered by <a href="https://www.paramify.com/" target="_blank" rel="noopener noreferrer">Paramify</a> FedRAMP 20x Dashboard – an open-source project contributing to the <a href="https://www.fedramp.gov/20x/working-groups/automation/" target="_blank" rel="noopener noreferrer">FedRAMP 20x Automating Assessments Community Working Group</a>.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script>
+        // Sample data structure (in a real application, this would be loaded from an API or a file)
+        const complianceData = {
+  "Package": {
+    "CSPName": "Acme Digital Solutions Corp",
+    "CSO": "Acme SecureCloud Enterprise",
+    "impact": "High",
+    "summaryOfCSO": "Acme SecureCloud Enterprise delivers enterprise-grade cloud infrastructure with advanced threat detection, automated compliance monitoring, and multi-region disaster recovery capabilities for government and commercial clients.",
+    "Assessments": [
+      {
+        "Assessment": {
+          "digitalSignature": "3e7f1a8b9c2d4f5e6a7b8c9d0e1f2a3b4c5d6e7f",
+          "assessorOrg": "CyberGuard Security Associates",
+          "date": "7/10/2025",
+          "leadAssessor": "Michael Rodriguez",
+          "recommendation": "Conditional",
+          "remarks": "Several KSIs require remediation before full authorization can be granted. Critical gaps identified in security controls implementation.",
+          "KSIs": [
+            {
+              "KSI": {
+                "name": "Policy and Inventory",
+                "shortName": "KSI-PI",
+                "status": "Complete",
+                "Validations": [
+                  {
+                    "validation": {
+                      "id": 50,
+                      "shortName": "KSI-PI-1",
+                      "description": "Have an up-to-date asset inventory or code defining all deployed assets",
+                      "implementation": "Comprehensive asset discovery using Azure Resource Graph and Ansible inventory",
+                      "implementationStatus": "True",
+                      "digitalSignature": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
+                      "assessmentStatus": "True",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/12/2025",
+                      "remarks": "Real-time asset inventory with automated discovery and configuration management",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 50.1,
+                            "name": "Azure Asset Discovery Report",
+                            "description": "Complete inventory of Azure cloud resources",
+                            "instructions": "Execute Azure Resource Graph query for comprehensive asset enumeration",
+                            "automated": true,
+                            "commands": "az graph query -q \"Resources | project name, type, resourceGroup, location, tags\"",
+                            "scriptName": "azure_asset_discovery.sh",
+                            "validationRules": [
+                              {
+                                "rule": {
+                                  "id": "50.1.1",
+                                  "textValue": "resourceType"
+                                }
+                              }
+                            ],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/12/2025",
+                            "remarks": "Asset inventory covers 100% of deployed resources with real-time updates",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Azure Resource Inventory",
+                                  "reference": "azure_resources.json",
+                                  "outputResults": "{\"resources\":[{\"name\":\"acme-web-app\",\"type\":\"Microsoft.Web/sites\",\"resourceGroup\":\"production-rg\",\"location\":\"eastus\",\"tags\":{\"Environment\":\"Production\",\"Owner\":\"DevOps\"}}],\"totalResources\":892,\"lastSync\":\"2025-07-12T14:30:00Z\"}",
+                                  "effectiveDate": "7/12/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 51,
+                      "shortName": "KSI-PI-2",
+                      "description": "Have policies outlining their security objectives",
+                      "implementation": "Incomplete security governance framework with outdated policies requiring review",
+                      "implementationStatus": "False",
+                      "digitalSignature": "b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1",
+                      "assessmentStatus": "False",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/12/2025",
+                      "remarks": "Security policies are outdated and lack executive approval for recent updates",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 51.1,
+                            "name": "Enterprise Security Policy Suite",
+                            "description": "Board-approved security policies and standards",
+                            "instructions": "Review complete security policy documentation and approval records",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/12/2025",
+                            "remarks": "Multiple security policies have not been updated in over 18 months",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Security Policy Catalog",
+                                  "reference": "security_policy_catalog.pdf",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/10/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 52,
+                      "shortName": "KSI-PI-6",
+                      "description": "Have a dedicated staff and budget for security",
+                      "implementation": "Centralized security organization with C-level leadership and dedicated budget allocation",
+                      "implementationStatus": "True",
+                      "digitalSignature": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2",
+                      "assessmentStatus": "True",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/13/2025",
+                      "remarks": "Robust security organization with appropriate funding and executive support",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 52.1,
+                            "name": "Security Organization Structure",
+                            "description": "Security team hierarchy and budget allocation",
+                            "instructions": "Review security organization chart and budget documentation",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/13/2025",
+                            "remarks": "Security team led by CISO with direct CEO reporting and dedicated budget",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Security Team Structure",
+                                  "reference": "security_team_chart.pdf",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/12/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "KSI": {
+                "name": "Third Party Information Resources",
+                "shortName": "KSI-3IR",
+                "status": "Partial",
+                "Validations": [
+                  {
+                    "validation": {
+                      "id": 53,
+                      "shortName": "KSI-3IR-2",
+                      "description": "Identify and prioritize potential supply chain risks",
+                      "implementation": "Basic vendor assessment program lacking continuous monitoring capabilities",
+                      "implementationStatus": "Partial",
+                      "digitalSignature": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3",
+                      "assessmentStatus": "Partial",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/13/2025",
+                      "remarks": "Initial vendor assessments completed but ongoing monitoring program not fully implemented",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 53.1,
+                            "name": "Vendor Risk Assessment Matrix",
+                            "description": "Comprehensive supplier risk evaluation and monitoring",
+                            "instructions": "Review vendor risk assessments and mitigation strategies",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/13/2025",
+                            "remarks": "Critical vendors assessed but automated monitoring tools not deployed",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Supplier Risk Dashboard",
+                                  "reference": "vendor_risk_assessment.xlsx",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/12/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 54,
+                      "shortName": "KSI-3IR-3",
+                      "description": "Obtain a Software Bill of Materials (SBOM) for third party commercial software components",
+                      "implementation": "Partial SBOM implementation covering only critical applications",
+                      "implementationStatus": "Partial",
+                      "digitalSignature": "e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4",
+                      "assessmentStatus": "Partial",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/14/2025",
+                      "remarks": "SBOMs generated for 60% of applications, remaining systems require coverage",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 54.1,
+                            "name": "Software Component Inventory",
+                            "description": "Comprehensive SBOM for all third-party software",
+                            "instructions": "Generate and review software bill of materials",
+                            "automated": true,
+                            "commands": "cyclonedx-bom -o sbom.json",
+                            "scriptName": "generate_comprehensive_sbom.sh",
+                            "validationRules": [
+                              {
+                                "rule": {
+                                  "id": "54.1.1",
+                                  "textValue": "bomFormat"
+                                }
+                              }
+                            ],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/14/2025",
+                            "remarks": "SBOMs available for high-priority applications only, full coverage pending",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Enterprise SBOM Registry",
+                                  "reference": "enterprise_sbom.json",
+                                  "outputResults": "{\"bomFormat\":\"CycloneDX\",\"specVersion\":\"1.4\",\"serialNumber\":\"urn:uuid:12345678-1234-5678-9012-123456789012\",\"components\":[{\"type\":\"library\",\"name\":\"express\",\"version\":\"4.18.2\",\"purl\":\"pkg:npm/express@4.18.2\"}],\"totalComponents\":748,\"coverage\":\"60%\"}",
+                                  "effectiveDate": "7/14/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 55,
+                      "shortName": "KSI-3IR-5",
+                      "description": "Implement zero trust design principles",
+                      "implementation": "Zero trust architecture in early implementation phase with gaps in network micro-segmentation",
+                      "implementationStatus": "Partial",
+                      "digitalSignature": "f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5",
+                      "assessmentStatus": "Partial",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/14/2025",
+                      "remarks": "Identity controls implemented but network segmentation and device trust verification incomplete",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 55.1,
+                            "name": "Zero Trust Implementation Assessment",
+                            "description": "Zero trust architecture validation and maturity assessment",
+                            "instructions": "Review zero trust implementation across all system components",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/14/2025",
+                            "remarks": "Zero trust identity controls functional, network and device pillars require completion",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Zero Trust Maturity Assessment",
+                                  "reference": "zero_trust_maturity.pdf",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/13/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "KSI": {
+                "name": "Cybersecurity Education",
+                "shortName": "KSI-CE",
+                "status": "Complete",
+                "Validations": [
+                  {
+                    "validation": {
+                      "id": 56,
+                      "shortName": "KSI-CE-1",
+                      "description": "Ensure all employees receive security awareness training",
+                      "implementation": "Interactive security awareness program with phishing simulation and continuous education",
+                      "implementationStatus": "True",
+                      "digitalSignature": "a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6",
+                      "assessmentStatus": "True",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/15/2025",
+                      "remarks": "Comprehensive security awareness program with 100% employee participation",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 56.1,
+                            "name": "Security Awareness Training Analytics",
+                            "description": "Employee training completion and effectiveness metrics",
+                            "instructions": "Review security training completion rates and assessment scores",
+                            "automated": true,
+                            "commands": "curl -X GET \"https://training.acme.com/api/v1/analytics\" -H \"Authorization: Bearer $TOKEN\"",
+                            "scriptName": "get_training_analytics.sh",
+                            "validationRules": [
+                              {
+                                "rule": {
+                                  "id": "56.1.1",
+                                  "textValue": "completion_percentage"
+                                }
+                              }
+                            ],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/15/2025",
+                            "remarks": "All employees completed mandatory training with high assessment scores",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Training Analytics Dashboard",
+                                  "reference": "training_analytics.json",
+                                  "outputResults": "{\"total_employees\":387,\"completed_training\":387,\"completion_percentage\":\"100%\",\"average_score\":94.2,\"phishing_simulation_pass_rate\":\"89%\",\"last_updated\":\"2025-07-15T11:30:00Z\"}",
+                                  "effectiveDate": "7/15/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "KSI": {
+                "name": "Incident Response",
+                "shortName": "KSI-IR",
+                "status": "Partial",
+                "Validations": [
+                  {
+                    "validation": {
+                      "id": 57,
+                      "shortName": "KSI-IR-1",
+                      "description": "Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)",
+                      "implementation": "Service-level RTO and RPO definitions with automated monitoring and alerting",
+                      "implementationStatus": "True",
+                      "digitalSignature": "b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7",
+                      "assessmentStatus": "True",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/15/2025",
+                      "remarks": "RTO and RPO objectives defined for all critical services with continuous monitoring",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 57.1,
+                            "name": "Service Recovery Objectives",
+                            "description": "Comprehensive RTO and RPO documentation by service tier",
+                            "instructions": "Review business continuity and disaster recovery objectives",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/15/2025",
+                            "remarks": "Recovery objectives align with business requirements and SLA commitments",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Service Recovery Matrix",
+                                  "reference": "service_recovery_objectives.xlsx",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/14/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 58,
+                      "shortName": "KSI-IR-3",
+                      "description": "Test the capability to recover from incidents and contingencies",
+                      "implementation": "Limited disaster recovery testing with manual processes and inconsistent scheduling",
+                      "implementationStatus": "False",
+                      "digitalSignature": "c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8",
+                      "assessmentStatus": "False",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/16/2025",
+                      "remarks": "DR testing irregular and last test exceeded RTO targets by 40%",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 58.1,
+                            "name": "Disaster Recovery Test Results",
+                            "description": "Quarterly DR exercise outcomes and performance metrics",
+                            "instructions": "Review disaster recovery test documentation and lessons learned",
+                            "automated": false,
+                            "commands": "",
+                            "scriptName": "",
+                            "validationRules": [],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/16/2025",
+                            "remarks": "Last DR test failed to meet recovery objectives, corrective actions pending",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Q2 2025 DR Test Report",
+                                  "reference": "dr_test_results_q2_2025.pdf",
+                                  "outputResults": "",
+                                  "effectiveDate": "7/15/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 59,
+                      "shortName": "KSI-IR-5",
+                      "description": "Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities",
+                      "implementation": "Basic incident logging system without automated pattern analysis capabilities",
+                      "implementationStatus": "Partial",
+                      "digitalSignature": "d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9",
+                      "assessmentStatus": "Partial",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/16/2025",
+                      "remarks": "Incident logging functional but pattern analysis conducted manually on quarterly basis only",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 59.1,
+                            "name": "Incident Pattern Analysis System",
+                            "description": "Machine learning-based incident trend analysis and reporting",
+                            "instructions": "Review incident correlation and pattern detection capabilities",
+                            "automated": true,
+                            "commands": "python3 /opt/security/scripts/incident_ml_analysis.py --timeframe quarterly",
+                            "scriptName": "incident_ml_analysis.py",
+                            "validationRules": [
+                              {
+                                "rule": {
+                                  "id": "59.1.1",
+                                  "textValue": "patterns_detected"
+                                }
+                              }
+                            ],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/16/2025",
+                            "remarks": "Manual incident reviews identify some patterns but lack automated correlation",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "Incident Intelligence Report",
+                                  "reference": "incident_intelligence_q2_2025.json",
+                                  "outputResults": "{\"analysis_period\":\"Q2 2025\",\"total_incidents\":12,\"severity_distribution\":{\"critical\":1,\"high\":4,\"medium\":3,\"low\":4},\"patterns_detected\":[\"manual_review_only\"],\"automation_status\":\"pending\"}",
+                                  "effectiveDate": "7/16/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "validation": {
+                      "id": 60,
+                      "shortName": "KSI-IR-6",
+                      "description": "Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents",
+                      "implementation": "Manual incident response metrics tracking with delayed reporting and no automated SLA monitoring",
+                      "implementationStatus": "False",
+                      "digitalSignature": "e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0",
+                      "assessmentStatus": "False",
+                      "assessedBy": "Michael Rodriguez",
+                      "assessedOn": "7/16/2025",
+                      "remarks": "MTTD and MTTR metrics not consistently tracked, no real-time visibility into response performance",
+                      "Evidences": [
+                        {
+                          "evidence": {
+                            "id": 60.1,
+                            "name": "Incident Response Performance Dashboard",
+                            "description": "Real-time MTTD and MTTR metrics with trend analysis",
+                            "instructions": "Review incident response time metrics and performance trends",
+                            "automated": true,
+                            "commands": "curl -H \"Authorization: Bearer $SPLUNK_TOKEN\" \"https://splunk.acme.com/services/search/jobs/export\" -d \"search=index=security | stats avg(detection_time) avg(resolution_time)\"",
+                            "scriptName": "get_incident_metrics.sh",
+                            "validationRules": [
+                              {
+                                "rule": {
+                                  "id": "60.1.1",
+                                  "textValue": "avg_detection_time"
+                                }
+                              },
+                              {
+                                "rule": {
+                                  "id": "60.1.2",
+                                  "textValue": "avg_resolution_time"
+                                }
+                              }
+                            ],
+                            "validatedBy": "Michael Rodriguez",
+                            "validateDate": "7/16/2025",
+                            "remarks": "Metrics tracking inconsistent, automated dashboards not implemented",
+                            "Artifacts": [
+                              {
+                                "artifact": {
+                                  "name": "IR Performance Metrics",
+                                  "reference": "ir_performance_metrics.json",
+                                  "outputResults": "{\"period\":\"Q2 2025\",\"avg_mttd\":\"unknown\",\"avg_mttr\":\"unknown\",\"incidents_handled\":12,\"sla_compliance\":\"not_tracked\",\"status\":\"manual_tracking_only\"}",
+                                  "effectiveDate": "7/16/2025"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+};
+
+        let currentYamlData = null;
+        // Get references to DOM elements
+        const modal = document.getElementById('save-confirm-modal');
+        const uploadContainer = document.getElementById('file-upload-container');
+        const helpContent = document.getElementById('help-content');
+        const actionsMenu = document.getElementById('actions-menu');
+
+        function initializeCollapsibleSections() {
+            // Add click handlers for card headers
+            document.querySelectorAll('.card-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    const chevron = this.querySelector('.chevron');
+                    
+                    // Toggle display
+                    content.classList.toggle('show');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+
+            // Add click handlers for KSI headers
+            document.querySelectorAll('.ksi-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    const chevron = this.querySelector('.chevron');
+                    
+                    // Toggle display
+                    content.classList.toggle('show');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+
+            // Add click handlers for validation headers
+            document.querySelectorAll('.validation-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    const chevron = this.querySelector('.chevron');
+                    
+                    // Toggle display
+                    content.classList.toggle('show');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+
+            // Add click handlers for evidence headers
+            document.querySelectorAll('.evidence-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const content = this.nextElementSibling;
+                    const chevron = this.querySelector('.chevron');
+                    
+                    // Toggle display
+                    content.classList.toggle('show');
+                    chevron.classList.toggle('rotate-180');
+                });
+            });
+        }
+
+        // Add schema validation function
+        function validateAgainstSchema(data) {
+            if (!data || !data.Package) {
+                return { valid: false, error: "Invalid YAML: Missing Package information" };
+            }
+
+            const requiredFields = {
+                Package: ['CSPName', 'CSO', 'impact', 'summaryOfCSO'],
+                Assessment: ['assessorOrg', 'date', 'leadAssessor', 'recommendation', 'remarks'],
+                KSI: ['name', 'shortName', 'status'],
+                validation: ['id', 'shortName', 'description', 'implementation', 'implementationStatus', 'assessmentStatus'],
+                evidence: ['name', 'description', 'instructions']
+            };
+
+            // Check Package fields
+            for (const field of requiredFields.Package) {
+                if (!data.Package[field]) {
+                    return { valid: false, error: `Missing required Package field: ${field}` };
+                }
+            }
+
+            // Check Assessment fields
+            if (!data.Package.Assessments || !Array.isArray(data.Package.Assessments) || data.Package.Assessments.length === 0) {
+                return { valid: false, error: "Missing or invalid Assessments array" };
+            }
+
+            const assessment = data.Package.Assessments[0].Assessment;
+            if (!assessment) {
+                return { valid: false, error: "Missing Assessment data" };
+            }
+
+            for (const field of requiredFields.Assessment) {
+                if (!assessment[field]) {
+                    return { valid: false, error: `Missing required Assessment field: ${field}` };
+                }
+            }
+
+            // Check KSIs
+            if (!assessment.KSIs || !Array.isArray(assessment.KSIs)) {
+                return { valid: false, error: "Missing or invalid KSIs array" };
+            }
+
+            for (const ksiObj of assessment.KSIs) {
+                // Check if KSI object exists
+                if (!ksiObj) {
+                    console.log('Invalid KSI object:', ksiObj);
+                    return { valid: false, error: "Invalid KSI object structure" };
+                }
+
+                // Get the KSI data - either from the KSI property or from the root level
+                const ksi = ksiObj.KSI || ksiObj;
+                if (!ksi) {
+                    console.log('Invalid KSI object:', ksiObj);
+                    return { valid: false, error: "Invalid KSI object structure" };
+                }
+
+                // Check required KSI fields
+                for (const field of requiredFields.KSI) {
+                    if (!ksi[field]) {
+                        return { valid: false, error: `Missing required KSI field: ${field}` };
+                    }
+                }
+
+                // Check Validations
+                if (!ksi.Validations || !Array.isArray(ksi.Validations)) {
+                    return { valid: false, error: "Missing or invalid Validations array" };
+                }
+
+                for (const validationObj of ksi.Validations) {
+                    // Check if validation object exists and has the required structure
+                    if (!validationObj || !validationObj.validation) {
+                        console.log('Invalid validation object:', validationObj);
+                        return { valid: false, error: "Invalid validation object structure" };
+                    }
+
+                    const validation = validationObj.validation;
+                    for (const field of requiredFields.validation) {
+                        if (!validation[field]) {
+                            return { valid: false, error: `Missing required validation field: ${field}` };
+                        }
+                        
+                        // Add specific validation for implementationStatus
+                        if (field === 'implementationStatus') {
+                            const validValues = ['True', 'False', 'Partial'];
+                            const value = String(validation[field]);
+                            if (!validValues.some(valid => valid.toLowerCase() === value.toLowerCase())) {
+                                return { valid: false, error: `Invalid implementationStatus value: ${value}. Must be one of: ${validValues.join(', ')}` };
+                            }
+                        }
+                    }
+
+                    // Check Evidences if they exist
+                    if (validation.Evidences) {
+                        if (!Array.isArray(validation.Evidences)) {
+                            return { valid: false, error: "Invalid Evidences array" };
+                        }
+
+                        for (const evidenceObj of validation.Evidences) {
+                            // Check if evidence object exists and has the required structure
+                            if (!evidenceObj || !evidenceObj.evidence) {
+                                console.log('Invalid evidence object:', evidenceObj);
+                                return { valid: false, error: "Invalid evidence object structure" };
+                            }
+
+                            const evidence = evidenceObj.evidence;
+                            for (const field of requiredFields.evidence) {
+                                if (!evidence[field]) {
+                                    return { valid: false, error: `Missing required evidence field: ${field}` };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return { valid: true };
+        }
+
+        // Add initializeActionMenu function
+        function initializeActionMenu() {
+            const actionsMenuButton = document.querySelector('.actions-menu-button');
+            const actionsMenu = document.getElementById('actions-menu');
+            const uploadToggle = document.getElementById('upload-toggle');
+            const helpToggle = document.getElementById('help-toggle');
+            const uploadContainer = document.getElementById('file-upload-container');
+            const helpContent = document.getElementById('help-content');
+            const closeUpload = document.getElementById('close-upload');
+            const closeHelp = document.getElementById('close-help');
+
+            if (actionsMenuButton && actionsMenu) {
+                actionsMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    actionsMenu.classList.toggle('show');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.actions-menu') && !e.target.closest('.actions-menu-button')) {
+                        actionsMenu.classList.remove('show');
+                    }
+                });
+            }
+
+            // Add upload toggle functionality
+            if (uploadToggle && uploadContainer) {
+                uploadToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    uploadContainer.classList.toggle('visible');
+                    if (helpContent) helpContent.classList.remove('visible');
+                    if (actionsMenu) actionsMenu.classList.remove('show');
+                });
+            }
+
+            // Add help toggle functionality
+            if (helpToggle && helpContent) {
+                helpToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    helpContent.classList.toggle('visible');
+                    if (uploadContainer) uploadContainer.classList.remove('visible');
+                    if (actionsMenu) actionsMenu.classList.remove('show');
+                });
+            }
+
+            // Close help content
+            if (closeHelp && helpContent) {
+                closeHelp.addEventListener('click', function() {
+                    helpContent.classList.remove('visible');
+                });
+            }
+
+            // Close upload content
+            if (closeUpload && uploadContainer) {
+                closeUpload.addEventListener('click', function() {
+                    uploadContainer.classList.remove('visible');
+                });
+            }
+        }
+
+        // Modify loadDefaultData to use the correct path
+        async function loadDefaultData() {
+            try {
+                // Use the sample data as default instead of fetching from file
+                renderDashboardFromData(complianceData);
+            } catch (error) {
+                console.error("Error loading default data:", error);
+                document.getElementById('ksi-container').innerHTML = 
+                    '<div class="ksi-item">Error loading default data. Please try uploading a YAML file.</div>';
+            }
+        }
+
+        // Modify the YAML upload handler
+        function handleYAMLUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileNameDisplay = document.getElementById('file-name');
+            const errorDisplay = document.getElementById('upload-error');
+            const saveButton = document.getElementById('save-yaml-button');
+            
+            // Reset state
+            fileNameDisplay.textContent = `Selected file: ${file.name}`;
+            errorDisplay.style.display = 'none';
+            saveButton.style.display = 'none';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const yamlContent = e.target.result;
+                    const parsed = jsyaml.load(yamlContent);
+                    
+                    // Validate against schema
+                    const validation = validateAgainstSchema(parsed);
+                    if (!validation.valid) {
+                        errorDisplay.textContent = `Validation Error: ${validation.error}`;
+                        errorDisplay.style.display = 'block';
+                        saveButton.style.display = 'none';
+                        return;
+                    }
+
+                    currentYamlData = parsed;
+                    renderDashboardFromData(parsed);
+                    errorDisplay.style.display = 'none';
+                    saveButton.style.display = 'inline-block';
+                } catch (error) {
+                    errorDisplay.textContent = `Error: ${error.message}`;
+                    errorDisplay.style.display = 'block';
+                    saveButton.style.display = 'none';
+                    console.error("YAML parsing error:", error);
+                }
+            };
+
+            reader.onerror = function() {
+                errorDisplay.textContent = 'Error reading file';
+                errorDisplay.style.display = 'block';
+                saveButton.style.display = 'none';
+            };
+
+            reader.readAsText(file);
+        }
+
+        function computeMetrics(assessment) {
+            let totalKSIs = 0;
+            let totalValidations = 0;
+            let passedValidations = 0;
+            let automatedEvidence = 0;
+            let manualEvidence = 0;
+            let totalEvidence = 0;
+
+            assessment.KSIs.forEach(k => {
+                totalKSIs++;
+                if (k.KSI.Validations && Array.isArray(k.KSI.Validations)) {
+                    k.KSI.Validations.forEach(v => {
+                        totalValidations++;
+                        const assessmentStatus = v.validation.assessmentStatus;
+                        if (assessmentStatus === true || assessmentStatus === "True" || 
+                            (typeof assessmentStatus === 'string' && assessmentStatus.toLowerCase() === "pass")) {
+                            passedValidations++;
+                        }
+                        if (v.validation.Evidences) {
+                            v.validation.Evidences.forEach(e => {
+                                totalEvidence++;
+                                const automated = e.evidence.automated;
+                                if (automated === true || automated === "True" || 
+                                    (typeof automated === 'string' && automated.toLowerCase() === "yes")) {
+                                    automatedEvidence++;
+                                } else {
+                                    manualEvidence++;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            return {
+                totalKSIs,
+                totalValidations,
+                passedValidations,
+                automatedEvidence,
+                manualEvidence,
+                totalEvidence
+            };
+        }
+
+        function computeComplianceStats(assessment) {
+            let total = 0;
+            let passed = 0;
+
+            assessment.KSIs.forEach(k => {
+                if (k.KSI.Validations && Array.isArray(k.KSI.Validations)) {
+                    k.KSI.Validations.forEach(v => {
+                        total++;
+                        const assessmentStatus = v.validation.assessmentStatus;
+                        if (assessmentStatus === true || assessmentStatus === "True" || 
+                            (typeof assessmentStatus === 'string' && assessmentStatus.toLowerCase() === "pass")) {
+                            passed++;
+                        }
+                    });
+                }
+            });
+
+            return { total, passed };
+        }
+
+        function renderComplianceRing(passed, total) {
+            const percent = Math.round((passed / total) * 100);
+            const size = 120;
+            const stroke = 12;
+            const radius = (size - stroke) / 2;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (percent / 100) * circumference;
+
+            return `
+                <svg width="${size}" height="${size}">
+                    <circle cx="${size/2}" cy="${size/2}" r="${radius}" stroke="#eee" stroke-width="${stroke}" fill="none" />
+                    <circle cx="${size/2}" cy="${size/2}" r="${radius}" stroke="#2ecc71" stroke-width="${stroke}" fill="none"
+                        stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" transform="rotate(-90 ${size/2} ${size/2})"/>
+                    <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="16" fill="white">${passed}/${total}</text>
+                </svg>
+            `;
+        }
+
+        function updateMetrics(assessment) {
+            const metrics = computeMetrics(assessment);
+            
+            // Update KPI cards
+            document.getElementById('total-ksis').textContent = metrics.totalKSIs;
+            document.getElementById('total-validations').textContent = metrics.totalValidations;
+            document.getElementById('success-rate').textContent = 
+                `${Math.round((metrics.passedValidations / metrics.totalValidations) * 100)}%`;
+            document.getElementById('automation-rate').textContent = 
+                `${Math.round((metrics.automatedEvidence / metrics.totalEvidence) * 100)}%`;
+
+            // Update evidence coverage
+            document.getElementById('automated-count').textContent = 
+                `${metrics.automatedEvidence}/${metrics.totalEvidence}`;
+            document.getElementById('manual-count').textContent = 
+                `${metrics.manualEvidence}/${metrics.totalEvidence}`;
+            
+            document.getElementById('automated-progress').style.width = 
+                `${(metrics.automatedEvidence / metrics.totalEvidence) * 100}%`;
+            document.getElementById('manual-progress').style.width = 
+                `${(metrics.manualEvidence / metrics.totalEvidence) * 100}%`;
+
+            // Update compliance ring
+            const stats = computeComplianceStats(assessment);
+            document.getElementById('compliance-progress').innerHTML = renderComplianceRing(stats.passed, stats.total);
+
+            // Update validation status chart
+            const ctx = document.getElementById('validation-chart').getContext('2d');
+            if (window.validationChart) {
+                window.validationChart.destroy();
+            }
+            window.validationChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Pass', 'Fail', 'Pending'],
+                    datasets: [{
+                        data: [
+                            metrics.passedValidations,
+                            metrics.totalValidations - metrics.passedValidations,
+                            0 // Pending count if available
+                        ],
+                        backgroundColor: [
+                            '#2ecc71',  // Success green
+                            '#e74c3c',  // Accent red
+                            '#f39c12'   // Warning orange
+                        ],
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '0%'
+                }
+            });
+        }
+
+        function renderDashboardFromData(data) {
+            if (!data || !data.Package) return;
+
+            // Handle template files (schema.yaml) that don't have assessment data
+            if (!data.Package.Assessments || !data.Package.Assessments[0] || !data.Package.Assessments[0].Assessment) {
+                document.getElementById('package-name').textContent = data.Package.CSPName || 'Template';
+                document.getElementById('impact-level').textContent = data.Package.impact || 'Not Specified';
+                document.getElementById('assessment-date').textContent = 'N/A';
+                document.getElementById('recommendation').textContent = 'N/A';
+                document.getElementById('assessor-org').textContent = 'N/A';
+                document.getElementById('lead-assessor').textContent = 'N/A';
+                document.getElementById('assessment-date-detail').textContent = 'N/A';
+                document.getElementById('recommendation-detail').textContent = 'N/A';
+                document.getElementById('assessment-remarks').textContent = 'N/A';
+                
+                // Clear KSI container
+                const ksiContainer = document.getElementById('ksi-container');
+                ksiContainer.innerHTML = '<div class="ksi-item">This is a template file. Please use an assessment file with actual data.</div>';
+                
+                // Reset metrics
+                document.getElementById('total-ksis').textContent = '0';
+                document.getElementById('total-validations').textContent = '0';
+                document.getElementById('success-rate').textContent = '0%';
+                document.getElementById('automation-rate').textContent = '0%';
+                document.getElementById('automated-count').textContent = '0/0';
+                document.getElementById('manual-count').textContent = '0/0';
+                document.getElementById('automated-progress').style.width = '0%';
+                document.getElementById('manual-progress').style.width = '0%';
+                document.getElementById('compliance-progress').innerHTML = '';
+                
+                return;
+            }
+
+            complianceData.Package = data.Package;
+            document.getElementById('package-name').textContent = data.Package.CSPName;
+            document.getElementById('impact-level').textContent = data.Package.impact;
+
+            // Update package info
+            const packageInfo = document.querySelector('.package-info');
+            
+            // Clear existing content except the actions menu
+            const actionsMenu = packageInfo.querySelector('.actions-menu');
+            packageInfo.innerHTML = '';
+            packageInfo.appendChild(actionsMenu);
+            
+            // Add title and impact level
+            const title = document.createElement('h1');
+            title.id = 'package-name';
+            title.textContent = data.Package.CSPName;
+            
+            const impact = document.createElement('p');
+            impact.innerHTML = `Impact Level: <span id="impact-level">${data.Package.impact}</span>`;
+            
+            // Add CSO and summary
+            const csoInfo = document.createElement('p');
+            csoInfo.className = 'package-subtitle';
+            csoInfo.textContent = data.Package.CSO || 'N/A';
+            
+            const summaryInfo = document.createElement('p');
+            summaryInfo.className = 'package-description';
+            summaryInfo.textContent = data.Package.summaryOfCSO || 'N/A';
+            
+            // Add elements in correct order
+            packageInfo.insertBefore(title, actionsMenu);
+            packageInfo.insertBefore(impact, actionsMenu);
+            packageInfo.insertBefore(csoInfo, actionsMenu);
+            packageInfo.insertBefore(summaryInfo, actionsMenu);
+
+            // Add styles for the new elements
+            const style = document.createElement('style');
+            style.textContent = `
+                .package-subtitle {
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 0.9em;
+                    margin: 4px 0;
+                }
+                .package-description {
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 0.85em;
+                    margin: 8px 0;
+                    line-height: 1.4;
+                }
+                .digital-signature {
+                    font-size: 0.75em;
+                    color: rgba(255, 255, 255, 0.5);
+                    font-family: monospace;
+                    word-break: break-all;
+                    margin-top: 4px;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Get assessment data
+            const assessment = data.Package.Assessments[0].Assessment;
+            
+            // Update assessment info
+            document.getElementById('assessment-date').textContent = assessment.date || 'N/A';
+            document.getElementById('recommendation').textContent = assessment.recommendation || 'N/A';
+            document.getElementById('assessor-org').textContent = assessment.assessorOrg || 'N/A';
+            document.getElementById('lead-assessor').textContent = assessment.leadAssessor || 'N/A';
+            document.getElementById('assessment-date-detail').textContent = assessment.date || 'N/A';
+            document.getElementById('recommendation-detail').textContent = assessment.recommendation || 'N/A';
+            document.getElementById('assessment-remarks').textContent = assessment.remarks || 'N/A';
+
+            // Add digital signature as a subtle element in assessment details
+            const assessmentDetails = document.querySelector('.details-grid');
+            // Remove any existing digital signature items
+            const existingSignatures = assessmentDetails.querySelectorAll('.details-item:has(.signature-text)');
+            existingSignatures.forEach(sig => sig.remove());
+            
+            const signatureItem = document.createElement('div');
+            signatureItem.className = 'details-item';
+            signatureItem.innerHTML = `
+                <span class="details-label">Digital Signature:</span>
+                <span class="signature-text">${assessment.digitalSignature || 'N/A'}</span>
+            `;
+            assessmentDetails.appendChild(signatureItem);
+
+            // Update metrics
+            updateMetrics(assessment);
+
+            // Render KSIs
+            const ksiContainer = document.getElementById('ksi-container');
+            ksiContainer.innerHTML = ""; // Clear old content
+
+            if (!assessment.KSIs || !Array.isArray(assessment.KSIs)) {
+                ksiContainer.innerHTML = '<div class="ksi-item">No KSIs found in the assessment data.</div>';
+                return;
+            }
+
+            assessment.KSIs.forEach(ksiObj => {
+                if (!ksiObj || !ksiObj.KSI) return;
+                
+                const ksi = ksiObj.KSI;
+                const ksiElement = document.createElement('div');
+                ksiElement.className = 'ksi-item';
+                
+                const ksiHeader = document.createElement('div');
+                ksiHeader.className = 'ksi-header';
+                ksiHeader.innerHTML = `
+                    <div>${ksi.name || 'Unnamed KSI'} (${ksi.shortName || 'No ID'})</div>
+                    <div>
+                        <span class="status status-${(ksi.status || 'unknown').toLowerCase()}">${ksi.status || 'Unknown'}</span>
+                        <span class="chevron">▼</span>
+                    </div>
+                `;
+                ksiElement.appendChild(ksiHeader);
+                
+                const ksiContent = document.createElement('div');
+                ksiContent.className = 'ksi-content';
+                
+                if (ksi.Validations && Array.isArray(ksi.Validations)) {
+                    ksi.Validations.forEach(validationObj => {
+                        if (!validationObj || !validationObj.validation) return;
+                        
+                        const validation = validationObj.validation;
+                        const validationElement = document.createElement('div');
+                        validationElement.className = 'validation-item';
+                        
+                        const validationHeader = document.createElement('div');
+                        validationHeader.className = 'validation-header';
+                        validationHeader.innerHTML = `
+                            <div>${validation.shortName || 'No ID'}: ${validation.description || 'No description'}</div>
+                            <div>
+                                <span class="status status-${String(validation.assessmentStatus || 'unknown').toLowerCase()}">${validation.assessmentStatus || 'Unknown'}</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                        `;
+                        validationElement.appendChild(validationHeader);
+                        
+                        const validationContent = document.createElement('div');
+                        validationContent.className = 'validation-content';
+                        
+                        const validationDetails = document.createElement('div');
+                        validationDetails.className = 'details-grid';
+                        validationDetails.innerHTML = `
+                            <div class="details-item"><span class="details-label">Implementation:</span><span>${validation.implementation || 'N/A'}</span></div>
+                            <div class="details-item"><span class="details-label">Status:</span><span>${validation.implementationStatus || 'N/A'}</span></div>
+                            <div class="details-item"><span class="details-label">Assessed By:</span><span>${validation.assessedBy || 'N/A'}</span></div>
+                            <div class="details-item"><span class="details-label">Assessed On:</span><span>${validation.assessedOn || 'N/A'}</span></div>
+                            <div class="details-item"><span class="details-label">Digital Signature:</span><span>${validation.digitalSignature || 'N/A'}</span></div>
+                        `;
+                        validationContent.appendChild(validationDetails);
+                        
+                        if (validation.remarks) {
+                            const remarksElement = document.createElement('div');
+                            remarksElement.className = 'details-item';
+                            remarksElement.style.marginTop = '10px';
+                            remarksElement.innerHTML = `<span class="details-label">Remarks:</span><span>${validation.remarks}</span>`;
+                            validationContent.appendChild(remarksElement);
+                        }
+                        
+                        if (validation.Evidences && Array.isArray(validation.Evidences)) {
+                            validation.Evidences.forEach(evidenceObj => {
+                                if (!evidenceObj || !evidenceObj.evidence) return;
+                                
+                                const evidence = evidenceObj.evidence;
+                                const evidenceElement = document.createElement('div');
+                                evidenceElement.className = 'evidence-item';
+                                
+                                const evidenceHeader = document.createElement('div');
+                                evidenceHeader.className = 'evidence-header';
+                                evidenceHeader.innerHTML = `<div>${evidence.name || 'Unnamed Evidence'}: ${evidence.description || 'No description'}</div><span class="chevron">▼</span>`;
+                                evidenceElement.appendChild(evidenceHeader);
+                                
+                                const evidenceContent = document.createElement('div');
+                                evidenceContent.className = 'evidence-content';
+                                
+                                const evidenceDetails = document.createElement('div');
+                                evidenceDetails.className = 'details-grid';
+                                evidenceDetails.innerHTML = `
+                                    <div class="details-item"><span class="details-label">ID:</span><span>${evidence.id || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Instructions:</span><span>${evidence.instructions || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Commands:</span><span>${evidence.commands || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Automated:</span><span>${evidence.automated || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Script Name:</span><span>${evidence.scriptName || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Validated By:</span><span>${evidence.validatedBy || 'N/A'}</span></div>
+                                    <div class="details-item"><span class="details-label">Validate Date:</span><span>${evidence.validateDate || 'N/A'}</span></div>
+                                `;
+                                evidenceContent.appendChild(evidenceDetails);
+                                
+                                if (evidence.validationRules && Array.isArray(evidence.validationRules)) {
+                                    const rulesElement = document.createElement('div');
+                                    rulesElement.className = 'details-item';
+                                    rulesElement.style.marginTop = '10px';
+                                    rulesElement.innerHTML = `
+                                        <span class="details-label">Validation Rules:</span>
+                                        <div style="margin-left: 160px;">
+                                            ${evidence.validationRules.map(rule => `
+                                                <div class="validation-rule">
+                                                    <strong>Rule ${rule.rule.id}:</strong> ${rule.rule.textValue}
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    `;
+                                    evidenceContent.appendChild(rulesElement);
+                                }
+                                
+                                if (evidence.Artifacts && Array.isArray(evidence.Artifacts)) {
+                                    const artifactsElement = document.createElement('div');
+                                    artifactsElement.className = 'details-item';
+                                    artifactsElement.style.marginTop = '10px';
+                                    artifactsElement.innerHTML = `
+                                        <span class="details-label">Artifacts:</span>
+                                        <div class="artifacts-list">
+                                            ${evidence.Artifacts.map(artifact => `
+                                                <div class="artifact-item">
+                                                    <div><strong>${artifact.artifact.name || 'Unnamed Artifact'}</strong></div>
+                                                    <div>Reference: ${artifact.artifact.reference || 'N/A'}</div>
+                                                    <div>Effective Date: ${artifact.artifact.effectiveDate || 'N/A'}</div>
+                                                    ${artifact.artifact.outputResults ? `<div>Results: ${artifact.artifact.outputResults}</div>` : ''}
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    `;
+                                    evidenceContent.appendChild(artifactsElement);
+                                }
+                                
+                                evidenceElement.appendChild(evidenceContent);
+                                validationContent.appendChild(evidenceElement);
+                            });
+                        }
+                        
+                        validationElement.appendChild(validationContent);
+                        ksiContent.appendChild(validationElement);
+                    });
+                }
+                
+                ksiElement.appendChild(ksiContent);
+                ksiContainer.appendChild(ksiElement);
+            });
+
+            // Initialize collapsible sections after rendering
+            initializeCollapsibleSections();
+        }
+
+        // Add this new function to handle initialization in saved files
+        function initializeSavedDashboard() {
+            if (complianceData && complianceData.Package) {
+                // Hide file upload container and save button
+                const uploadContainer = document.getElementById('file-upload-container');
+                const saveButton = document.getElementById('save-yaml-button');
+                if (uploadContainer) uploadContainer.classList.remove('visible');
+                if (saveButton) saveButton.style.display = 'none';
+
+                // Render the dashboard
+                renderDashboardFromData(complianceData);
+                
+                // Initialize UI elements
+                initializeCollapsibleSections();
+                initializeActionMenu();
+
+                // Add click handlers for actions menu
+                const actionsMenuButton = document.querySelector('.actions-menu-button');
+                const actionsMenu = document.getElementById('actions-menu');
+                const uploadToggle = document.getElementById('upload-toggle');
+                const helpToggle = document.getElementById('help-toggle');
+                const closeUpload = document.getElementById('close-upload');
+                const closeHelp = document.getElementById('close-help');
+
+                if (actionsMenuButton && actionsMenu) {
+                    actionsMenuButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        actionsMenu.classList.toggle('show');
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!e.target.closest('.actions-menu') && !e.target.closest('.actions-menu-button')) {
+                            actionsMenu.classList.remove('show');
+                        }
+                    });
+                }
+
+                // Add upload toggle functionality
+                if (uploadToggle && uploadContainer) {
+                    uploadToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        uploadContainer.classList.toggle('visible');
+                        if (helpContent) helpContent.classList.remove('visible');
+                        if (actionsMenu) actionsMenu.classList.remove('show');
+                    });
+                }
+
+                // Add help toggle functionality
+                if (helpToggle && helpContent) {
+                    helpToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        helpContent.classList.toggle('visible');
+                        if (uploadContainer) uploadContainer.classList.remove('visible');
+                        if (actionsMenu) actionsMenu.classList.remove('show');
+                    });
+                }
+
+                // Close help content
+                if (closeHelp && helpContent) {
+                    closeHelp.addEventListener('click', function() {
+                        helpContent.classList.remove('visible');
+                    });
+                }
+
+                // Close upload content
+                if (closeUpload && uploadContainer) {
+                    closeUpload.addEventListener('click', function() {
+                        uploadContainer.classList.remove('visible');
+                    });
+                }
+            }
+        }
+
+        // Call initializeSavedDashboard when the page loads
+        if (document.readyState === 'complete') {
+            initializeSavedDashboard();
+        } else {
+            window.addEventListener('load', initializeSavedDashboard);
+        }
+
+        // Initialize the dashboard with default data
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load default data
+            loadDefaultData();
+
+            // Initialize file upload handler
+            const fileUpload = document.getElementById('yaml-upload');
+            if (fileUpload) {
+                fileUpload.addEventListener('change', handleYAMLUpload);
+            }
+
+            // Initialize save YAML button
+            const saveYamlButton = document.getElementById('save-yaml-button');
+            if (saveYamlButton) {
+                saveYamlButton.addEventListener('click', function() {
+                    if (!currentYamlData) {
+                        alert('No YAML data to save');
+                        return;
+                    }
+                    
+                    try {
+                        // Get the current HTML content
+                        const htmlContent = document.documentElement.outerHTML;
+                        
+                        // Find the complianceData object in the HTML
+                        const dataRegex = /const complianceData = ({[\s\S]*?});/;
+                        
+                        // Create a properly formatted data object
+                        const formattedData = {
+                            Package: currentYamlData.Package
+                        };
+                        
+                        // Replace the complianceData with the new data
+                        const newHtmlContent = htmlContent.replace(
+                            dataRegex,
+                            `const complianceData = ${JSON.stringify(formattedData, null, 2)};`
+                        );
+                        
+                        // Create a blob and download link
+                        const blob = new Blob([newHtmlContent], { type: 'text/html' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = '20x-yaml-dashboard.html';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    } catch (error) {
+                        console.error('Error saving dashboard:', error);
+                        alert('Error saving dashboard: ' + error.message);
+                    }
+                });
+            }
+
+            // Initialize export YAML functionality
+            const exportYamlButton = document.getElementById('export-yaml');
+            if (exportYamlButton) {
+                exportYamlButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!currentYamlData) {
+                        alert('No YAML data to export');
+                        return;
+                    }
+                    
+                    try {
+                        // Convert the data to YAML string
+                        const yamlString = jsyaml.dump(currentYamlData, {
+                            indent: 2,
+                            lineWidth: -1, // No line wrapping
+                            noRefs: true,  // Don't use references
+                            sortKeys: false // Maintain original key order
+                        });
+                        
+                        // Create a blob and download link
+                        const blob = new Blob([yamlString], { type: 'text/yaml' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'dashboard-data.yaml';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    } catch (error) {
+                        console.error('Error exporting YAML:', error);
+                        alert('Error exporting YAML file: ' + error.message);
+                    }
+                });
+            }
+
+            // Initialize other UI elements
+            initializeCollapsibleSections();
+            initializeActionMenu();
+        });
+
+        // Initialize the dashboard immediately
+        (function() {
+            // Initialize collapsible sections
+            function initializeCollapsibleSections() {
+                // Add click handlers for card headers
+                document.querySelectorAll('.card-header').forEach(header => {
+                    header.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const content = this.nextElementSibling;
+                        const chevron = this.querySelector('.chevron');
+                        
+                        // Toggle display
+                        content.classList.toggle('show');
+                        chevron.classList.toggle('rotate-180');
+                    });
+                });
+
+                // Add click handlers for KSI headers
+                document.querySelectorAll('.ksi-header').forEach(header => {
+                    header.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const content = this.nextElementSibling;
+                        const chevron = this.querySelector('.chevron');
+                        
+                        // Toggle display
+                        content.classList.toggle('show');
+                        chevron.classList.toggle('rotate-180');
+                    });
+                });
+
+                // Add click handlers for validation headers
+                document.querySelectorAll('.validation-header').forEach(header => {
+                    header.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const content = this.nextElementSibling;
+                        const chevron = this.querySelector('.chevron');
+                        
+                        // Toggle display
+                        content.classList.toggle('show');
+                        chevron.classList.toggle('rotate-180');
+                    });
+                });
+
+                // Add click handlers for evidence headers
+                document.querySelectorAll('.evidence-header').forEach(header => {
+                    header.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const content = this.nextElementSibling;
+                        const chevron = this.querySelector('.chevron');
+                        
+                        // Toggle display
+                        content.classList.toggle('show');
+                        chevron.classList.toggle('rotate-180');
+                    });
+                });
+            }
+
+            // Initialize immediately
+            initializeCollapsibleSections();
+
+            // Also initialize when the DOM is ready
+            document.addEventListener('DOMContentLoaded', initializeCollapsibleSections);
+
+            // And initialize when the window loads
+            window.addEventListener('load', initializeCollapsibleSections);
+        })();
+    </script>
+
+</body></html>
