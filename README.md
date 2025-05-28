@@ -2,7 +2,11 @@
 
 ## Paramify Overview
 
-![Paramify Logo Horizontal Blue](images/Paramify_logo_horizontal_blue.svg)
+<p align="center">
+   <a href="https://paramify.com">
+     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="700">
+   </a>
+</p>
 
 The **Paramify Cloud** (Paramify) is a software platform running in AWS GovCloud that automates risk management processes—including compliance planning, solution implementation, gap assessments, and documentation—for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). It supports compliance with NIST 800-53 (FedRAMP, FISMA, GovRAMP), NIST 800-171 (CMMC), SOC 2, HIPAA, ISO 27001, and more.
 
@@ -70,7 +74,7 @@ Our draft package submission is represented using YAML due to its simplicity.  T
 ---
 
 ## 📑 Assessment File Structure
-The machine-readable assessment file is a YAML file with the following structure (see [schema.yaml](schema.yaml)):
+The machine-readable assessment file is a YAML file with the following structure (see [machine-readable-package/schema.yaml](machine-readable-package/schema.yaml)):
 
 ```yaml
 Package:
@@ -230,7 +234,18 @@ Summary of and rationale for the approach used to generate the machine-readable 
 ### Step 9 - CSP Submission
 Similar to the Continuous Reporting capability, the package will be available either with a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
 
-An example of the HTML viewer can be seen at: <githubpages link>
+An example of the HTML viewer (free and open-source, operates offline based on YAML machine-readable package file) can be accessed below or in the [html-dashboard directory](https://github.com/paramify/fedramp-20x-pilot/html-dashboard)
+
+<p align="center">
+   <a href="https://iteuscher.github.io/fedramp20x/Dashboard/20x-yaml-dashboard-lorem.html">
+     <img src="images/html_dashboard.png" alt="20x HTML Dashboard Screenshot" width="700">
+   </a>
+</p>
+<p align="center">
+   <a href="https://iteuscher.github.io/fedramp20x/Dashboard/20x-yaml-dashboard-lorem.html">
+    <img src="https://img.shields.io/badge/20x%20HTML%20Dashboard-Click%20to%20View%20Live%20Dashboard%20-blue?style=for-the-badge" alt="View 20x HTML Dashboard">
+  </a>
+</p>
 
 ---
 
