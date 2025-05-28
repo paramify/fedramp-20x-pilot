@@ -58,10 +58,10 @@ Document the implementation of our KSIs using Paramify Cloud using our FedRAMP 2
 ### Step 2 – Key Security Indicators and Validations
 Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible.
 ![evidence_1](images/evidence_1.png)
-![evidence_2](images/evidence_2.png)
 
 ### Step 3 – Validate Evidence
 Meet with 3PAO and have them review and validate evidence in Paramify Cloud.
+![evidence_2](images/evidence_2.png)
 
 ### Step 4 – Automate Machine Readable Package
 Publish our machine readable format package using Paramify Cloud’s DocRobot capabilities.
