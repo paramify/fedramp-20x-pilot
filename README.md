@@ -1,12 +1,12 @@
+<p align="center">
+   <a href="https://paramify.com">
+     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="100%">
+   </a>
+</p>
+
 # Paramify's FedRAMP 20x Phase One Pilot Draft Submission
 
 ## Paramify Overview
-
-<p align="center">
-   <a href="https://paramify.com">
-     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="600">
-   </a>
-</p>
 
 The **Paramify Cloud** (Paramify) is a software platform that automates risk management processes – including compliance planning, solution implementation, gap assessments, and continuous reporting – for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). Trusted by leading CSPs like Adobe, Cisco, Trellix, Palo Alto Networks, and Flock Safety.
 
