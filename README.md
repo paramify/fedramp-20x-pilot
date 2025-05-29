@@ -1,6 +1,6 @@
 <p align="center">
    <a href="https://paramify.com">
-     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="100%">
+     <img src="images/Paramify_Logo.svg" alt="Paramify Logo Horizontal Blue" width="100%">
    </a>
 </p>
 
@@ -245,7 +245,7 @@ A summary of and rationale for the approach used to generate the machine-readabl
 ### Step 9 - CSP Submission
 Similar to the Continuous Reporting capability, the package will be available either with a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
 
-An example of the HTML viewer (free and open-source, operates offline based on YAML machine-readable package file) can be accessed below or in the [html-dashboard directory](https://github.com/paramify/fedramp-20x-pilot/tree/main/html-dashboard)
+An example of the HTML viewer (free and open-source, operates offline based on YAML machine-readable package file) can be accessed in the [html-dashboard directory](https://github.com/paramify/fedramp-20x-pilot/tree/main/html-dashboard)
 
 <p align="center">
    <a href="https://iteuscher.github.io/fedramp20x/Dashboard/20x-yaml-dashboard-lorem.html">
