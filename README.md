@@ -35,7 +35,7 @@ Our approach can be summarized with the following steps:
     Meet with 3PAO and have them review and validate evidence in Paramify Cloud.
 
 4. **Automate Machine-readable Package**  
-   Publish our machine readable format package using Paramify Cloud.
+   Generate and publish our machine readable package using Paramify Cloud.
 
 5. **3PAO Review**  
    3PAO reviews the package and adds attestation.
@@ -64,10 +64,17 @@ Document the implementation of our KSIs using Paramify Cloud with the FedRAMP 20
 Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible. Instructions and commands for each evidence object are included to provide context to the evidence process and results.
 ![Evidence Image](images/evidence.webp)
 
+Paramify primarily uses bash scripts to call IaaS/SaaS APIs and collect evidence for each FedRAMP 20x KSI. A selection of evidence scripts is included in the [`/evidence`](./evidence) directory.
+
+
 ### Step 3 – Validate Evidence
-Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PAO can set Assurance Steps, Assurance Status, remarks, etc. 
+Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PAO can set Assurance Steps/Results, Assurance Status, and leave notes or remarks. 
 ![Assurance Evidence Image](images/assurance_evidence.webp)
 ![Assurance Management Image](images/assurance_management.webp)
+
+Paramify is working with Schellman as 3PAO. The plam and methodology of assessment is described in the letter available here: 
+[**Schellman FedRAMP 20x Assessment Plan & Methodology (Paramify) v1.0 [PDF]**](./Schellman%20FedRAMP%2020x%20Assessment%20Plan%20%26%20Methodology%20(Paramify)%20v1.0.pdf)
+
 
 ### Step 4 – Automate Machine Readable Package
 Publish our machine readable format package using Paramify Cloud’s DocRobot capabilities.
