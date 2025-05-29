@@ -4,18 +4,20 @@
 
 <p align="center">
    <a href="https://paramify.com">
-     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="700">
+     <img src="images/Paramify_logo_horizontal_blue.svg" alt="Paramify Logo Horizontal Blue" width="600">
    </a>
 </p>
 
-The **Paramify Cloud** (Paramify) is a software platform running in AWS GovCloud that automates risk management processes—including compliance planning, solution implementation, gap assessments, and documentation—for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). It supports compliance with NIST 800-53 (FedRAMP, FISMA, GovRAMP), NIST 800-171 (CMMC), SOC 2, HIPAA, ISO 27001, and more.
+The **Paramify Cloud** (Paramify) is a software platform that automates risk management processes – including compliance planning, solution implementation, gap assessments, and continuous reporting – for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). Trusted by leading CSPs like Adobe, Cisco, Trellix, Palo Alto Networks, and Flock Safety.
 
-#### Key Features:
-- **SSP & ATO Management** - Import SSPs, identify system elements, generate OSCAL and human-readable packages.
-- **Control Optimization** - Track progress and responsibilities via dashboard.
-- **Change Management** - Auto-sync updates across documentation and profiles.
-- **Continuous Monitoring** - Automate POA&M, detect duplicates, adjust risk, and reconcile inventory.
-- **Integrations** - Integrate with issue management tools and manage evidence via open API.
+- **Living Gap Assessment**
+Visualize compliance progress with Paramify’s intuitive real-time dashboard. Track controls, manage gaps, and easily organize people, places, and components, ensuring audit readiness for FedRAMP 20X, GovRAMP, and other frameworks.
+
+- **Instant Audit-Ready Documentation**
+Automate compliance, generate audit-ready deliverables like System Security Plans (SSPs), POA&Ms, and Customer Responsibility Matrices in days, not months. Continuously validate compliance with real-time automated validation tools for FedRAMP 20X and other frameworks.
+
+- **Fast, Cost-Effective Monitoring**
+Continuously monitor, validate, and report compliance 90% faster at a quarter of the cost. Paramify’s automated tools and Evidence Repository simplify compliance, reducing costs and enhancing efficiency. Integrated with issue management tools like Jira, it streamlines workflows, helping you meet tight deadlines.
 
 ---
 
@@ -56,16 +58,16 @@ Our approach can be summarized with the following steps:
 
 ### Step 1 – Lightweight Documentation
 Document the implementation of our KSIs using Paramify Cloud with the FedRAMP 20x validations set.
-![KSI_implementation_1](images/KSI_implementation_1.png)
-![KSI_implementation_2](images/KSI_implementation_2.png)
+![KSI Implementation Image](images/KSI_implementation.webp)
 
 ### Step 2 – Key Security Indicators and Validations
 Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible. Instructions and commands for each evidence object are included to provide context to the evidence process and results.
-![evidence_1](images/evidence_1.png)
+![Evidence Image](images/evidence.webp)
 
 ### Step 3 – Validate Evidence
 Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PAO can set Assurance Steps, Assurance Status, remarks, etc. 
-![evidence_2](images/evidence_2.png)
+![Assurance Evidence Image](images/assurance_evidence.webp)
+![Assurance Management Image](images/assurance_management.webp)
 
 ### Step 4 – Automate Machine Readable Package
 Publish our machine readable format package using Paramify Cloud’s DocRobot capabilities.
@@ -224,9 +226,11 @@ Either on demand or per an automated schedule, a new package will be generated w
 
 ### Step 7 - Prototype for Continuous Reporting
 It is anticipated that Paramify Cloud will allow for a shareable link that shows the KSI dashboard. The view will look similar to the following images.
-![KSI_implementation_status](images/KSI_implementation_status.png)
-![con_reporting_1](images/con_reporting_1.png)
-![issues_dashboard](images/issues.png)
+![Paramify Dashboard Image](images/paramify_dashboard.webp)
+
+![Paramify Trend Dashboard Image](images/trend_dashboard.webp)
+
+![Paramify Issues Dashboard Image](images/issues.webp)
 
 ### Step 8 - CSP Rationale and Summary
 Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods is provided with the machine-readable package file.
