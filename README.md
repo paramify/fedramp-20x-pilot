@@ -194,25 +194,26 @@ Package:
                            - artifact:
                                name: WAF DoS Rules Result
                                reference: waf_dos_rules.json
-                               outputResults: {
-                                                "results": [
-                                                  {
-                                                    "WebACLId": "fb14t971-0bfc-4f57-970c-16gjd7ae0566",
-                                                    "WebACLName": "WAFv2-web-acl",
-                                                    "Rules": [
-                                                      {
-                                                        "Name": "rate-limit-rule",
-                                                        "Priority": 1,
-                                                        "Statement": {
-                                                          "RateBasedStatement": {
-                                                            "Limit": 2000,
-                                                            "AggregateKeyType": "IP"
-                                                          }
-                                                        },
-                                                        "Action": {
-                                                          "Block": {}
-                                                        ...
+                               outputResults: |
+                                 {
+                                    "results": [
+                                      {
+                                        "WebACLId": "fb14t971-0bfc-4f57-970c-16gjd7ae0566",
+                                        "WebACLName": "WAFv2-web-acl",
+                                        "Rules": [
+                                          {
+                                            "Name": "rate-limit-rule",
+                                            "Priority": 1,
+                                            "Statement": {
+                                              "RateBasedStatement": {
+                                                "Limit": 2000,
+                                                "AggregateKeyType": "IP"
                                               }
+                                            },
+                                            "Action": {
+                                              "Block": {}
+                                            ...
+                                  }
                                effectiveDate: 5/23/25
 ```
 
