@@ -35,13 +35,13 @@ Our approach can be summarized with the following steps:
     Meet with 3PAO and have them review and validate evidence in Paramify Cloud.
 
 4. **Automate Machine-readable Package**  
-   Generate and publish our machine readable package using Paramify Cloud.
+   Generate and publish our machine-readable package using Paramify Cloud.
 
 5. **3PAO Review**  
    3PAO reviews the package and adds attestation.
 
 6. **Continuous Reporting Indication**  
-   Either on demand or per an automated schedule, a new package will be generated with the most current evidence.
+   Either on-demand or per an automated schedule, a new package will be generated with the most current evidence.
 
 7. **Prototype for Continuous Reporting**  
    It is anticipated that Paramify Cloud will allow for a shareable link that shows the KSI dashboard.
@@ -72,12 +72,12 @@ Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PA
 ![Assurance Evidence Image](images/assurance_evidence.webp)
 ![Assurance Management Image](images/assurance_management.webp)
 
-Paramify is working with Schellman as 3PAO. The plam and methodology of assessment is described in the letter available here: 
+Paramify is working with Schellman as 3PAO. The plan and methodology of assessment is described in the letter available here: 
 [**Schellman FedRAMP 20x Assessment Plan & Methodology (Paramify) v1.0 [PDF]**](./Schellman%20FedRAMP%2020x%20Assessment%20Plan%20%26%20Methodology%20(Paramify)%20v1.0.pdf)
 
 
 ### Step 4 – Automate Machine Readable Package
-Publish our machine readable format package using Paramify Cloud’s DocRobot capabilities.
+Publish our machine-readable format package using Paramify Cloud’s DocRobot capabilities.
 Our draft package submission is represented using YAML due to its simplicity.  Though YAML is our current proposal, Paramify can support OSCAL, JSON, or other common formats.
 
 ---
@@ -229,7 +229,7 @@ Package:
 ```
 
 ### Step 6 - Continuous Reporting Indication
-Either on demand or per an automated schedule, a new package will be generated with the most current evidence using Paramify's DocRobot capability.
+Either on-demand or per an automated schedule, a new package will be generated with the most current evidence using Paramify's DocRobot capability.
 
 ### Step 7 - Prototype for Continuous Reporting
 It is anticipated that Paramify Cloud will allow for a shareable link that shows the KSI dashboard. The view will look similar to the following images.
@@ -240,18 +240,13 @@ It is anticipated that Paramify Cloud will allow for a shareable link that shows
 ![Paramify Issues Dashboard Image](images/issues.webp)
 
 ### Step 8 - CSP Rationale and Summary
-Summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods is provided with the machine-readable package file.
+A summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods is provided with the machine-readable package file.
 
 ### Step 9 - CSP Submission
 Similar to the Continuous Reporting capability, the package will be available either with a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
 
 An example of the HTML viewer (free and open-source, operates offline based on YAML machine-readable package file) can be accessed below or in the [html-dashboard directory](https://github.com/paramify/fedramp-20x-pilot/tree/main/html-dashboard)
 
-<p align="center">
-   <a href="https://iteuscher.github.io/fedramp20x/Dashboard/20x-yaml-dashboard-lorem.html">
-     <img src="images/html_dashboard.png" alt="20x HTML Dashboard Screenshot" width="700">
-   </a>
-</p>
 <p align="center">
    <a href="https://iteuscher.github.io/fedramp20x/Dashboard/20x-yaml-dashboard-lorem.html">
     <img src="https://img.shields.io/badge/20x%20HTML%20Dashboard-Click%20to%20View%20Live%20Dashboard%20-blue?style=for-the-badge" alt="View 20x HTML Dashboard">
