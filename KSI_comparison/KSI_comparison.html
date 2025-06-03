@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+README: KSI Comparison Status Logic
+
+Status values in this table are determined as follows:
+
+- "same": The old and new KSI descriptions are exactly equal (ignoring whitespace and case), and the numeric part of the old and new IDs match.
+- "modified": The numeric part of the old and new IDs match, but the descriptions are not exactly equal (any wording change, no matter how small).
+- "reordered": The numeric part of the old and new IDs differ, but the descriptions are otherwise the same (ignoring parentheticals, punctuation, and case).
+- "added": The KSI is new and has no corresponding old KSI.
+- "removed": The KSI was present in the old set but not in the new set.
+
+Special case: If a KSI is marked as 'removed' and another as 'added', but their descriptions match (after normalization), both are marked as 'reordered'.
+
+This logic ensures:
+- Only truly identical requirements are marked as "same".
+- Any wording change is marked as "modified".
+- "Reordered" is only for requirements that are otherwise the same but moved.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSI Comparison</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            font-size: 12px;
+            color: #2c3e50;
+        }
+        
+        select, input {
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid #bdc3c7;
+        }
+        
+        .table-container {
+            overflow: auto;
+            max-height: 70vh;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        th {
+            background: #34495e;
+            color: white;
+            padding: 10px 6px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        th:hover {
+            background: #2c3e50;
+        }
+        
+        td {
+            padding: 8px 6px;
+            border-bottom: 1px solid #ecf0f1;
+            vertical-align: top;
+        }
+        
+        td:nth-child(1), td:nth-child(2), td:nth-child(3), td:nth-child(4) {
+            width: 7%;
+            min-width: 60px;
+            max-width: 90px;
+        }
+        
+        .description-cell, .notes-cell {
+            font-size: 13px;
+        }
+        
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        tr.hidden {
+            display: none;
+        }
+        
+        .status {
+            font-weight: 600;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        /* Status colors */
+        .same { background-color: #d5f4e6; color: #0f5132; }
+        .reordered { background-color: #fff3cd; color: #664d03; }
+        .modified { background-color: #cff4fc; color: #055160; }
+        .added { background-color: #f8d7da; color: #721c24; }
+        .removed { background-color: #e2e3e5; color: #41464b; }
+        
+        .id-cell {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            min-width: 70px;
+        }
+        
+        .notes-cell {
+            font-style: italic;
+            color: #6c757d;
+            max-width: 200px;
+        }
+        
+        .export-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .export-btn:hover {
+            background: #2980b9;
+        }
+        
+        .summary {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .summary-item {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KSI Comparison</h1>
+        
+        <div class="controls">
+            <div class="filter-group">
+                <label>Filter by Family:</label>
+                <select id="familyFilter">
+                    <option value="">All Families</option>
+                    <option value="CNA">Cloud Native Architecture</option>
+                    <option value="SVC">Service Configuration</option>
+                    <option value="IAM">Identity & Access Management</option>
+                    <option value="MLA">Monitoring, Logging & Auditing</option>
+                    <option value="CMT">Configuration Management</option>
+                    <option value="PIY">Policy & Inventory</option>
+                    <option value="TPR">Third Party Resources</option>
+                    <option value="CED">Cybersecurity Education</option>
+                    <option value="RPL">Recovery Planning</option>
+                    <option value="INR">Incident Response</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Filter by Status:</label>
+                <select id="statusFilter">
+                    <option value="">All Status</option>
+                    <option value="same">Same</option>
+                    <option value="reordered">Reordered</option>
+                    <option value="modified">Modified</option>
+                    <option value="added">Added</option>
+                    <option value="removed">Removed</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Search:</label>
+                <input type="text" id="searchInput" placeholder="Search descriptions...">
+            </div>
+            
+            <button class="export-btn" onclick="exportToCsv()">Export to CSV</button>
+        </div>
+        
+        <div class="summary" id="summary">
+            <!-- Summary will be populated by JavaScript -->
+        </div>
+        
+        <div class="table-container">
+            <table id="ksiTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">Family</th>
+                        <th onclick="sortTable(1)">Old ID</th>
+                        <th onclick="sortTable(2)">New ID</th>
+                        <th onclick="sortTable(3)">Status</th>
+                        <th onclick="sortTable(4)">Old Description</th>
+                        <th onclick="sortTable(5)">New Description</th>
+                        <th onclick="sortTable(6)">Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        // KSI comparison data
+        const ksiData = [
+            // Cloud Native Architecture
+            { family: 'CNA', oldId: 'KSI-CNA-2', newId: 'CNA-01', status: 'modified', oldDesc: 'Configure firewalls/proxy servers to limit inbound and outbound traffic', newDesc: 'Configure ALL information resources to limit inbound and outbound traffic', notes: 'Expanded scope from firewalls/proxy to ALL information resources' },
+            { family: 'CNA', oldId: 'KSI-CNA-4', newId: 'CNA-02', status: 'modified', oldDesc: 'Design systems as logically segmented micro-services to minimize the attack surface and lateral movement if compromised', newDesc: 'Design systems to minimize the attack surface and minimize lateral movement if compromised', notes: 'Simplified wording, removed micro-services specificity' },
+            { family: 'CNA', oldId: 'KSI-CNA-5', newId: 'CNA-03', status: 'modified', oldDesc: 'Use cloud native virtual networks and related capabilities to enforce logical traffic flow controls', newDesc: 'Use logical networking and related capabilities to enforce traffic flow controls', notes: 'Removed "cloud native virtual" specification' },
+            { family: 'CNA', oldId: 'KSI-CNA-3', newId: 'CNA-04', status: 'modified', oldDesc: 'Use immutable containers and serverless functions with strictly defined functionality and privileges', newDesc: 'Use immutable infrastructure with strictly defined functionality and privileges by default', notes: 'Expanded from containers/serverless to all infrastructure, added "by default"' },
+            { family: 'CNA', oldId: 'KSI-CNA-1', newId: 'CNA-05', status: 'same', oldDesc: 'Have denial of service (DoS) protection', newDesc: 'Have denial of service protection', notes: 'Minor formatting change (removed DoS abbreviation)' },
+            { family: 'CNA', oldId: 'KSI-CNA-7', newId: 'CNA-06', status: 'modified', oldDesc: 'Use high availability design principles to maximize uptime', newDesc: 'Design systems for high availability and rapid recovery', notes: 'Added "rapid recovery" component' },
+            { family: 'CNA', oldId: '', newId: 'CNA-07', status: 'added', oldDesc: '', newDesc: 'Ensure cloud-native information resources are implemented based on host provider\'s best practices and documented guidance', notes: 'New requirement for following provider best practices' },
+            { family: 'CNA', oldId: 'KSI-CNA-6', newId: '', status: 'removed', oldDesc: 'Execute continuous scanning of cloud native system components', newDesc: '', notes: 'Removed from CNA, may be covered in MLA section' },
+            
+            // Service Configuration
+            { family: 'SVC', oldId: 'KSI-SC-1', newId: 'SVC-01', status: 'same', oldDesc: 'Harden and review network and system configurations', newDesc: 'Harden and review network and system configurations', notes: '' },
+            { family: 'SVC', oldId: 'KSI-SC-2', newId: 'SVC-02', status: 'modified', oldDesc: 'Encrypt all network traffic', newDesc: 'Encrypt or otherwise secure network traffic', notes: 'Added "or otherwise secure" option' },
+            { family: 'SVC', oldId: 'KSI-SC-3', newId: 'SVC-03', status: 'same', oldDesc: 'Encrypt all federal and sensitive information at rest', newDesc: 'Encrypt all federal and sensitive information at rest', notes: '' },
+            { family: 'SVC', oldId: 'KSI-SC-4', newId: 'SVC-04', status: 'same', oldDesc: 'Manage configuration centrally', newDesc: 'Manage configuration centrally', notes: '' },
+            { family: 'SVC', oldId: 'KSI-SC-5', newId: 'SVC-05', status: 'modified', oldDesc: 'Enforce system and component integrity through cryptographic means', newDesc: 'Enforce system and information resource integrity through cryptographic means', notes: 'Changed "component" to "information resource"' },
+            { family: 'SVC', oldId: 'KSI-SC-6', newId: 'SVC-06', status: 'modified', oldDesc: 'Use a key management capability to execute regular rotation of digital keys', newDesc: 'Use automated key management systems to manage, protect, and regularly rotate digital keys and certificates', notes: 'Specified automation and added certificates, expanded scope' },
+            { family: 'SVC', oldId: 'KSI-SC-7', newId: 'SVC-07', status: 'same', oldDesc: 'Use a consistent, risk-informed approach for applying security patches', newDesc: 'Use a consistent, risk-informed approach for applying security patches', notes: '' },
+            
+            // Identity and Access Management
+            { family: 'IAM', oldId: 'KSI-IAM-1', newId: 'IAM-01', status: 'modified', oldDesc: 'Enforce phishing-resistant multi-factor authentication (MFA)', newDesc: 'Enforce multi-factor authentication (MFA) using methods that are difficult to intercept or impersonate (phishing-resistant MFA) for all user authentication', notes: 'Added detailed explanation and scope to all user authentication' },
+            { family: 'IAM', oldId: 'KSI-IAM-2', newId: 'IAM-02', status: 'modified', oldDesc: 'Enforce strong passwords', newDesc: 'Use secure passwordless methods for user authentication and authorization when feasible, otherwise enforce strong passwords with MFA', notes: 'Prioritized passwordless methods, added MFA requirement for passwords' },
+            { family: 'IAM', oldId: 'KSI-IAM-3', newId: 'IAM-03', status: 'modified', oldDesc: 'Use secure API authentication methods via industry standard protocols', newDesc: 'Enforce appropriately secure authentication methods for non-user accounts and services', notes: 'Expanded from API-specific to all non-user accounts and services' },
+            { family: 'IAM', oldId: 'KSI-IAM-4', newId: 'IAM-04', status: 'modified', oldDesc: 'Use a least-privileged, role-based, and just-in-time security model', newDesc: 'Use a least-privileged, role and attribute-based, and just-in-time security authorization model for all user and non-user accounts and services', notes: 'Added attribute-based, specified authorization model, expanded scope' },
+            { family: 'IAM', oldId: '', newId: 'IAM-05', status: 'added', oldDesc: '', newDesc: 'Apply zero trust design principles', notes: 'New zero trust requirement (moved from 3IR section)' },
+            { family: 'IAM', oldId: '', newId: 'IAM-06', status: 'added', oldDesc: '', newDesc: 'Automatically disable or otherwise secure accounts with privileged access in response to suspicious activity', notes: 'New automated security response requirement' },
+            
+            // Monitoring, Logging, and Auditing
+            { family: 'MLA', oldId: 'KSI-MLA-1', newId: 'MLA-01', status: 'modified', oldDesc: 'Operate a Security Information and Event Management (SIEM) system for centralized, tamper-resistent event, activity, and change logging', newDesc: 'Operate a Security Information and Event Management (SIEM) or similar system(s) for centralized, tamper-resistent logging of events, activities, and changes', notes: 'Added "or similar system(s)" flexibility, reordered wording' },
+            { family: 'MLA', oldId: 'KSI-MLA-2', newId: 'MLA-02', status: 'same', oldDesc: 'Regularly review and audit logs', newDesc: 'Regularly review and audit logs', notes: '' },
+            { family: 'MLA', oldId: 'KSI-MLA-3', newId: 'MLA-03', status: 'same', oldDesc: 'Rapidly detect and remediate or mitigate vulnerabilities', newDesc: 'Rapidly detect and remediate or mitigate vulnerabilities', notes: '' },
+            { family: 'MLA', oldId: 'KSI-MLA-4', newId: 'MLA-04', status: 'modified', oldDesc: 'Perform authenticated vulnerability scanning on publicly accessible components', newDesc: 'Perform authenticated vulnerability scanning on information resources', notes: 'Expanded scope from publicly accessible components to all information resources' },
+            { family: 'MLA', oldId: 'KSI-MLA-5', newId: 'MLA-05', status: 'modified', oldDesc: 'Perform Infrastructure as Code (IaC) and configuration scanning', newDesc: 'Perform Infrastructure as Code and configuration evaluation and testing', notes: 'Changed "scanning" to "evaluation and testing"' },
+            { family: 'MLA', oldId: 'KSI-MLA-6', newId: 'MLA-06', status: 'modified', oldDesc: 'Centrally track and prioritize the remediation of identified vulnerabilities', newDesc: 'Centrally track and prioritize the mitigation and/or remediation of identified vulnerabilities', notes: 'Added "mitigation and/or" options' },
+            
+            // Configuration Management
+            { family: 'CMT', oldId: 'KSI-CM-1', newId: 'CMT-01', status: 'same', oldDesc: 'Log and monitor system modifications', newDesc: 'Log and monitor system modifications', notes: '' },
+            { family: 'CMT', oldId: 'KSI-CM-2', newId: 'CMT-02', status: 'same', oldDesc: 'Execute changes though redeployment of version controlled immutable resources rather than direct modification wherever possible', newDesc: 'Execute changes though redeployment of version controlled immutable resources rather than direct modification wherever possible', notes: '' },
+            { family: 'CMT', oldId: 'KSI-CM-3', newId: 'CMT-03', status: 'same', oldDesc: 'Implement automated testing and validation of changes prior to deployment', newDesc: 'Implement automated testing and validation of changes prior to deployment', notes: '' },
+            { family: 'CMT', oldId: 'KSI-CM-4', newId: 'CMT-04', status: 'same', oldDesc: 'Have a documented change management procedure', newDesc: 'Have a documented change management procedure', notes: '' },
+            { family: 'CMT', oldId: 'KSI-CM-5', newId: 'CMT-05', status: 'same', oldDesc: 'Evaluate the risk and potential impact of any change', newDesc: 'Evaluate the risk and potential impact of any change', notes: '' },
+            
+            // Policy and Inventory
+            { family: 'PIY', oldId: 'KSI-PI-1', newId: 'PIY-01', status: 'modified', oldDesc: 'Have an up-to-date asset inventory or code defining all deployed assets', newDesc: 'Have an up-to-date information resource inventory or code defining all deployed assets, software, and services', notes: 'Changed to "information resource inventory", added software and services' },
+            { family: 'PIY', oldId: 'KSI-PI-2', newId: 'PIY-02', status: 'modified', oldDesc: 'Have policies outlining their security objectives', newDesc: 'Have policies outlining the security objectives of all information resources', notes: 'Specified scope to "all information resources"' },
+            { family: 'PIY', oldId: 'KSI-PI-3', newId: 'PIY-03', status: 'same', oldDesc: 'Maintain a vulnerability disclosure program', newDesc: 'Maintain a vulnerability disclosure program', notes: '' },
+            { family: 'PIY', oldId: 'KSI-PI-4', newId: 'PIY-04', status: 'modified', oldDesc: 'Build security considerations into the Software Development Lifecycle (SDLC) and aligning with Secure By Design principles', newDesc: 'Build security considerations into the Software Development Lifecycle and align with CISA Secure By Design principles', notes: 'Removed acronym, specified CISA, fixed grammar' },
+            { family: 'PIY', oldId: 'KSI-PI-5', newId: 'PIY-05', status: 'modified', oldDesc: 'Document methods used to automatically evaluate implementations', newDesc: 'Document methods used to evaluate information resource implementations', notes: 'Removed "automatically", added "information resource"' },
+            { family: 'PIY', oldId: 'KSI-PI-6', newId: 'PIY-06', status: 'modified', oldDesc: 'Have a dedicated staff and budget for security', newDesc: 'Have a dedicated staff and budget for security with executive support, commensurate with the size, complexity, scope, and risk of the service offering', notes: 'Added executive support requirement and risk-based sizing' },
+            { family: 'PIY', oldId: '', newId: 'PIY-07', status: 'added', oldDesc: '', newDesc: 'Document risk management decisions for software supply chain security', notes: 'New supply chain risk documentation requirement' },
+            
+            // Third Party Resources
+            { family: 'TPR', oldId: 'KSI-3IR-1', newId: 'TPR-01', status: 'modified', oldDesc: 'Regularly confirm that services storing Federal information are all FedRAMP authorized and securely configured', newDesc: 'Identify all third-party information resources', notes: 'Changed from FedRAMP verification to general identification requirement' },
+            { family: 'TPR', oldId: '', newId: 'TPR-02', status: 'added', oldDesc: '', newDesc: 'Regularly confirm that services handling federal information or are likely to impact the confidentiality, integrity, or availability of federal information are FedRAMP authorized and securely configured', notes: 'FedRAMP requirement moved here from old 3IR-1, expanded scope' },
+            { family: 'TPR', oldId: 'KSI-3IR-2', newId: 'TPR-03', status: 'same', oldDesc: 'Identify and prioritize potential supply chain risks', newDesc: 'Identify and prioritize mitigation of potential supply chain risks', notes: 'Added "mitigation of"' },
+            { family: 'TPR', oldId: 'KSI-3IR-3', newId: 'TPR-04', status: 'modified', oldDesc: 'Obtain a Software Bill of Materials (SBOM) for third party commercial software components', newDesc: 'Monitor third party software information resources for upstream vulnerabilities, with contractual notification requirements or active monitoring services', notes: 'Completely changed from SBOM requirement to vulnerability monitoring' },
+            { family: 'TPR', oldId: 'KSI-3IR-4', newId: '', status: 'removed', oldDesc: 'Confirm that third party information resources have a Secure Software Development Attestation with CISA', newDesc: '', notes: 'Removed SSDF attestation requirement' },
+            { family: 'TPR', oldId: 'KSI-3IR-5', newId: '', status: 'removed', oldDesc: 'Implement zero trust design principles', newDesc: '', notes: 'Moved to IAM-05' },
+            
+            // Cybersecurity Education
+            { family: 'CED', oldId: 'KSI-CE-1', newId: 'CED-01', status: 'same', oldDesc: 'Ensure all employees receive security awareness training', newDesc: 'Ensure all employees receive security awareness training', notes: '' },
+            { family: 'CED', oldId: 'KSI-CE-2', newId: 'CED-02', status: 'modified', oldDesc: 'Require role-specific training for high risk roles', newDesc: 'Require role-specific training for high risk roles, including at least roles with privileged access', notes: 'Added minimum requirement for privileged access roles' },
+            
+            // Recovery Planning/Incident Response
+            { family: 'RPL', oldId: 'KSI-IR-1', newId: 'RPL-01', status: 'modified', oldDesc: 'Define Recovery Time Objective (RTO) and Recovery Point Objective (RPO)', newDesc: 'Define Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO)', notes: 'Pluralized Objectives' },
+            { family: 'RPL', oldId: '', newId: 'RPL-02', status: 'added', oldDesc: '', newDesc: 'Develop and maintain a recovery plan that aligns with the defined recovery objectives', notes: 'New recovery plan requirement' },
+            { family: 'RPL', oldId: 'KSI-IR-2', newId: 'RPL-03', status: 'same', oldDesc: 'Perform system backups aligned with the RTO and RPO', newDesc: 'Perform system backups aligned with recovery objectives', notes: 'Simplified reference to objectives' },
+            { family: 'RPL', oldId: 'KSI-IR-3', newId: 'RPL-04', status: 'same', oldDesc: 'Test the capability to recover from incidents and contingencies', newDesc: 'Regularly test the capability to recover from incidents and contingencies', notes: 'Added "regularly"' },
+            
+            // Incident Response
+            { family: 'INR', oldId: 'KSI-IR-4', newId: 'INR-01', status: 'modified', oldDesc: 'Report incidents according to federal requirements', newDesc: 'Report incidents according to FedRAMP requirements and cloud service provider policies', notes: 'Specified FedRAMP and added CSP policies' },
+            { family: 'INR', oldId: 'KSI-IR-5', newId: 'INR-02', status: 'same', oldDesc: 'Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities', newDesc: 'Maintain a log of incidents and periodically review past incidents for patterns or vulnerabilities', notes: '' },
+            { family: 'INR', oldId: 'KSI-IR-6', newId: 'INR-03', status: 'modified', oldDesc: 'Measure Mean Time To Detect (MTTD) and Mean Time To Resolution (MTTR) for incidents', newDesc: 'Generate after action reports and regularly incorporate lessons learned into operations', notes: 'Changed from metrics to after-action reports and lessons learned' }
+        ];
+
+        let currentSort = { column: -1, ascending: true };
+
+        // Helper to get numeric part of ID
+        function getNumericId(id) {
+            if (!id) return '';
+            const match = id.match(/(\d+)$/);
+            return match ? match[1] : id;
+        }
+
+        // Improved description comparison: ignore parentheticals and abbreviations
+        function normalizeDesc(desc) {
+            if (!desc) return '';
+            return desc.replace(/\([^)]*\)/g, '') // remove ( ... )
+                .replace(/[^a-zA-Z0-9]/g, '')
+                .toLowerCase();
+        }
+
+        // Strict description equality (ignoring whitespace and case only)
+        function strictlySameDesc(desc1, desc2) {
+            if (!desc1 || !desc2) return false;
+            return desc1.replace(/\s+/g, '').toLowerCase() === desc2.replace(/\s+/g, '').toLowerCase();
+        }
+
+        // Force recalculation of status for every row with both IDs and descriptions
+        ksiData.forEach(row => {
+            if (row.oldId && row.newId && row.oldDesc && row.newDesc) {
+                const oldNum = parseInt(getNumericId(row.oldId), 10);
+                const newNum = parseInt(getNumericId(row.newId), 10);
+                if (oldNum === newNum) {
+                    if (strictlySameDesc(row.oldDesc, row.newDesc)) {
+                        row.status = 'same';
+                    } else {
+                        row.status = 'modified';
+                    }
+                } else if (normalizeDesc(row.oldDesc) === normalizeDesc(row.newDesc)) {
+                    row.status = 'reordered';
+                } else {
+                    // If neither, set to 'modified' unless it's 'added' or 'removed'
+                    if (row.status !== 'added' && row.status !== 'removed') {
+                        row.status = 'modified';
+                    }
+                }
+                // Debug output for problematic rows
+                if (
+                    row.oldId === 'KSI-3IR-2' ||
+                    row.oldId === 'KSI-CE-1' ||
+                    row.oldId === 'KSI-IR-2' ||
+                    row.oldId === 'KSI-IR-3'
+                ) {
+                    console.log(
+                        `DEBUG: ${row.oldId} -> ${row.newId} | oldDesc: '${row.oldDesc}' | newDesc: '${row.newDesc}' | strictlySameDesc: ${strictlySameDesc(row.oldDesc, row.newDesc)} | status: ${row.status}`
+                    );
+                }
+            }
+        });
+
+        // Special case: if a removed and an added KSI have the same normalized description, mark both as reordered
+        ksiData.forEach(removedRow => {
+            if (removedRow.status === 'removed' && removedRow.oldDesc) {
+                const match = ksiData.find(addedRow =>
+                    addedRow.status === 'added' &&
+                    normalizeDesc(removedRow.oldDesc) === normalizeDesc(addedRow.newDesc)
+                );
+                if (match) {
+                    removedRow.status = 'reordered';
+                    match.status = 'reordered';
+                }
+            }
+        });
+
+        // Initialize the table when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateTable();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            document.getElementById('familyFilter').addEventListener('change', filterTable);
+            document.getElementById('statusFilter').addEventListener('change', filterTable);
+            document.getElementById('searchInput').addEventListener('input', filterTable);
+        }
+
+        function populateTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            ksiData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${escapeHtml(row.family)}</td>
+                    <td class="id-cell">${escapeHtml(row.oldId ? row.oldId.replace(/^KSI-/, '') : '')}</td>
+                    <td class="id-cell">${escapeHtml(row.newId)}</td>
+                    <td><span class="status ${row.status}">${row.status.charAt(0).toUpperCase() + row.status.slice(1)}</span></td>
+                    <td class="description-cell">${escapeHtml(row.oldDesc)}</td>
+                    <td class="description-cell">${escapeHtml(row.newDesc)}</td>
+                    <td class="notes-cell">${escapeHtml(row.notes)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            
+            updateSummary();
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function updateSummary() {
+            const statusCounts = {};
+            ksiData.forEach(row => {
+                statusCounts[row.status] = (statusCounts[row.status] || 0) + 1;
+            });
+            
+            const summary = document.getElementById('summary');
+            summary.innerHTML = Object.entries(statusCounts).map(([status, count]) => 
+                `<div class="summary-item ${status}">${status.charAt(0).toUpperCase() + status.slice(1)}: ${count}</div>`
+            ).join('');
+        }
+
+        function filterTable() {
+            const familyFilter = document.getElementById('familyFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            const rows = document.querySelectorAll('#tableBody tr');
+            
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                const family = cells[0].textContent;
+                const status = cells[3].textContent.toLowerCase();
+                const oldDesc = cells[4].textContent.toLowerCase();
+                const newDesc = cells[5].textContent.toLowerCase();
+                const notes = cells[6].textContent.toLowerCase();
+                
+                const familyMatch = !familyFilter || family === familyFilter;
+                const statusMatch = !statusFilter || status.includes(statusFilter);
+                const searchMatch = !searchTerm || 
+                    oldDesc.includes(searchTerm) || 
+                    newDesc.includes(searchTerm) || 
+                    notes.includes(searchTerm);
+                
+                row.style.display = (familyMatch && statusMatch && searchMatch) ? '' : 'none';
+            });
+        }
+
+        function sortTable(columnIndex) {
+            const tbody = document.getElementById('tableBody');
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            
+            const ascending = currentSort.column === columnIndex ? !currentSort.ascending : true;
+            currentSort = { column: columnIndex, ascending };
+            
+            rows.sort((a, b) => {
+                const aVal = a.getElementsByTagName('td')[columnIndex].textContent.trim();
+                const bVal = b.getElementsByTagName('td')[columnIndex].textContent.trim();
+                
+                // Special handling for status column
+                if (columnIndex === 3) {
+                    const statusOrder = { 'same': 0, 'reordered': 1, 'modified': 2, 'added': 3, 'removed': 4 };
+                    return ascending ? 
+                        statusOrder[aVal.toLowerCase()] - statusOrder[bVal.toLowerCase()] :
+                        statusOrder[bVal.toLowerCase()] - statusOrder[aVal.toLowerCase()];
+                }
+                
+                return ascending ? 
+                    aVal.localeCompare(bVal) : 
+                    bVal.localeCompare(aVal);
+            });
+            
+            tbody.innerHTML = '';
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        function exportToCsv() {
+            const headers = ['Family', 'Old ID', 'New ID', 'Status', 'Old Description', 'New Description', 'Notes'];
+            
+            // Function to properly escape CSV fields
+            const escapeCsvField = (field) => {
+                if (field === null || field === undefined) return '';
+                const stringField = String(field);
+                if (stringField.includes(',') || stringField.includes('"') || stringField.includes('\n')) {
+                    return `"${stringField.replace(/"/g, '""')}"`;
+                }
+                return stringField;
+            };
+
+            const csvContent = [
+                headers.join(','),
+                ...ksiData.map(row => [
+                    escapeCsvField(row.family),
+                    escapeCsvField(row.oldId),
+                    escapeCsvField(row.newId),
+                    escapeCsvField(row.status),
+                    escapeCsvField(row.oldDesc),
+                    escapeCsvField(row.newDesc),
+                    escapeCsvField(row.notes)
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'ksi_comparison.csv');
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+
+  <footer style="margin-top:40px; text-align:center; font-size:13px; color:#888;">
+    <p>Made by <a href="https://www.paramify.com/" target="_blank" rel="noopener noreferrer">Paramify</a> as a FedRAMP 20x open-source project. Contribute or discuss in the <a href="https://github.com/FedRAMP/community/discussions" target="_blank" rel="noopener noreferrer">FedRAMP 20x GitHub Community</a>.</p>
+  </footer>
+
+</body>
+</html>
