@@ -2,7 +2,8 @@ Package:
   CSPName: Paramify
   CSO: Paramify Cloud
   impact: Low
-  summaryOfCSO: 'The Paramify Cloud (Paramify) is a software platform that automates risk management processes-including compliance planning, solution implementation, gap assessments, and documentation-for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). Paramify supports adherence to control catalog requirements including NIST 800-53 (FedRAMP, FISMA, GovRAMP, TX-RAMP), NIST 800-171 (CMMC), and standards such as SOC 2, HIPAA, and ISO 27001, with support for additional catalogs and profiles continually expanding. SSP and ATO Package Management - Fast and Easy Setup: Upload previous SSPs or use the intake process to identify your system's elements and security capabilities. Paramify then generates a roadmap to support your risk management and compliance objectives. - Streamlined Control Implementation & Optimization: Visualize progress and manage security program capabilities through a unified dashboard that tracks system elements and responsibilities. - ATO Package Generation: Produce accurate SSP documentation in both digital (OSCAL) and human-readable formats, with flexible export options that support various file types, including but not limited to OSCAL, PDF, Word, and Excel. - Incorporate Changes Efficiently: As your risk management approach evolves, maintaining stack profiles in Paramify reduces manual update errors across documentation. Paramify automatically synchronizes updates to your SSP, CRM, CIS, policies, procedures, and other records to support compliance with evolving data protection requirements. Continuous Monitoring and Issue Management - Automated POA&M Documentation: Automatically manage and update POA&M documentation via a centralized task-priority view, eliminating the need to manage from multiple spreadsheets or scan files. - Vulnerability Management with Duplicate Detection: Automatically close resolved vulnerabilities and employ duplicate detection to ensure accurate issue tracking. - Automated Risk Adjustment: Apply risk adjustments across multiple issues automatically to support consistent prioritization of remediation efforts. - Automated Inventory Reconciliation: Configure and maintain inventory reconciliation rules to generate accurate workbooks automatically, without manual review of scan files-including those for ephemeral virtual hosts. Integration with Your Organization's Processes - Workflow Management: Integrate with issue management tools (e.g., Jira, ServiceNow, GitLab) to facilitate collaboration between DevOps and security teams for timely issue remediation. - Evidence Management: Unified evidence approach that minimizes or eliminates duplicate collection efforts. - API Integrations: Paramify's open API supports custom integrations with system components to facilitate connectivity and interoperability. Available in SaaS and self-hosted implementations.'
+  summaryOfCSO: |
+   'The Paramify Cloud (Paramify) is a software platform that automates risk management processes-including compliance planning, solution implementation, gap assessments, and documentation-for cloud service providers, government agencies, and members of the Defense Industrial Base (DIB). Paramify supports adherence to control catalog requirements including NIST 800-53 (FedRAMP, FISMA, GovRAMP, TX-RAMP), NIST 800-171 (CMMC), and standards such as SOC 2, HIPAA, and ISO 27001, with support for additional catalogs and profiles continually expanding. SSP and ATO Package Management - Fast and Easy Setup: Upload previous SSPs or use the intake process to identify your system's elements and security capabilities. Paramify then generates a roadmap to support your risk management and compliance objectives. - Streamlined Control Implementation & Optimization: Visualize progress and manage security program capabilities through a unified dashboard that tracks system elements and responsibilities. - ATO Package Generation: Produce accurate SSP documentation in both digital (OSCAL) and human-readable formats, with flexible export options that support various file types, including but not limited to OSCAL, PDF, Word, and Excel. - Incorporate Changes Efficiently: As your risk management approach evolves, maintaining stack profiles in Paramify reduces manual update errors across documentation. Paramify automatically synchronizes updates to your SSP, CRM, CIS, policies, procedures, and other records to support compliance with evolving data protection requirements. Continuous Monitoring and Issue Management - Automated POA&M Documentation: Automatically manage and update POA&M documentation via a centralized task-priority view, eliminating the need to manage from multiple spreadsheets or scan files. - Vulnerability Management with Duplicate Detection: Automatically close resolved vulnerabilities and employ duplicate detection to ensure accurate issue tracking. - Automated Risk Adjustment: Apply risk adjustments across multiple issues automatically to support consistent prioritization of remediation efforts. - Automated Inventory Reconciliation: Configure and maintain inventory reconciliation rules to generate accurate workbooks automatically, without manual review of scan files-including those for ephemeral virtual hosts. Integration with Your Organization's Processes - Workflow Management: Integrate with issue management tools (e.g., Jira, ServiceNow, GitLab) to facilitate collaboration between DevOps and security teams for timely issue remediation. - Evidence Management: Unified evidence approach that minimizes or eliminates duplicate collection efforts. - API Integrations: Paramify's open API supports custom integrations with system components to facilitate connectivity and interoperability. Available in SaaS and self-hosted implementations.'
   Assessments:
   - Assessment:
       digitalSignature: ef161a28f3d64bef5c21b7748b0f1e4b4943b40e636d940efd461c9186895b4d
@@ -37,7 +38,7 @@ Package:
                   name: security_awareness_training.json
                   description: Evidence file for CED-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -56,7 +57,7 @@ Package:
                   name: Training-and-Awareness.json
                   description: Evidence file for CED-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -92,7 +93,7 @@ Package:
                   name: role_specific_training.json
                   description: Evidence file for CED-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -151,7 +152,7 @@ Package:
                   name: detect_new_aws_resource.json
                   description: Evidence file for CMT-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -246,7 +247,7 @@ Package:
                   name: change-management-paramify-gitlab-inventory-branch.xml
                   description: Evidence file for CMT-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -265,7 +266,7 @@ Package:
                   name: Example Change Request - Create Okta API Token (new user and token) (!48) · Merge requests · Paramify CloudOps _ Change Management · GitLab.pdf
                   description: Evidence file for CMT-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -322,7 +323,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for CMT-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -341,7 +342,7 @@ Package:
                   name: eks_all_clusters_pod_inventory.json
                   description: Evidence file for CMT-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -377,7 +378,7 @@ Package:
                   name: networkpolicies.yaml
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -396,7 +397,7 @@ Package:
                   name: aws-paramify-eks-infra.tf
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -415,7 +416,7 @@ Package:
                   name: harden.txt
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -434,7 +435,7 @@ Package:
                   name: tfstate.json
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -453,7 +454,7 @@ Package:
                   name: tfstate (1).json
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -491,7 +492,7 @@ Package:
                   name: govcloud-infrastructure-in-terraform-main.zip
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -510,7 +511,7 @@ Package:
                   name: Example Change Request - Create Okta API Token (new user and token) (!48) · Merge requests · Paramify CloudOps _ Change Management · GitLab.pdf
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -567,7 +568,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for CMT-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -698,7 +699,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for CMT-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -865,7 +866,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for CMT-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -905,7 +906,7 @@ Package:
                   name: Network-Operations.csv
                   description: Evidence file for CNA-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -924,7 +925,7 @@ Package:
                   name: security_groups.json
                   description: Evidence file for CNA-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -963,7 +964,7 @@ Package:
                   name: alb_iam_policy.json
                   description: Evidence file for CNA-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -982,7 +983,7 @@ Package:
                   name: eks_microservice_segmentation.json
                   description: Evidence file for CNA-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1018,7 +1019,7 @@ Package:
                   name: Network-Operations.csv
                   description: Evidence file for CNA-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1037,7 +1038,7 @@ Package:
                   name: security_groups.json
                   description: Evidence file for CNA-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1056,7 +1057,7 @@ Package:
                   name: System Ports, Protocols & Services.png
                   description: Evidence file for CNA-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1075,7 +1076,7 @@ Package:
                   name: alb_iam_policy.json
                   description: Evidence file for CNA-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1094,7 +1095,7 @@ Package:
                   name: load_balancer_encryption.json
                   description: Evidence file for CNA-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1133,7 +1134,7 @@ Package:
                   name: alb_iam_policy.json
                   description: Evidence file for CNA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1152,7 +1153,7 @@ Package:
                   name: kubectl_security.json
                   description: Evidence file for CNA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1171,7 +1172,7 @@ Package:
                   name: eks_least_privilege.json
                   description: Evidence file for CNA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1207,7 +1208,7 @@ Package:
                   name: waf_dos_rules.json
                   description: Evidence file for CNA-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1264,7 +1265,7 @@ Package:
                   name: WAFv2-web-acl.json
                   description: Evidence file for CNA-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1340,7 +1341,7 @@ Package:
                   name: WAFv2-web-acl.json
                   description: Evidence file for CNA-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1395,7 +1396,7 @@ Package:
                   name: backup_recovery_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1414,7 +1415,7 @@ Package:
                   name: efs_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1433,7 +1434,7 @@ Package:
                   name: aws_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1452,7 +1453,7 @@ Package:
                   name: database_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1471,7 +1472,7 @@ Package:
                   name: cloudwatch_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1490,7 +1491,7 @@ Package:
                   name: eks_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1509,7 +1510,7 @@ Package:
                   name: aws_high_availability.csv
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1528,7 +1529,7 @@ Package:
                   name: network_resilience_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1547,7 +1548,7 @@ Package:
                   name: load_balancer_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1566,7 +1567,7 @@ Package:
                   name: auto_scaling_high_availability.json
                   description: Evidence file for CNA-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1602,7 +1603,7 @@ Package:
                   name: aws_config_conformance_packs.json
                   description: Evidence file for CNA-07
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1680,7 +1681,7 @@ Package:
                   name: okta_authenticators.sh
                   description: Evidence file for IAM-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1792,7 +1793,7 @@ Package:
                   name: okta_authenticators.sh
                   description: Evidence file for IAM-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1869,7 +1870,7 @@ Package:
                   name: iam_policies.json
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1888,7 +1889,7 @@ Package:
                   name: iam_identity_center.json
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1907,7 +1908,7 @@ Package:
                   name: System Ports, Protocols & Services.png
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -1945,7 +1946,7 @@ Package:
                   name: documentation-0.1.0.json
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2021,7 +2022,7 @@ Package:
                   name: SSL Server Test_ proxy.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2040,7 +2041,7 @@ Package:
                   name: SSL Server Test_ app.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2059,7 +2060,7 @@ Package:
                   name: SSL Server Test_ registry.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for IAM-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2095,7 +2096,7 @@ Package:
                   name: iam_policies.json
                   description: Evidence file for IAM-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2114,7 +2115,7 @@ Package:
                   name: iam_identity_center.json
                   description: Evidence file for IAM-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2133,7 +2134,7 @@ Package:
                   name: iam_roles.json
                   description: Evidence file for IAM-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2152,7 +2153,7 @@ Package:
                   name: iam_users_groups.json
                   description: Evidence file for IAM-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2191,7 +2192,7 @@ Package:
                   name: harden.txt
                   description: Evidence file for IAM-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2210,7 +2211,7 @@ Package:
                   name: kubectl_security.json
                   description: Evidence file for IAM-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2229,7 +2230,7 @@ Package:
                   name: eks_microservice_segmentation.json
                   description: Evidence file for IAM-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2477,7 +2478,7 @@ Package:
                   name: SIEM-S1-SDL-monitors.json
                   description: Evidence file for INR-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2515,7 +2516,7 @@ Package:
                   name: SSP-A08-Paramify-IRP-2024-09-27 - 9_30_24, 2_14 PM (1).pdf
                   description: Evidence file for INR-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2572,7 +2573,7 @@ Package:
                   name: guard_duty.json
                   description: Evidence file for INR-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2591,7 +2592,7 @@ Package:
                   name: incident review meeting calendar invite.pdf
                   description: Evidence file for INR-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2627,7 +2628,7 @@ Package:
                   name: SSP-A08-Paramify-IRP-2024-09-27 - 9_30_24, 2_14 PM (1).pdf
                   description: Evidence file for INR-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -2705,7 +2706,7 @@ Package:
                   name: SIEM-S1-SDL-monitors.json
                   description: Evidence file for MLA-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3003,7 +3004,7 @@ Package:
                   name: 2025-06-24-22-08-48.json
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3022,7 +3023,7 @@ Package:
                   name: 2025-06-23-22-08-48.json
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3060,7 +3061,7 @@ Package:
                   name: nessus_scan_export_lambda.py
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3079,7 +3080,7 @@ Package:
                   name: Compliance RDS Pre_policy_erllt5 (2).json
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3098,7 +3099,7 @@ Package:
                   name: Web Scan pre_paramify_com 2_policy_7dxuty (2).json
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3155,7 +3156,7 @@ Package:
                   name: guard_duty.json
                   description: Evidence file for MLA-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3210,7 +3211,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for MLA-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3305,7 +3306,7 @@ Package:
                   name: aws_config_monitoring.json
                   description: Evidence file for PIY-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3324,7 +3325,7 @@ Package:
                   name: inventory_paramify_export.csv
                   description: Evidence file for PIY-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3343,7 +3344,7 @@ Package:
                   name: Paramify_Cloud-SSP-Appendix_M-FedRAMP-High-v1_0.xlsx
                   description: Evidence file for PIY-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3400,7 +3401,7 @@ Package:
                   name: change-management-paramify-gitlab-inventory-branch.xml
                   description: Evidence file for PIY-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3419,7 +3420,7 @@ Package:
                   name: eks_all_clusters_pod_inventory.json
                   description: Evidence file for PIY-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3455,7 +3456,7 @@ Package:
                   name: Paramify_Cloud-SSP-Appendix_A-FedRAMP-High-v1_0.docx
                   description: Evidence file for PIY-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3474,7 +3475,7 @@ Package:
                   name: Paramify Cloud-SSP-Policies_and_Procedures-FedRAMP.zip
                   description: Evidence file for PIY-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3493,7 +3494,7 @@ Package:
                   name: Paramify Cloud-SSP-FedRAMP-1.0.6.docx
                   description: Evidence file for PIY-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3603,7 +3604,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for PIY-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3677,7 +3678,7 @@ Package:
                   name: run_evidence_validations.sh
                   description: Evidence file for PIY-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3732,7 +3733,7 @@ Package:
                   name: Security_Staff_KSIPI6.csv
                   description: Evidence file for PIY-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3751,7 +3752,7 @@ Package:
                   name: FedRamp 20X evidence - Sheet1.pdf
                   description: Evidence file for PIY-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3844,7 +3845,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for PIY-07
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3882,7 +3883,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for PIY-07
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3960,7 +3961,7 @@ Package:
                   name: SSP-Appendix-G-Information-System-Contingency-Plan-(ISCP)-Paramify.pdf
                   description: Evidence file for RPL-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -3998,7 +3999,7 @@ Package:
                   name: SSP-Appendix-G-Information-System-Contingency-Plan-(ISCP)-Paramify.pdf
                   description: Evidence file for RPL-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4072,7 +4073,7 @@ Package:
                   name: SSP-Appendix-G-Information-System-Contingency-Plan-(ISCP)-Paramify.pdf
                   description: Evidence file for RPL-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4110,7 +4111,7 @@ Package:
                   name: SSP-Appendix-G-Information-System-Contingency-Plan-(ISCP)-Paramify.pdf
                   description: Evidence file for RPL-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4203,7 +4204,7 @@ Package:
                   name: backup_recovery_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4222,7 +4223,7 @@ Package:
                   name: efs_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4241,7 +4242,7 @@ Package:
                   name: aws_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4260,7 +4261,7 @@ Package:
                   name: database_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4279,7 +4280,7 @@ Package:
                   name: cloudwatch_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4298,7 +4299,7 @@ Package:
                   name: eks_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4317,7 +4318,7 @@ Package:
                   name: aws_high_availability.csv
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4336,7 +4337,7 @@ Package:
                   name: network_resilience_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4355,7 +4356,7 @@ Package:
                   name: load_balancer_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4374,7 +4375,7 @@ Package:
                   name: database_high_availability.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4393,7 +4394,7 @@ Package:
                   name: backup_validation.json
                   description: Evidence file for RPL-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4526,7 +4527,7 @@ Package:
                   name: aws_config_conformance_packs.json
                   description: Evidence file for SVC-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4545,7 +4546,7 @@ Package:
                   name: harden.txt
                   description: Evidence file for SVC-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4583,7 +4584,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for SVC-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4660,7 +4661,7 @@ Package:
                   name: aws_component_ssl_enforcement.json
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4698,7 +4699,7 @@ Package:
                   name: SSL Server Test_ proxy.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4717,7 +4718,7 @@ Package:
                   name: SSL Server Test_ app.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4736,7 +4737,7 @@ Package:
                   name: SSL Server Test_ registry.paramify.com (Powered by Qualys SSL Labs).pdf
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4755,7 +4756,7 @@ Package:
                   name: Paramify Cloud-SSP-Appendix_Q-FedRAMP.docx
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4774,7 +4775,7 @@ Package:
                   name: load_balancer_encryption.json
                   description: Evidence file for SVC-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4810,7 +4811,7 @@ Package:
                   name: Data-Protection.json
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4829,7 +4830,7 @@ Package:
                   name: Data-Protection.csv
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4848,7 +4849,7 @@ Package:
                   name: aws_component_ssl_enforcement.json
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4867,7 +4868,7 @@ Package:
                   name: rds_encryption_status.json
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4886,7 +4887,7 @@ Package:
                   name: Paramify Cloud-SSP-Appendix_Q-FedRAMP.docx
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4924,7 +4925,7 @@ Package:
                   name: block_storage_encryption_status.json
                   description: Evidence file for SVC-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4963,7 +4964,7 @@ Package:
                   name: aws-paramify-eks-infra.tf
                   description: Evidence file for SVC-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -4982,7 +4983,7 @@ Package:
                   name: tfstate.json
                   description: Evidence file for SVC-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5001,7 +5002,7 @@ Package:
                   name: tfstate (1).json
                   description: Evidence file for SVC-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5039,7 +5040,7 @@ Package:
                   name: govcloud-infrastructure-in-terraform-main.zip
                   description: Evidence file for SVC-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5094,7 +5095,7 @@ Package:
                   name: aws-paramify-eks-infra.tf
                   description: Evidence file for SVC-05
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5130,7 +5131,7 @@ Package:
                   name: kms_key_rotation.json
                   description: Evidence file for SVC-06
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5223,7 +5224,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for SVC-07
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5261,7 +5262,7 @@ Package:
                   name: ci-cd-pipeline.yaml
                   description: Evidence file for SVC-07
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5339,7 +5340,7 @@ Package:
                   name: System Ports, Protocols & Services.png
                   description: Evidence file for TPR-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5358,7 +5359,7 @@ Package:
                   name: Leveraged Authorizations.png
                   description: Evidence file for TPR-01
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5394,7 +5395,7 @@ Package:
                   name: Leveraged Authorizations.png
                   description: Evidence file for TPR-02
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5525,7 +5526,7 @@ Package:
                   name: change_management_merge_requests.xml
                   description: Evidence file for TPR-03
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5580,7 +5581,7 @@ Package:
                   name: CISA Adds Two Known Exploited Vulnerabilities to Catalog.eml
                   description: Evidence file for TPR-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5599,7 +5600,7 @@ Package:
                   name: SentinelOne - New Agent Package Available.eml
                   description: Evidence file for TPR-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
@@ -5637,7 +5638,7 @@ Package:
                   name: GitLab Patch Release_ 17.4.1, 17.3.4, 17.2.8.eml
                   description: Evidence file for TPR-04
                   instructions: ''
-                  automated: false
+                  automated: true
                   remarks: ''
                   processName: ''
                   validatedBy: ''
