@@ -58,19 +58,19 @@ Our approach can be summarized with the following steps:
 
 ### Step 1 – Lightweight Documentation
 Document the implementation of our KSIs using Paramify Cloud with the FedRAMP 20x validations set.
-![KSI Implementation Image](images/KSI_implementation.webp)
+![KSI Implementation Image](images/KSI_implementation_2.webp)
 
 ### Step 2 – Key Security Indicators and Validations
 Gather and upload evidence into Paramify Cloud for each KSI validation, using automation where possible. Instructions and commands for each evidence object are included to provide context to the evidence process and results.
-![Evidence Image](images/evidence.webp)
+![Evidence Image](images/evidence_2.webp)
 
 Paramify primarily uses bash scripts to call IaaS/SaaS APIs and collect evidence for each FedRAMP 20x KSI. A selection of evidence scripts is included in the [`/evidence`](./evidence) directory.
 
 
 ### Step 3 – Validate Evidence
 Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PAO can set Assurance Steps/Results, Assurance Status, and leave notes or remarks. 
-![Assurance Evidence Image](images/assurance_evidence.webp)
-![Assurance Management Image](images/assurance_management.webp)
+![Assurance Management Image](images/evidence_managements_2.webp)
+![Assurance Evidence Image](images/assurance_evidence_2.webp)
 
 Paramify is working with Coalfire as 3PAO for this FedRAMP 20x Assessment. The assesment report from Coalfire is available here: 
 [**Coalfire Paramify Fed RAMP 20x Validated Assessment.pdf**](./Coalfire%20Paramify%20Fed%20RAMP%2020x%20Validated%20Assessment%207%2010%2025.pdf)
@@ -151,8 +151,8 @@ Package:
  Assessments:
    - Assessment:
        digitalSignature: 7b23c3e01fca304e1f34d5fe1aa57c594de3e810
-       assessorOrg: Schellman
-       date: 5/28/2025
+       assessorOrg: Coalfire
+       date: 7/14/2025
        leadAssessor: Pete Waterman
        recommendation: Authorize
        remarks: All evidence satisfied the KSIs. This assessment was performed by reviewing the evidence artifacts and validations provided.
@@ -171,7 +171,7 @@ Package:
                    digitalSignature: 6b7bf289ee3f5e33750b507576c94183b59ae246
                    assessmentStatus: True
                    assessedBy: Pete Waterman
-                   assessedOn: 5/25/2025
+                   assessedOn: 6/30/2025
                    remarks: Having reviewed the WAF rules script and evidence artifacts...
                    Evidences:
                      - evidence: 
@@ -187,7 +187,7 @@ Package:
                                id: 1.1
                                textValue: RateBasedStatement
                          validatedBy: Pete Waterman
-                         validateDate: 5/25/2025
+                         validateDate: 6/29/2025
                          remarks: The script result includes a rule with priority 1, rate based limit of 2000...
                          Artifacts:
                            - artifact:
