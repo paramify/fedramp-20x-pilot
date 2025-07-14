@@ -4,7 +4,7 @@
    </a>
 </p>
 
-# Paramify's FedRAMP 20x Phase One Pilot Draft Submission
+# Paramify's FedRAMP 20x Phase One Pilot Final Submission
 
 ## Paramify Overview
 
@@ -216,6 +216,8 @@ Package:
                                effectiveDate: 5/23/25
 ```
 
+Paramify's complete machine-readable file is available publicly in this repository at [machine-readable-package/paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml)
+
 ### Step 5 - 3PAO Review
 3PAO reviews package and adds attestation. This is included at the Assessment level in the machine-readable package
 ```
@@ -243,7 +245,9 @@ It is anticipated that Paramify Cloud will allow for a shareable link that shows
 A summary of and rationale for the approach used to generate the machine-readable file, and evidence generation methods is provided with the machine-readable package file.
 
 ### Step 9 - CSP Submission
-Similar to the Continuous Reporting capability, the package will be available either with a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
+Similar to the Continuous Reporting capability, the package is available by a viewable link in Paramify or through the machine-readable package file with a friendly HTML viewer.
+
+Paramify's complete machine-readable file is available publicly in this GitHub repository at [machine-readable-package/paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml)
 
 An example of the HTML viewer (free and open-source, operates offline based on YAML machine-readable package file) can be accessed in the [html-dashboard directory](https://github.com/paramify/fedramp-20x-pilot/tree/main/html-dashboard)
 
