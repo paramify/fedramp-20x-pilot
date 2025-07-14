@@ -72,9 +72,8 @@ Meet with 3PAO and have them review and validate evidence in Paramify Cloud. 3PA
 ![Assurance Evidence Image](images/assurance_evidence.webp)
 ![Assurance Management Image](images/assurance_management.webp)
 
-Paramify is working with Schellman as 3PAO. The plan and methodology of assessment is described in the letter available here: 
-[**Schellman FedRAMP 20x Assessment Plan & Methodology (Paramify) v1.0 [PDF]**](./Schellman%20FedRAMP%2020x%20Assessment%20Plan%20%26%20Methodology%20(Paramify)%20v1.0.pdf)
-
+Paramify is working with Coalfire as 3PAO for this FedRAMP 20x Assessment. The assesment report from Coalfire is available here: 
+[**Coalfire Paramify Fed RAMP 20x Validated Assessment.pdf**](./Coalfire%20Paramify%20Fed%20RAMP%2020x%20Validated%20Assessment%207%2010%2025.pdf)
 
 ### Step 4 – Automate Machine Readable Package
 Publish our machine-readable format package using Paramify Cloud’s DocRobot capabilities.
