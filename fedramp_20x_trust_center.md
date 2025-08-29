@@ -145,6 +145,8 @@ Paramify is introducing new opt-in AI features built with Llama, an open source 
 
 Paramify does not use any of your data to train the model nor do we retain your data for future processing, and your data is not communicated to any external third party services. Data is not processed by the AI model without the user explicitly executing the AI-specific features.
 
+![Paramify AI Example](images/ai.png)
+
 ---
 
 ## Future Plans
