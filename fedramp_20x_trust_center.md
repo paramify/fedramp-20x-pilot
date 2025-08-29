@@ -13,8 +13,7 @@
 - [Trust Portal Access](#trust-portal-access)
 - [Services Included in Authorization](#services-included-in-authorization)
 - [Continuous Monitoring](#continuous-monitoring)
-- [POA&Ms and Compliance Documentation](#poams-and-compliance-documentation)
-- [Authorization Boundary](#authorization-boundary)
+- [Compliance Deliverables (POA&Ms, Significant Change Notifications, Incident Reports, etc)](#compliance-deliverables-poams-significant-change-notifications-incident-reports-etc)
 - [Agency Secure Configuration Guidance](#agency-secure-configuration-guidance)
 - [AI Use](#ai-use)
 - [Future Plans](#future-plans)
@@ -64,7 +63,7 @@ The following authorization package materials are available in this repository:
 
 ## Trust Portal Access
 
-Evidence for each KSI and POA&Ms can be accessed in the [Paramify application](app.paramify.com). FedRAMP PMO and agencies can request access to the trust portal by emailing **federal@paramify.com**.
+Evidence for each KSI and POA&Ms can be accessed in the [Paramify application](https://app.paramify.com). FedRAMP PMO and agencies can request access to the trust portal by emailing **federal@paramify.com**.
 
 ---
 
@@ -93,7 +92,7 @@ These live dashboards are available in the Paramify application to those who hav
 
 ---
 
-## Compliance Deliverables
+## Compliance Deliverables (POA&Ms, Significant Change Notifications, Incident Reports, etc)
 
 The following compliance documentation and artifacts are available in the Paramify application to those who have been granted access:
 
