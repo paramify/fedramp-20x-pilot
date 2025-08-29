@@ -54,12 +54,11 @@ Continuously monitor, validate, and report compliance 90% faster at a quarter of
 
 The following authorization package materials are available in this repository:
 
-- **Latest Machine-readable assessment file**: [machine-readable-package/8_29_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml) (Submitted Aug 29, 2025)
-- **Previous Machine-readable assessment file**: [machine-readable-package/7_10_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml) (Submitted July 10, 2025)
+- **Latest Machine-readable assessment file**: [machine-readable-package/8_29_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/8_29_25_paramify_coalfire_20x_machine_readable.yaml) (Submitted Aug 29, 2025)
+- **Previous Machine-readable assessment file**: [machine-readable-package/7_10_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/7_10_25_paramify_coalfire_20x_machine_readable.yaml) (Submitted July 10, 2025)
 - **Assessment file schema**: [machine-readable-package/schema.yaml](machine-readable-package/schema.yaml)
 - **Evidence collection scripts**: [/evidence](./evidence) directory
 - **3PAO Assessment Report**: [Coalfire Paramify Fed RAMP 20x Validated Assessment.pdf](./Coalfire%20Paramify%20Fed%20RAMP%2020x%20Validated%20Assessment%207%2010%2025.pdf)
-
 
 ---
 
