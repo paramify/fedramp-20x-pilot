@@ -15,10 +15,8 @@ Package:
     - KSI:
       name: <name of KSI>
       shortName: <shortname of KSI>
-      status: <status of implementation - Complete | Incomplete>
       Validations:
       - validation:
-        id: <validation id>
         shortName: <shortname of validation>
         description: <description of validation>
         implementation: <short description of approach>
@@ -34,8 +32,8 @@ Package:
           name: <name of evidence>
           description: <description of evidence>
           instructions: <how to retrieve evidence>
-          automated: <True | False>
           commands: <computer instruction used if automated>
+          automated: <True | False>
           scriptName: <filename>
           validationRules:
           - rule:

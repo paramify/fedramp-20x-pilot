@@ -54,10 +54,12 @@ Continuously monitor, validate, and report compliance 90% faster at a quarter of
 
 The following authorization package materials are available in this repository:
 
-- **Machine-readable assessment file**: [machine-readable-package/paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml)
+- **Latest Machine-readable assessment file**: [machine-readable-package/8_29_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml) (Submitted Aug 29, 2025)
+- **Previous Machine-readable assessment file**: [machine-readable-package/7_10_25_paramify_coalfire_20x_machine_readable.yaml](machine-readable-package/paramify_coalfire_20x_machine_readable.yaml) (Submitted July 10, 2025)
 - **Assessment file schema**: [machine-readable-package/schema.yaml](machine-readable-package/schema.yaml)
 - **Evidence collection scripts**: [/evidence](./evidence) directory
 - **3PAO Assessment Report**: [Coalfire Paramify Fed RAMP 20x Validated Assessment.pdf](./Coalfire%20Paramify%20Fed%20RAMP%2020x%20Validated%20Assessment%207%2010%2025.pdf)
+
 
 ---
 
@@ -152,15 +154,15 @@ See the complete [Paramify Roadmap](https://www.figma.com/proto/r4VEEjigV9TVEe1M
 
 ### Planned Enhancements
 
-- **Continuous Validation and Reporting** - Enhanced continuous monitoring features with real-time validation status updates
+- **Continuous Validation and Reporting** - Enhanced continuous monitoring features with real-time validation status updates will be part of the Paramify interface in upcoming release. See examples of Paramify's continuous monitoring capabilities in the above section: [Continuous Monitoring](#continuous-monitoring)
 
-- **API-Available Authorization Materials** - Complete authorization package materials accessible via API endpoints. See [Paramify API documentation](https://app.paramify.com/api/documentation/#/), MCP server integration available.
+- **API-Available Authorization Materials** - Complete authorization package materials are accessible via API endpoints. See [Paramify API documentation](https://app.paramify.com/api/documentation/#/), MCP server integration available.
 
-- **Automated Significant Change Notifications** - Streamlined change notification workflows and approval processes
+- **Automated Significant Change Notifications** - Automated change notification and approval processes in upcoming Paramify release. 
 
-- **Collaborative Continuous Monitoring Meetings** - Live dashboards are always available with scheduled meetings and collaborative review capabilities
+- **Collaborative Continuous Monitoring Meetings** - Paramify application dashboards provide current issues and monitoring metrics. In addition, a monthly collaborative meeting will be scheduled with interested agencies to provide monthly ConMon status and discussion.  
 
-- **Enhanced Ongoing Authorization Requirements** - Automated compliance monitoring and reporting for ongoing authorization maintenance
+- **Enhanced Ongoing Authorization Requirements** - Automated compliance monitoring and reporting for ongoing authorization will continue to expand with upcoming Paramify application releases. 
 
 ---
 
@@ -262,10 +264,8 @@ Package:
     - KSI:
       name: <name of KSI>
       shortName: <shortname of KSI>
-      status: <status of implementation - Complete | Incomplete>
       Validations:
       - validation:
-        id: <validation id>
         shortName: <shortname of validation>
         description: <description of validation>
         implementation: <short description of approach>
@@ -281,8 +281,8 @@ Package:
           name: <name of evidence>
           description: <description of evidence>
           instructions: <how to retrieve evidence>
-          automated: <True | False>
           commands: <computer instruction used if automated>
+          automated: <True | False>
           scriptName: <filename>
           validationRules:
           - rule:
@@ -318,11 +318,10 @@ Package:
          - KSI:
              name: Cloud Native Architecture
              shortName: KSI-CNA
-             status: Complete
              Validations:
                - validation:
                    id: 1
-                   shortName: KSI-CNA-1
+                   shortName: KSI-CNA-01
                    description: Have denial of service (DoS) protection
                    implementation: AWS WAF
                    implementationStatus: True
