@@ -1,0 +1,27 @@
+{
+    "display_information": {
+        "name": "FedRAMP Email Alert",
+        "description": "Notify Slack of FedRAMP emails (to meet Security Inbox requirements)",
+        "background_color": "#3b7fcc",
+        "long_description": "Sends alerts in Slack when a new email is received from FedRAMP (fedramp_security@gsa.gov or fedramp_security@fedramp.gov) at Emergency, Emergency Test, or Important levels in accordance with the FedRAMP Security Inbox requirements. Configured Nov 26 2025 by Isaac at Paramify.",
+        "icon": "https://raw.githubusercontent.com/paramify/fedramp-20x-pilot/main/security-inbox/FedRAMP_Email_Alerts_Icon.png"
+    },
+    "features": {
+        "bot_user": {
+            "display_name": "FedRAMP Email Alert",
+            "always_online": false
+        }
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "incoming-webhook"
+            ]
+        }
+    },
+    "settings": {
+        "org_deploy_enabled": false,
+        "socket_mode_enabled": false,
+        "token_rotation_enabled": false
+    }
+}
