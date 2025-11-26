@@ -20,7 +20,7 @@ Monitors Gmail for emails from `@fedramp.gov` or `@gsa.gov` addresses (FRR-FSI-1
 1. Go to [Slack API Apps](https://api.slack.com/apps)
 2. Click **Create new app** → **From an app manifest**
 3. Select your workspace
-4. Copy and paste contents of `slack_app_manifest.json`
+4. Copy and paste contents of [`slack_app_manifest.json`](slack_app_manifest.json)
 5. Click **Create**
 6. Go to **Incoming Webhooks** → **Add New Webhook to Workspace**
 7. Select your security/alerts channel
