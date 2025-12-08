@@ -16,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Set up Python
@@ -31,6 +30,7 @@ jobs:
             pip install -r FR_docs_to_OSCAL/requirements.txt
           else
             pip install requests
+          fi
 
       - name: Process FRMR files and generate OSCAL
         run: |
