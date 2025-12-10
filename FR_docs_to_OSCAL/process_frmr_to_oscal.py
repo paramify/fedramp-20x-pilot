@@ -86,12 +86,14 @@ def normalize_control_id(ksi_id: str) -> str:
 
 
 def normalize_frr_control_id(frr_id: str, standard: str) -> str:
-    """Convert FRR ID (e.g., 'FRR-ADS-01') to control ID (e.g., 'ads-01')."""
+    """Convert FRR ID (e.g., 'FRR-ADS-01' or 'FRR-SCN-TR-01') to control ID (e.g., 'ads-01' or 'scn-TR-01')."""
     # Remove 'FRR-' prefix and convert to lowercase
     if frr_id.startswith("FRR-"):
         parts = frr_id[4:].split("-")
         if len(parts) >= 2:
-            return f"{parts[0].lower()}-{parts[1]}"
+            # Join all parts after the first one (standard) to preserve full ID
+            # e.g., ["SCN", "TR", "01"] -> "scn-TR-01"
+            return f"{parts[0].lower()}-{'-'.join(parts[1:])}"
         # Fallback if format is unexpected
         return f"{standard.lower()}-{frr_id.split('-')[-1]}"
     # Fallback: use standard abbreviation
@@ -123,6 +125,22 @@ def clean_prose(text: str) -> str:
     text = re.sub(r'\b([A-Za-z0-9][A-Za-z0-9\s]*[A-Za-z0-9])_\b', r'\1', text)
     
     return text
+
+
+def generate_title(name: str, control_id: str) -> str:
+    """
+    Generate a title from name field, or use control ID as fallback.
+    
+    If name is available and not empty, uses cleaned name.
+    Otherwise, uses the control ID.
+    """
+    if name and name.strip():
+        cleaned_name = clean_prose(name.strip())
+        if cleaned_name:
+            return cleaned_name
+    
+    # Fallback to control ID, formatted nicely (e.g., "scn-TR-01" -> "SCN-TR-01")
+    return control_id.upper()
 
 
 def parse_ksi_indicators(data: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Dict[str, str], Dict[str, List[str]]]:
@@ -173,12 +191,8 @@ def parse_ksi_indicators(data: Dict[str, Any]) -> Tuple[List[Dict[str, Any]], Di
             # Clean the statement
             cleaned_statement = clean_prose(statement)
             
-            # Get title from name field, fallback to cleaned statement
-            control_title = indicator.get("name", "").strip()
-            if not control_title:
-                control_title = cleaned_statement
-            else:
-                control_title = clean_prose(control_title)
+            # Get title from name field, or use control ID as fallback
+            control_title = generate_title(indicator.get("name", ""), control_id)
             
             # Get impact levels (default to all false if not present)
             impact = indicator.get("impact", {})
@@ -289,18 +303,14 @@ def parse_frr_requirements(data: Dict[str, Any], filename: str) -> Tuple[List[Di
             if not statement:
                 continue
             
+            # Extract control ID (needed for title fallback)
+            control_id = normalize_frr_control_id(req_id, standard)
+            
             # Clean the statement
             cleaned_statement = clean_prose(statement)
             
-            # Get title from name field, fallback to cleaned statement
-            control_title = req.get("name", "").strip()
-            if not control_title:
-                control_title = cleaned_statement
-            else:
-                control_title = clean_prose(control_title)
-            
-            # Extract control ID
-            control_id = normalize_frr_control_id(req_id, standard)
+            # Get title from name field, or use control ID as fallback
+            control_title = generate_title(req.get("name", ""), control_id)
             
             # Get impact levels (default to all false if not present)
             impact = req.get("impact", {})
@@ -431,7 +441,8 @@ def build_oscal_profile(impact_level: str, control_ids: List[str], catalog_uuid:
 def generate_csv(all_controls: List[Dict[str, Any]], control_following_info: Dict[str, List[str]], output_path: str):
     """Generate Requirements_Paramified.csv file."""
     with open(output_path, 'w', newline='', encoding='utf-8') as csvfile:
-        writer = csv.writer(csvfile)
+        # Configure writer to quote all fields consistently
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         writer.writerow(["Control Part", "OSCAL_ID", "ParamifiedProse"])
         
         for item in all_controls:
@@ -439,11 +450,8 @@ def generate_csv(all_controls: List[Dict[str, Any]], control_following_info: Dic
             control_id = control["id"]
             group_id = item["group_id"]
             
-            # Extract control number (e.g., "cna-01" -> "01")
-            control_num = control_id.split("-")[-1] if "-" in control_id else control_id
-            
-            # Format as "CNA-01"
-            control_part = f"{group_id.upper()}-{control_num}"
+            # Use the full control ID sequence (e.g., "ads-ac-01" -> "ADS-AC-01")
+            control_part = control_id.upper()
             oscal_id = f"{control_id}_smt"
             
             # Get the statement prose (from the first part)

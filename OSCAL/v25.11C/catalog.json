@@ -3,8 +3,8 @@
     "uuid": "26226257-52f5-583f-a08f-49462ab9233b",
     "metadata": {
       "title": "FedRAMP 20x Phase Two Catalog (v25.11C)",
-      "published": "2025-12-08T23:04:29.000000-04:00",
-      "last-modified": "2025-12-08T23:04:29.000000-04:00",
+      "published": "2025-12-10T10:34:13.000000-04:00",
+      "last-modified": "2025-12-10T10:34:13.000000-04:00",
       "version": "25.11C",
       "oscal-version": "1.1.2"
     },
@@ -184,110 +184,110 @@
             ]
           },
           {
-            "id": "ads-AC",
+            "id": "ads-AC-01",
             "title": "Public Guidance",
             "parts": [
               {
-                "id": "ads-AC_smt",
+                "id": "ads-AC-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST publicly provide plain-language policies and guidance for all necessary parties that explains how they can obtain and manage access to authorization data stored in the trust center."
               }
             ]
           },
           {
-            "id": "ads-AC",
+            "id": "ads-AC-02",
             "title": "Prospective Customer Access",
             "parts": [
               {
-                "id": "ads-AC_smt",
+                "id": "ads-AC-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD share at least the authorization package with prospective agency customers upon request and MUST notify FedRAMP within five business days if a prospective agency customer request is denied."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-01",
             "title": "Trust Center Assessment",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-01_smt",
                 "name": "statement",
                 "prose": "Trust centers MUST be included as an information resource included in the cloud service offering for assessment if FRR-MAS-01 applies."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-02",
             "title": "Human and Machine-Readable",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-02_smt",
                 "name": "statement",
                 "prose": "Trust centers SHOULD make authorization data available to view and download in both human-readable and machine-readable formats"
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-03",
             "title": "Programmatic Access",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-03_smt",
                 "name": "statement",
                 "prose": "Trust centers MUST provide documented programmatic access to all authorization data, including programmatic access to human-readable materials."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-04",
             "title": "Self-Service Access Management",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-04_smt",
                 "name": "statement",
                 "prose": "Trust centers SHOULD include features that encourage all necessary parties to provision and manage access to authorization data for their users and services directly."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-05",
             "title": "Access Inventory",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-05_smt",
                 "name": "statement",
                 "prose": "Trust centers MUST maintain an inventory and history of federal agency users or systems with access to authorization data and MUST make this information available to FedRAMP without interruption."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-06",
             "title": "Access Logging",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-06_smt",
                 "name": "statement",
                 "prose": "Trust centers MUST log access to authorization data and store summaries of access for at least six months; such information, as it pertains to specific parties, SHOULD be made available upon request by those parties."
               }
             ]
           },
           {
-            "id": "ads-TC",
+            "id": "ads-TC-07",
             "title": "Responsive Performance",
             "parts": [
               {
-                "id": "ads-TC_smt",
+                "id": "ads-TC-07_smt",
                 "name": "statement",
                 "prose": "Trust centers SHOULD deliver responsive performance during normal operating conditions and minimize service disruptions."
               }
             ]
           },
           {
-            "id": "ads-EX",
+            "id": "ads-EX-01",
             "title": "Legacy Self-Managed Repository Exception",
             "parts": [
               {
-                "id": "ads-EX_smt",
+                "id": "ads-EX-01_smt",
                 "name": "statement",
                 "prose": "Providers of FedRAMP Rev5 Authorized cloud service offerings at FedRAMP High using a legacy self-managed repository for authorization data MAY ignore the requirements in this Authorization Data Sharing document until future notice."
               }
@@ -529,198 +529,198 @@
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-01",
             "title": "Quarterly Review Hosting",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Authorization Reports that the provider determines are of the most relevance to agencies; providers who do not host Quarterly Reviews MUST clearly state this and explain this decision in the authorization data available to all necessary parties required by FRR-ADS-06 and FRR-ADS-07"
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-02",
             "title": "Quarterly Review",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-02_smt",
                 "name": "statement",
                 "prose": "Providers MUST host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Authorization Reports that the provider determines are of the most relevance to agencies."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-03",
             "title": "Review Scheduling Window",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-03_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD regularly schedule Quarterly Reviews to occur at least 3 business days after releasing an Ongoing Authorization Report AND within 10 business days of such release."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-04",
             "title": "No Irresponsible Disclosure",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-04_smt",
                 "name": "statement",
                 "prose": "Providers MUST NOT irresponsibly disclose sensitive information in a Quarterly Review that would likely have an adverse effect on the cloud service offering."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-05",
             "title": "Meeting Registration Info",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-05_smt",
                 "name": "statement",
                 "prose": "Providers MUST include either a registration link or a downloadable calendar file with meeting information for Quarterly Reviews in the authorization data available to all necessary parties required by FRR-ADS-06 and FRR-ADS-07."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-06",
             "title": "Next Review Date",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-06_smt",
                 "name": "statement",
                 "prose": "Providers MUST publicly include the target date for their next Quarterly Review with the authorization data required by FRR-ADS-01."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-07",
             "title": "Additional Content",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-07_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD include additional information in Quarterly Reviews that the provider determines is of interest, use, or otherwise relevant to agencies."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-08",
             "title": "Restrict Third Parties",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-08_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD NOT invite third parties to attend Quarterly Reviews intended for agencies unless they have specific relevance."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-09",
             "title": "Record/Transcribe Reviews",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-09_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD record or transcribe Quarterly Reviews and make such available to all necessary parties with other authorization data required by FRR-ADS-06 and FRR-ADS07."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-10",
             "title": "Share Recordings Responsibly",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-10_smt",
                 "name": "statement",
                 "prose": "Providers MAY responsibly share recordings or transcriptions of Quarterly Reviews with the public or other parties ONLY if the provider removes all agency information (comments, questions, names, etc.) AND determines sharing will NOT likely have an adverse effect on the cloud service offering."
               }
             ]
           },
           {
-            "id": "ccm-QR",
+            "id": "ccm-QR-11",
             "title": "Share Content Responsibly",
             "parts": [
               {
-                "id": "ccm-QR_smt",
+                "id": "ccm-QR-11_smt",
                 "name": "statement",
                 "prose": "Providers MAY responsibly share content prepared for a Quarterly Review with the public or other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-01",
             "title": "Review Ongoing Reports",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-01_smt",
                 "name": "statement",
                 "prose": "Agencies MUST review each Ongoing Authorization Report to understand how changes to the cloud service offering may impact the previously agreed-upon risk tolerance documented in the agency's_ Authorization to Operate of a federal information system that includes the cloud service offering in its boundary."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-02",
             "title": "Consider Security Category",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-02_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD consider the Security Category noted in their Authorization to Operate of the federal information system that includes the cloud service offering in its boundary and assign appropriate information security resources for reviewing Ongoing Authorization Reports, attending Quarterly Reviews, and other ongoing authorization data."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-03",
             "title": "Senior Security Reviewer",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-03_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD designate a senior information security official to review Ongoing Authorization Reports and represent the agency at Quarterly Reviews for cloud service offerings included in agency information systems with a Security Category of High."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-04",
             "title": "Notify Provider of Concerns",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-04_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD formally notify the provider if the information presented in an Ongoing Authorization Report, Quarterly Review, or other ongoing authorization data causes significant concerns that may lead the agency to remove the cloud service offering from operation."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-05",
             "title": "Notify FedRAMP of Concerns",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-05_smt",
                 "name": "statement",
                 "prose": "Agencies MUST notify FedRAMP by sending a notification to info@fedramp.gov if the information presented in an Ongoing Authorization Report, Quarterly Review, or other ongoing authorization data causes significant concerns that may lead the agency to stop operation of the cloud service offering."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-06",
             "title": "No Additional Requirements",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-06_smt",
                 "name": "statement",
                 "prose": "Agencies MUST NOT place additional security requirements on cloud service providers beyond those required by FedRAMP UNLESS the head of the agency or an authorized delegate makes a determination that there is a demonstrable need for such; this does not apply to seeking clarification or asking general questions about authorization data."
               }
             ]
           },
           {
-            "id": "ccm-AG",
+            "id": "ccm-AG-07",
             "title": "Notify FedRAMP After Requests",
             "parts": [
               {
-                "id": "ccm-AG_smt",
+                "id": "ccm-AG-07_smt",
                 "name": "statement",
                 "prose": "Agencies MUST inform FedRAMP after requesting any additional information or materials from a cloud service provider beyond those FedRAMP requires by sending a notification to info@fedramp.gov."
               }
@@ -1446,77 +1446,77 @@
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-01",
             "title": "Scope of FedRAMP",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-01_smt",
                 "name": "statement",
                 "prose": "Certain categories of cloud computing products and services are specified as entirely outside the scope of FedRAMP by the Director of the Office of Management and Budget. All such products and services are therefore not included in the cloud service offering for FedRAMP. For more, see https://fedramp.gov/scope."
               }
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-02",
             "title": "Non-Cloud-Based Software",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-02_smt",
                 "name": "statement",
                 "prose": "Software produced by cloud service providers that is delivered separately for installation on agency systems and not operated in a shared responsibility model (typically including agents, application clients, mobile applications, etc. that are not fully managed by the cloud service provider) is not a cloud computing product or service and is entirely outside the scope of FedRAMP under the FedRAMP Authorization Act. All such software is therefore not included in the cloud service offering for FedRAMP. For more, see fedramp.gov/scope."
               }
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-03",
             "title": "Exclusion of Non-Impacting Information Resources",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-03_smt",
                 "name": "statement",
                 "prose": "Information resources (including third-party information resources) that do not meet the conditions in FRR-MAS-01 are not included in the cloud service offering for FedRAMP (FRR-MAS-02)."
               }
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-04",
             "title": "Impact Level Variations",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-04_smt",
                 "name": "statement",
                 "prose": "Information resources (including third-party information resources) MAY vary by impact level as appropriate to the level of information handled or impacted by the information resource (FRR-MAS-05)."
               }
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-05",
             "title": "Review of Best Practices",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-05_smt",
                 "name": "statement",
                 "prose": "All parties SHOULD review best practices and technical assistance provided separately by FedRAMP for help with applying the Minimum Assessment Scope as needed."
               }
             ]
           },
           {
-            "id": "mas-AY",
+            "id": "mas-AY-06",
             "title": "Cloud Service Offering Determination",
             "parts": [
               {
-                "id": "mas-AY_smt",
+                "id": "mas-AY-06_smt",
                 "name": "statement",
                 "prose": "All aspects of the cloud service offering are determined and maintained by the cloud service provider in accordance with related FedRAMP authorization requirements and documented by the cloud service provider in their assessment and authorization materials."
               }
             ]
           },
           {
-            "id": "mas-EX",
+            "id": "mas-EX-01",
             "title": "Supplemental Information",
             "parts": [
               {
-                "id": "mas-EX_smt",
+                "id": "mas-EX-01_smt",
                 "name": "statement",
                 "prose": "Providers MAY include documentation of information resources beyond the cloud service offering, or even entirely outside the scope of FedRAMP, in a FedRAMP assessment and authorization package supplement; these resources will not be FedRAMP authorized and MUST be clearly marked and separated from the cloud service offering."
               }
@@ -1897,44 +1897,44 @@
             ]
           },
           {
-            "id": "pva-TF",
+            "id": "pva-TF-LO-01",
             "title": "Quarterly Non-Machine Validation",
             "parts": [
               {
-                "id": "pva-TF_smt",
+                "id": "pva-TF-LO-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST complete the validation processes for Key Security Indicators of non-machine-based information resources at least once every 3 months."
               }
             ]
           },
           {
-            "id": "pva-TF",
+            "id": "pva-TF-LO-02",
             "title": "Weekly Machine Validation",
             "parts": [
               {
-                "id": "pva-TF_smt",
+                "id": "pva-TF-LO-02_smt",
                 "name": "statement",
                 "prose": "Providers MUST complete the validation processes for Key Security Indicators of machine-based information resources at least once every 7 days."
               }
             ]
           },
           {
-            "id": "pva-TF",
+            "id": "pva-TF-MO-01",
             "title": "Quarterly Non-Machine Validation",
             "parts": [
               {
-                "id": "pva-TF_smt",
+                "id": "pva-TF-MO-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST complete the validation processes for Key Security Indicators of non-machine-based information resources at least once every 3 months."
               }
             ]
           },
           {
-            "id": "pva-TF",
+            "id": "pva-TF-LM-02",
             "title": "3-Day Machine Validation",
             "parts": [
               {
-                "id": "pva-TF_smt",
+                "id": "pva-TF-LM-02_smt",
                 "name": "statement",
                 "prose": "Providers MUST complete the validation processes for Key Security Indicators of machine-based information resources at least once every 3 days."
               }
@@ -2147,7 +2147,7 @@
           },
           {
             "id": "scn-04",
-            "title": "Providers MUST maintain auditable records of these activities and make them available to all necessary parties.",
+            "title": "SCN-04",
             "parts": [
               {
                 "id": "scn-04_smt",
@@ -2158,7 +2158,7 @@
           },
           {
             "id": "scn-05",
-            "title": "Providers MUST keep historical Significant Change Notifications available to all necessary parties at least until the service completes its next annual assessment.",
+            "title": "SCN-05",
             "parts": [
               {
                 "id": "scn-05_smt",
@@ -2169,7 +2169,7 @@
           },
           {
             "id": "scn-06",
-            "title": "All parties SHOULD follow FedRAMP's best practices and technical assistance on significant change assessment and notification where applicable.",
+            "title": "SCN-06",
             "parts": [
               {
                 "id": "scn-06_smt",
@@ -2180,7 +2180,7 @@
           },
           {
             "id": "scn-07",
-            "title": "Providers MAY notify necessary parties in a variety of ways as long as the mechanism for notification is clearly documented and easily accessible.",
+            "title": "SCN-07",
             "parts": [
               {
                 "id": "scn-07_smt",
@@ -2191,7 +2191,7 @@
           },
           {
             "id": "scn-08",
-            "title": "Providers MUST make ALL Significant Change Notifications and related audit records available in similar human-readable and compatible machine-readable formats.",
+            "title": "SCN-08",
             "parts": [
               {
                 "id": "scn-08_smt",
@@ -2202,7 +2202,7 @@
           },
           {
             "id": "scn-09",
-            "title": "Providers MUST include at least the following information in Significant Change Notifications:",
+            "title": "SCN-09",
             "parts": [
               {
                 "id": "scn-09_smt",
@@ -2263,7 +2263,7 @@
           },
           {
             "id": "scn-10",
-            "title": "Providers MAY include additional relevant information in Significant Change Notifications.",
+            "title": "SCN-10",
             "parts": [
               {
                 "id": "scn-10_smt",
@@ -2273,157 +2273,157 @@
             ]
           },
           {
-            "id": "scn-RR",
-            "title": "Providers SHOULD NOT make formal Significant Change Notifications for routine recurring changes; this type of change is exempted from the notification requirements of this process.",
+            "id": "scn-RR-01",
+            "title": "SCN-RR-01",
             "parts": [
               {
-                "id": "scn-RR_smt",
+                "id": "scn-RR-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD NOT make formal Significant Change Notifications for routine recurring changes; this type of change is exempted from the notification requirements of this process."
               }
             ]
           },
           {
-            "id": "scn-AD",
-            "title": "Providers MUST notify all necessary parties within ten business days after finishing adaptive changes, also including the following information:",
+            "id": "scn-AD-01",
+            "title": "SCN-AD-01",
             "parts": [
               {
-                "id": "scn-AD_smt",
+                "id": "scn-AD-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST notify all necessary parties within ten business days after finishing adaptive changes, also including the following information:"
               },
               {
-                "id": "scn-AD_smt.item.1",
+                "id": "scn-AD-01_smt.item.1",
                 "name": "item",
                 "prose": "Summary of any new risks identified and/or POA&Ms resulting from the change (if applicable)"
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers SHOULD engage a third-party assessor to review the scope and impact of the planned change before starting transformative changes if human validation is necessary. This review SHOULD be limited to security decisions that require human validation. Providers MUST document this decision and justification.",
+            "id": "scn-TR-01",
+            "title": "SCN-TR-01",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD engage a third-party assessor to review the scope and impact of the planned change before starting transformative changes if human validation is necessary. This review SHOULD be limited to security decisions that require human validation. Providers MUST document this decision and justification."
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST notify all necessary parties of initial plans for transformative changes at least 30 business days before starting transformative changes.",
+            "id": "scn-TR-02",
+            "title": "SCN-TR-02",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-02_smt",
                 "name": "statement",
                 "prose": "Providers MUST notify all necessary parties of initial plans for transformative changes at least 30 business days before starting transformative changes."
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST notify all necessary parties of final plans for transformative changes at least 10 business days before starting transformative changes.",
+            "id": "scn-TR-03",
+            "title": "SCN-TR-03",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-03_smt",
                 "name": "statement",
                 "prose": "Providers MUST notify all necessary parties of final plans for transformative changes at least 10 business days before starting transformative changes."
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST notify all necessary parties within 5 business days after finishing transformative changes, also including the following information:",
+            "id": "scn-TR-04",
+            "title": "SCN-TR-04",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-04_smt",
                 "name": "statement",
                 "prose": "Providers MUST notify all necessary parties within 5 business days after finishing transformative changes, also including the following information:"
               },
               {
-                "id": "scn-TR_smt.item.1",
+                "id": "scn-TR-04_smt.item.1",
                 "name": "item",
                 "prose": "Updates to all previously sent information"
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST notify all necessary parties within 5 business days after completing the verification, assessment, and/or validation of transformative changes, also including the following information:",
+            "id": "scn-TR-05",
+            "title": "SCN-TR-05",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-05_smt",
                 "name": "statement",
                 "prose": "Providers MUST notify all necessary parties within 5 business days after completing the verification, assessment, and/or validation of transformative changes, also including the following information:"
               },
               {
-                "id": "scn-TR_smt.item.1",
+                "id": "scn-TR-05_smt.item.1",
                 "name": "item",
                 "prose": "Updates to all previously sent information"
               },
               {
-                "id": "scn-TR_smt.item.2",
+                "id": "scn-TR-05_smt.item.2",
                 "name": "item",
                 "prose": "Summary of any new risks identified and/or POA&Ms resulting from the change (if applicable)"
               },
               {
-                "id": "scn-TR_smt.item.3",
+                "id": "scn-TR-05_smt.item.3",
                 "name": "item",
                 "prose": "Copy of the security assessment report (if applicable)"
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST publish updated service documentation and other materials to reflect transformative changes within 30 business days after finishing transformative changes.",
+            "id": "scn-TR-06",
+            "title": "SCN-TR-06",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-06_smt",
                 "name": "statement",
                 "prose": "Providers MUST publish updated service documentation and other materials to reflect transformative changes within 30 business days after finishing transformative changes."
               }
             ]
           },
           {
-            "id": "scn-TR",
-            "title": "Providers MUST allow agency customers to OPT OUT of transformative changes whenever feasible.",
+            "id": "scn-TR-07",
+            "title": "SCN-TR-07",
             "parts": [
               {
-                "id": "scn-TR_smt",
+                "id": "scn-TR-07_smt",
                 "name": "statement",
                 "prose": "Providers MUST allow agency customers to OPT OUT of transformative changes whenever feasible."
               }
             ]
           },
           {
-            "id": "scn-IM",
-            "title": "Providers MUST follow the legacy Significant Change Request process or full re-authorization for impact categorization changes, with advance approval from an identified lead agency, until further notice.",
+            "id": "scn-IM-01",
+            "title": "SCN-IM-01",
             "parts": [
               {
-                "id": "scn-IM_smt",
+                "id": "scn-IM-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST follow the legacy Significant Change Request process or full re-authorization for impact categorization changes, with advance approval from an identified lead agency, until further notice."
               }
             ]
           },
           {
-            "id": "scn-EX",
-            "title": "Providers MAY be required to delay significant changes beyond the standard Significant Change Notification period and/or submit significant changes for approval in advance as a condition of a formal FedRAMP Corrective Action Plan or other agreement.",
+            "id": "scn-EX-01",
+            "title": "SCN-EX-01",
             "parts": [
               {
-                "id": "scn-EX_smt",
+                "id": "scn-EX-01_smt",
                 "name": "statement",
                 "prose": "Providers MAY be required to delay significant changes beyond the standard Significant Change Notification period and/or submit significant changes for approval in advance as a condition of a formal FedRAMP Corrective Action Plan or other agreement."
               }
             ]
           },
           {
-            "id": "scn-EX",
-            "title": "Providers MAY execute significant changes (including transformative changes) during an emergency or incident without meeting Significant Change Notification requirements in advance ONLY if absolutely necessary. In such emergencies, providers MUST follow all relevant procedures, notify all necessary parties, retroactively provide all Significant Change Notification materials, and complete appropriate assessment after the incident.",
+            "id": "scn-EX-02",
+            "title": "SCN-EX-02",
             "parts": [
               {
-                "id": "scn-EX_smt",
+                "id": "scn-EX-02_smt",
                 "name": "statement",
                 "prose": "Providers MAY execute significant changes (including transformative changes) during an emergency or incident without meeting Significant Change Notification requirements in advance ONLY if absolutely necessary. In such emergencies, providers MUST follow all relevant procedures, notify all necessary parties, retroactively provide all Significant Change Notification materials, and complete appropriate assessment after the incident."
               }
@@ -2780,601 +2780,601 @@
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-01",
             "title": "Partial Mitigation",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-01_smt",
                 "name": "statement",
                 "prose": "If it is not possible to fully mitigate or remediate detected vulnerabilities, providers SHOULD instead partially mitigate vulnerabilities promptly, progressively, and persistently."
               }
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-02",
             "title": "Design For Resilience",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD make design and architecture decisions for their cloud service offering that mitigate the risk of vulnerabilities by default AND decrease the risk and complexity of vulnerability detection and response."
               }
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-03",
             "title": "Automate Detection",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-03_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD use automated services to improve and streamline vulnerability detection and response."
               }
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-04",
             "title": "Detection on Changes",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-04_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD automatically perform vulnerability detection on representative samples of new or significantly changed information resources."
               }
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-05",
             "title": "Maintain Security Postures",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-05_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD NOT weaken the security of information resources to facilitate vulnerability scanning or assessment activities."
               }
             ]
           },
           {
-            "id": "vdr-AY",
+            "id": "vdr-AY-06",
             "title": "Avoid Known Exploited Vulnerabilities",
             "parts": [
               {
-                "id": "vdr-AY_smt",
+                "id": "vdr-AY-06_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD NOT deploy or otherwise activate new machine-based information resources with Known Exploited Vulnerabilities."
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-01",
             "title": "Monthly Reporting",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST report vulnerability detection and response activity to all necessary parties persistently, summarizing ALL activity since the previous report; these reports are authorization data and are subject to the FedRAMP Authorization Data Sharing (ADS) process."
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-02",
             "title": "High-Level Overviews",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD include high-level overviews of ALL vulnerability detection and response activities conducted during this period for the cloud service offering;_ this includes vulnerability disclosure programs, bug bounty programs, penetration testing, assessments, etc."
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-03",
             "title": "No Irresponsible Disclosure",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-03_smt",
                 "name": "statement",
                 "prose": "Providers MUST NOT irresponsibly disclose specific sensitive information about vulnerabilities that would likely lead to exploitation, but MUST disclose sufficient information for informed risk-based decision-making to all necessary parties."
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-04",
             "title": "Responsible Public Disclosure",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-04_smt",
                 "name": "statement",
                 "prose": "Providers MAY responsibly disclose vulnerabilities publicly or with other parties if the provider determines doing so will NOT likely lead to exploitation."
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-05",
             "title": "Vulnerability Details",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-05_smt",
                 "name": "statement",
                 "prose": "Providers MUST include the following information (if applicable) on detected vulnerabilities when reporting on vulnerability detection and response activity, UNLESS it is an accepted vulnerability:"
               },
               {
-                "id": "vdr-RP_smt.item.1",
+                "id": "vdr-RP-05_smt.item.1",
                 "name": "item",
                 "prose": "Provider's internally assigned tracking identifier"
               },
               {
-                "id": "vdr-RP_smt.item.2",
+                "id": "vdr-RP-05_smt.item.2",
                 "name": "item",
                 "prose": "Time and source of the detection"
               },
               {
-                "id": "vdr-RP_smt.item.3",
+                "id": "vdr-RP-05_smt.item.3",
                 "name": "item",
                 "prose": "Time of completed evaluation"
               },
               {
-                "id": "vdr-RP_smt.item.4",
+                "id": "vdr-RP-05_smt.item.4",
                 "name": "item",
                 "prose": "Is it an internet-reachable vulnerability or not?"
               },
               {
-                "id": "vdr-RP_smt.item.5",
+                "id": "vdr-RP-05_smt.item.5",
                 "name": "item",
                 "prose": "Is it a likely exploitable vulnerability or not?"
               },
               {
-                "id": "vdr-RP_smt.item.6",
+                "id": "vdr-RP-05_smt.item.6",
                 "name": "item",
                 "prose": "Historically and currently estimated potential adverse impact of exploitation"
               },
               {
-                "id": "vdr-RP_smt.item.7",
+                "id": "vdr-RP-05_smt.item.7",
                 "name": "item",
                 "prose": "Time and level of each completed and evaluated reduction in potential adverse impact"
               },
               {
-                "id": "vdr-RP_smt.item.8",
+                "id": "vdr-RP-05_smt.item.8",
                 "name": "item",
                 "prose": "Estimated time and target level of next reduction in potential adverse impact"
               },
               {
-                "id": "vdr-RP_smt.item.9",
+                "id": "vdr-RP-05_smt.item.9",
                 "name": "item",
                 "prose": "Is it currently or is it likely to become an overdue vulnerability or not? If so, explain."
               },
               {
-                "id": "vdr-RP_smt.item.10",
+                "id": "vdr-RP-05_smt.item.10",
                 "name": "item",
                 "prose": "Any supplementary information the provider responsibly determines will help federal agencies assess or mitigate the risk to their federal customer data within the cloud service offering resulting from the vulnerability"
               },
               {
-                "id": "vdr-RP_smt.item.11",
+                "id": "vdr-RP-05_smt.item.11",
                 "name": "item",
                 "prose": "Final disposition of the vulnerability"
               }
             ]
           },
           {
-            "id": "vdr-RP",
+            "id": "vdr-RP-06",
             "title": "Accepted Vulnerability Info",
             "parts": [
               {
-                "id": "vdr-RP_smt",
+                "id": "vdr-RP-06_smt",
                 "name": "statement",
                 "prose": "Providers MUST include the following information on accepted vulnerabilities when reporting on vulnerability detection and response activity:"
               },
               {
-                "id": "vdr-RP_smt.item.1",
+                "id": "vdr-RP-06_smt.item.1",
                 "name": "item",
                 "prose": "Provider's internally assigned tracking identifier"
               },
               {
-                "id": "vdr-RP_smt.item.2",
+                "id": "vdr-RP-06_smt.item.2",
                 "name": "item",
                 "prose": "Time and source of the detection"
               },
               {
-                "id": "vdr-RP_smt.item.3",
+                "id": "vdr-RP-06_smt.item.3",
                 "name": "item",
                 "prose": "Time of completed evaluation"
               },
               {
-                "id": "vdr-RP_smt.item.4",
+                "id": "vdr-RP-06_smt.item.4",
                 "name": "item",
                 "prose": "Is it an internet-reachable vulnerability or not?"
               },
               {
-                "id": "vdr-RP_smt.item.5",
+                "id": "vdr-RP-06_smt.item.5",
                 "name": "item",
                 "prose": "Is it a likely exploitable vulnerability or not?"
               },
               {
-                "id": "vdr-RP_smt.item.6",
+                "id": "vdr-RP-06_smt.item.6",
                 "name": "item",
                 "prose": "Currently estimated potential adverse impact of exploitation"
               },
               {
-                "id": "vdr-RP_smt.item.7",
+                "id": "vdr-RP-06_smt.item.7",
                 "name": "item",
                 "prose": "Explanation of why this is an accepted vulnerability"
               },
               {
-                "id": "vdr-RP_smt.item.8",
+                "id": "vdr-RP-06_smt.item.8",
                 "name": "item",
                 "prose": "Any supplementary information the provider determines will responsibly help federal agencies assess or mitigate the risk to their federal customer data within the cloud service offering resulting from the accepted vulnerability"
               }
             ]
           },
           {
-            "id": "vdr-EX",
+            "id": "vdr-EX-01",
             "title": "Additional Reporting Requirements",
             "parts": [
               {
-                "id": "vdr-EX_smt",
+                "id": "vdr-EX-01_smt",
                 "name": "statement",
                 "prose": "Providers MAY be required to share additional vulnerability information, alternative reports, or to report at an alternative frequency as a condition of a FedRAMP Corrective Action Plan or other agreements with federal agencies."
               }
             ]
           },
           {
-            "id": "vdr-EX",
+            "id": "vdr-EX-02",
             "title": "Additional Details",
             "parts": [
               {
-                "id": "vdr-EX_smt",
+                "id": "vdr-EX-02_smt",
                 "name": "statement",
                 "prose": "Providers MAY be required to provide additional information or details about vulnerabilities, including sensitive information that would likely lead to exploitation, as part of review, response or investigation by necessary parties."
               }
             ]
           },
           {
-            "id": "vdr-EX",
+            "id": "vdr-EX-03",
             "title": "Do Not Reject Requests",
             "parts": [
               {
-                "id": "vdr-EX_smt",
+                "id": "vdr-EX-03_smt",
                 "name": "statement",
                 "prose": "Providers MUST NOT use this process to reject requests for additional information from necessary parties which also include law enforcement, Congress, and Inspectors General."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-01",
             "title": "Monthly Human-Readable",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-01_smt",
                 "name": "statement",
                 "prose": "Providers MUST report vulnerability detection and response activity to all necessary parties in a consistent format that is human readable at least monthly."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-02",
             "title": "Remediate KEVs",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD remediate Known Exploited Vulnerabilities according to the due dates in the CISA Known Exploited Vulnerabilities Catalog (even if the vulnerability has been fully mitigated) as required by CISA Binding Operational Directive (BOD) 22-01 or any successor guidance from CISA."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-03",
             "title": "Mark Accepted Vulnerabilities",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-03_smt",
                 "name": "statement",
                 "prose": "Providers MUST categorize any vulnerability that is not or will not be fully mitigated or remediated within 192 days of evaluation as an accepted vulnerability."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-01",
             "title": "Machine-Readable History",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every month."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-02",
             "title": "Weekly Sample Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every week."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-03",
             "title": "Monthly Drift Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-03_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every month."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-04",
             "title": "Six-Month Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-04_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every six months."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-05",
             "title": "Evaluate Within 7 Days",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-05_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 7 days of detection."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-06",
             "title": "Mitigate Per Timeframes",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-06_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD partially mitigate, fully mitigate,_ or remediate vulnerabilities to a lower potential adverse impact within the timeframes from evaluation shown below (in days), factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-LO-07",
             "title": "Mitigate During Operations",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-LO-07_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-01",
             "title": "14-Day History",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 14 days."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-02",
             "title": "3-Day Sampling",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 3 days."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-03",
             "title": "14-Day Drift Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-03_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 14 days."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-04",
             "title": "Monthly Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-04_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once per month."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-05",
             "title": "Evaluate Within 5 Days",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-05_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 5 days of detection."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-06",
             "title": "Incidents",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-06_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD treat internet-reachable likely exploitable vulnerabilities with a potential adverse impact of N4 or N5 as a security incident until they are partially mitigated to N3 or below."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-07",
             "title": "Mitigate Per Timeframes",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-07_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD partially mitigate, fully mitigate,_ or remediate vulnerabilities to a lower potential adverse impact within the timeframes from evaluation shown below, factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-MO-08",
             "title": "Mitigate During Operations",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-MO-08_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-01",
             "title": "7-Day History",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-01_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 7 days."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-02",
             "title": "Daily Sampling",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-02_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once per day."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-03",
             "title": "7-Day Drift Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-03_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 7 days."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-04",
             "title": "Monthly Detection",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-04_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every month."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-05",
             "title": "Evaluate Within 2 Days",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-05_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 2 days of detection."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-06",
             "title": "Treat N4/N5 As Incident",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-06_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD treat internet-reachable likely exploitable vulnerabilities with a potential adverse impact of N4 or N5 as a security incident until they are partially mitigated to N3 or below."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-07",
             "title": "Treat N5 Non-Internet as Incident",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-07_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD treat likely exploitable vulnerabilities that are NOT internet-reachable with a potential adverse impact of N5 as a security incident until they are partially mitigated to N4 or below."
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-08",
             "title": "Partial Mitigation Timeframes",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-08_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD partially mitigate vulnerabilities to a lower potential adverse impact within the maximum time-frames from evaluation shown below, factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
               }
             ]
           },
           {
-            "id": "vdr-TF",
+            "id": "vdr-TF-HI-09",
             "title": "Mitigate During Operations",
             "parts": [
               {
-                "id": "vdr-TF_smt",
+                "id": "vdr-TF-HI-09_smt",
                 "name": "statement",
                 "prose": "Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
               }
             ]
           },
           {
-            "id": "vdr-AG",
+            "id": "vdr-AG-01",
             "title": "Review Vulnerability Reports",
             "parts": [
               {
-                "id": "vdr-AG_smt",
+                "id": "vdr-AG-01_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD review the information provided in vulnerability reports at appropriate and reasonable intervals commensurate with the expectations and risk posture indicated by their Authorization to Operate, and SHOULD use automated processing and filtering of machine readable information from cloud service providers."
               }
             ]
           },
           {
-            "id": "vdr-AG",
+            "id": "vdr-AG-02",
             "title": "Maintain Agency POA&M",
             "parts": [
               {
-                "id": "vdr-AG_smt",
+                "id": "vdr-AG-02_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD use vulnerability information reported by the Provider to maintain Plans of Action & Milestones for agency security programs when relevant according to agency security policies (such as if the agency takes action to mitigate the risk of exploitation or authorized the continued use of a cloud service with accepted vulnerabilities that put agency information systems at risk)."
               }
             ]
           },
           {
-            "id": "vdr-AG",
+            "id": "vdr-AG-03",
             "title": "Do Not Request Extra Info",
             "parts": [
               {
-                "id": "vdr-AG_smt",
+                "id": "vdr-AG-03_smt",
                 "name": "statement",
                 "prose": "Agencies SHOULD NOT request additional information from cloud service providers that is not required by this FedRAMP process UNLESS the head of the agency or an authorized delegate makes a determination that there is a demonstrable need for such."
               }
             ]
           },
           {
-            "id": "vdr-AG",
+            "id": "vdr-AG-04",
             "title": "Notify FedRAMP",
             "parts": [
               {
-                "id": "vdr-AG_smt",
+                "id": "vdr-AG-04_smt",
                 "name": "statement",
                 "prose": "Agencies MUST inform FedRAMP after requesting any additional vulnerability information or materials from a cloud service provider beyond those FedRAMP requires by sending a notification to [info@fedramp.gov](mailto:info@fedramp.gov)."
               }
