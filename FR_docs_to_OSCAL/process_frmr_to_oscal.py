@@ -366,7 +366,76 @@ def parse_frr_requirements(data: Dict[str, Any], filename: str) -> Tuple[List[Di
     return controls, control_impacts, control_following_info
 
 
-def build_oscal_catalog(all_controls: List[Dict[str, Any]], version: str) -> Dict[str, Any]:
+def get_existing_file_data(output_dir: str, version: str) -> Tuple[Dict[str, Dict[str, str]], Dict[str, Dict[str, Any]]]:
+    """Get existing timestamps and content from files if they exist and version matches."""
+    timestamps = {}
+    existing_content = {}
+    catalog_path = os.path.join(output_dir, "catalog.json")
+    
+    if os.path.exists(catalog_path):
+        try:
+            with open(catalog_path, 'r', encoding='utf-8') as f:
+                existing_catalog = json.load(f)
+                if existing_catalog.get("catalog", {}).get("metadata", {}).get("version") == version:
+                    metadata = existing_catalog["catalog"]["metadata"]
+                    timestamps["catalog"] = {
+                        "published": metadata.get("published"),
+                        "last-modified": metadata.get("last-modified")
+                    }
+                    # Store content without timestamps for comparison
+                    catalog_copy = json.loads(json.dumps(existing_catalog))
+                    catalog_copy["catalog"]["metadata"].pop("published", None)
+                    catalog_copy["catalog"]["metadata"].pop("last-modified", None)
+                    existing_content["catalog"] = catalog_copy
+        except Exception as e:
+            print(f"  Warning: Could not read existing catalog: {e}")
+    
+    # Check profiles
+    for impact_level in ["low", "moderate", "high"]:
+        profile_path = os.path.join(output_dir, f"20x_{impact_level}_profile.json")
+        if os.path.exists(profile_path):
+            try:
+                with open(profile_path, 'r', encoding='utf-8') as f:
+                    existing_profile = json.load(f)
+                    if existing_profile.get("profile", {}).get("metadata", {}).get("version") == version:
+                        metadata = existing_profile["profile"]["metadata"]
+                        timestamps[f"profile_{impact_level}"] = {
+                            "published": metadata.get("published"),
+                            "last-modified": metadata.get("last-modified")
+                        }
+                        # Store content without timestamps for comparison
+                        profile_copy = json.loads(json.dumps(existing_profile))
+                        profile_copy["profile"]["metadata"].pop("published", None)
+                        profile_copy["profile"]["metadata"].pop("last-modified", None)
+                        existing_content[f"profile_{impact_level}"] = profile_copy
+            except Exception as e:
+                print(f"  Warning: Could not read existing {impact_level} profile: {e}")
+    
+    return timestamps, existing_content
+
+
+def content_has_changed(new_content: Dict[str, Any], existing_content: Optional[Dict[str, Any]]) -> bool:
+    """Compare content (excluding timestamps) to detect if it has changed."""
+    if not existing_content:
+        return True  # No existing content means it's new
+    
+    # Create copies without timestamps for comparison
+    new_copy = json.loads(json.dumps(new_content))
+    if "catalog" in new_copy:
+        new_copy["catalog"]["metadata"].pop("published", None)
+        new_copy["catalog"]["metadata"].pop("last-modified", None)
+    elif "profile" in new_copy:
+        new_copy["profile"]["metadata"].pop("published", None)
+        new_copy["profile"]["metadata"].pop("last-modified", None)
+    
+    # Compare JSON strings (sorted keys for consistent comparison)
+    new_str = json.dumps(new_copy, sort_keys=True)
+    existing_str = json.dumps(existing_content, sort_keys=True)
+    
+    return new_str != existing_str
+
+
+def build_oscal_catalog(all_controls: List[Dict[str, Any]], version: str, existing_timestamps: Optional[Dict[str, str]] = None, content_changed: bool = True) -> Dict[str, Any]:
     """Build OSCAL catalog from all controls."""
     # Group controls by group_id
     groups_dict = defaultdict(lambda: {"id": "", "title": "", "controls": []})
@@ -386,15 +455,26 @@ def build_oscal_catalog(all_controls: List[Dict[str, Any]], version: str) -> Dic
     # Generate catalog UUID (deterministic based on version)
     catalog_uuid = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"fedramp-20x-catalog-{version}"))
     
-    now = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    # Always preserve published timestamp if it exists, otherwise use current time
+    if existing_timestamps and "published" in existing_timestamps:
+        published = existing_timestamps["published"]
+    else:
+        published = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    
+    # Only update last-modified if content changed or version changed
+    if content_changed or not existing_timestamps:
+        last_modified = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    else:
+        # Preserve existing last-modified if content hasn't changed
+        last_modified = existing_timestamps.get("last-modified", published)
     
     catalog = {
         "catalog": {
             "uuid": catalog_uuid,
             "metadata": {
                 "title": f"FedRAMP 20x Phase Two Catalog (v{version})",
-                "published": now,
-                "last-modified": now,
+                "published": published,
+                "last-modified": last_modified,
                 "version": version,
                 "oscal-version": "1.1.2"
             },
@@ -405,10 +485,22 @@ def build_oscal_catalog(all_controls: List[Dict[str, Any]], version: str) -> Dic
     return catalog, catalog_uuid
 
 
-def build_oscal_profile(impact_level: str, control_ids: List[str], catalog_uuid: str, version: str) -> Dict[str, Any]:
+def build_oscal_profile(impact_level: str, control_ids: List[str], catalog_uuid: str, version: str, existing_timestamps: Optional[Dict[str, str]] = None, content_changed: bool = True) -> Dict[str, Any]:
     """Build OSCAL profile for a specific impact level."""
     profile_uuid = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"fedramp-20x-{impact_level}-profile-{version}"))
-    now = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    
+    # Always preserve published timestamp if it exists, otherwise use current time
+    if existing_timestamps and "published" in existing_timestamps:
+        published = existing_timestamps["published"]
+    else:
+        published = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    
+    # Only update last-modified if content changed or version changed
+    if content_changed or not existing_timestamps:
+        last_modified = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.000000-04:00")
+    else:
+        # Preserve existing last-modified if content hasn't changed
+        last_modified = existing_timestamps.get("last-modified", published)
     
     impact_title = impact_level.capitalize()
     
@@ -417,8 +509,8 @@ def build_oscal_profile(impact_level: str, control_ids: List[str], catalog_uuid:
             "uuid": profile_uuid,
             "metadata": {
                 "title": f"FedRAMP 20x Phase Two {impact_title} Impact Profile",
-                "published": now,
-                "last-modified": now,
+                "published": published,
+                "last-modified": last_modified,
                 "version": version,
                 "oscal-version": "1.1.2"
             },
@@ -534,9 +626,39 @@ def main():
     print(f"\nUsing version: {version}")
     print(f"Total controls: {len(all_controls)}")
     
-    # Build OSCAL catalog
+    # Create output directory
+    output_dir = os.path.join(OUTPUT_BASE_DIR, f"v{version}")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Check for existing files and get timestamps/content
+    print("\nChecking for existing files...")
+    existing_timestamps, existing_content = get_existing_file_data(output_dir, version)
+    version_changed = not existing_timestamps
+    
+    if version_changed:
+        print("  New version detected - will update timestamps")
+    else:
+        print("  Version unchanged - checking for content changes")
+    
+    # Build OSCAL catalog first (without timestamps) to compare content
     print("\nBuilding OSCAL catalog...")
-    catalog, catalog_uuid = build_oscal_catalog(all_controls, version)
+    catalog_timestamps = existing_timestamps.get("catalog") if existing_timestamps else None
+    
+    # If version changed, content is definitely changed
+    if version_changed:
+        catalog_content_changed = True
+        print("  Version changed - will update last-modified")
+    else:
+        # Build catalog temporarily to compare content
+        catalog_temp, _ = build_oscal_catalog(all_controls, version, catalog_timestamps, content_changed=False)
+        catalog_content_changed = content_has_changed(catalog_temp, existing_content.get("catalog"))
+        if catalog_content_changed:
+            print("  Catalog content changed - will update last-modified")
+        else:
+            print("  Catalog content unchanged - preserving last-modified")
+    
+    # Build catalog with correct timestamps
+    catalog, catalog_uuid = build_oscal_catalog(all_controls, version, catalog_timestamps, content_changed=catalog_content_changed)
     
     # Build profiles by impact level
     print("Building OSCAL profiles...")
@@ -560,12 +682,24 @@ def main():
     profiles = {}
     for impact_level in ["low", "moderate", "high"]:
         control_ids = impact_controls[impact_level]
-        profiles[impact_level] = build_oscal_profile(impact_level, control_ids, catalog_uuid, version)
-        print(f"  {impact_level.capitalize()} profile: {len(control_ids)} controls")
+        profile_timestamps = existing_timestamps.get(f"profile_{impact_level}") if existing_timestamps else None
+        
+        # If version changed, content is definitely changed
+        if version_changed:
+            profile_content_changed = True
+        else:
+            # Build profile temporarily to check for content changes
+            profile_temp = build_oscal_profile(impact_level, control_ids, catalog_uuid, version, profile_timestamps, content_changed=False)
+            profile_content_changed = content_has_changed(profile_temp, existing_content.get(f"profile_{impact_level}"))
+        
+        # Build profile with correct timestamps
+        profiles[impact_level] = build_oscal_profile(impact_level, control_ids, catalog_uuid, version, profile_timestamps, content_changed=profile_content_changed)
+        
+        if profile_content_changed:
+            print(f"  {impact_level.capitalize()} profile: {len(control_ids)} controls (content changed)")
+        else:
+            print(f"  {impact_level.capitalize()} profile: {len(control_ids)} controls (unchanged)")
     
-    # Create output directory
-    output_dir = os.path.join(OUTPUT_BASE_DIR, f"v{version}")
-    os.makedirs(output_dir, exist_ok=True)
     print(f"\nWriting files to {output_dir}/...")
     
     # Write catalog
