@@ -14,8 +14,8 @@ from typing import Dict, List, Any, Optional, Tuple
 from collections import defaultdict
 
 # Constants
-FRMR_REPO_BASE = "https://raw.githubusercontent.com/FedRAMP/docs/refs/heads/main/data"
-FRMR_API_BASE = "https://api.github.com/repos/FedRAMP/docs/contents/data"
+FRMR_REPO_BASE = "https://raw.githubusercontent.com/FedRAMP/docs/refs/heads/main"
+FRMR_API_BASE = "https://api.github.com/repos/FedRAMP/docs/contents"
 OUTPUT_BASE_DIR = "OSCAL"
 
 # Group title mappings for KSI themes
@@ -40,7 +40,7 @@ def fetch_frmr_file_list() -> List[str]:
         response = requests.get(FRMR_API_BASE)
         response.raise_for_status()
         files = response.json()
-        return [f["name"] for f in files if f["name"].endswith(".json") and f["name"].startswith("FRMR.")]
+        return [f["name"] for f in files if f.get("type") == "file" and f["name"].endswith(".json") and f["name"].startswith("FRMR.")]
     except Exception as e:
         print(f"Error fetching file list: {e}")
         return []
