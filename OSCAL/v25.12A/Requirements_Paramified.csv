@@ -1,0 +1,332 @@
+"Control Part","OSCAL_ID","ParamifiedProse"
+"ADS-01","ads-01_smt","Providers MUST publicly share up-to-date information about the cloud service offering in both human-readable and machine-readable formats, including at least:
+• Direct link to the FedRAMP Marketplace for the offering
+• Service Model
+• Deployment Model
+• Business Category
+• UEI Number
+• Contact Information
+• Overall Service Description
+• Detailed list of specific services and their impact levels (see FRR-ADS-03)
+• Summary of customer responsibilities and secure configuration guidance
+• Process for accessing information in the trust center (if applicable)
+• Availability status and recent disruptions for the trust center (if applicable)
+• Customer support information for the trust center (if applicable)"
+"ADS-02","ads-02_smt","Providers MUST use automation to ensure information remains consistent between human-readable and machine-readable formats when authorization data is provided in both formats; Providers SHOULD generate human-readable and machine-readable data from the same source at the same time OR generate human-readable formats directly from machine-readable data."
+"ADS-03","ads-03_smt","Providers MUST share a detailed list of specific services and their impact levels that are included in the cloud service offering using clear feature or service names that align with standard public marketing materials; this list MUST be complete enough for a potential customer to determine which services are and are not included in the FedRAMP authorization without requesting access to underlying authorization data."
+"ADS-04","ads-04_smt","Providers MUST share authorization data with all necessary parties without interruption, including at least FedRAMP, CISA, and agency customers."
+"ADS-05","ads-05_smt","Providers MUST provide sufficient information in authorization data to support authorization decisions but SHOULD NOT include sensitive information that would likely enable a threat actor to gain unauthorized access, cause harm, disrupt operations, or otherwise have a negative adverse impact on the cloud service offering."
+"ADS-06","ads-06_smt","Providers of FedRAMP Rev5 Authorized cloud service offerings MUST share authorization data via the USDA Connect Community Portal UNLESS they use a FedRAMP-compatible trust center."
+"ADS-07","ads-07_smt","Providers of FedRAMP 20x Authorized cloud service offerings MUST use a FedRAMP-compatible trust center to store and share authorization data with all necessary parties."
+"ADS-08","ads-08_smt","Providers MUST notify all necessary parties when migrating to a trust center and MUST provide information in their existing USDA Connect Community Portal secure folders explaining how to use the trust center to obtain authorization data."
+"ADS-09","ads-09_smt","Providers MUST make historical versions of authorization data available for three years to all necessary parties UNLESS otherwise specified by applicable FedRAMP requirements; deltas between versions MAY be consolidated quarterly."
+"ADS-10","ads-10_smt","Providers SHOULD follow FedRAMP’s best practices and technical assistance for sharing authorization data where applicable."
+"ADS-AC-01","ads-AC-01_smt","Providers MUST publicly provide plain-language policies and guidance for all necessary parties that explains how they can obtain and manage access to authorization data stored in the trust center."
+"ADS-AC-02","ads-AC-02_smt","Providers SHOULD share at least the authorization package with prospective agency customers upon request and MUST notify FedRAMP within five business days if a prospective agency customer request is denied."
+"ADS-TC-01","ads-TC-01_smt","Trust centers MUST be included as an information resource included in the cloud service offering for assessment if FRR-MAS-01 applies."
+"ADS-TC-02","ads-TC-02_smt","Trust centers SHOULD make authorization data available to view and download in both human-readable and machine-readable formats"
+"ADS-TC-03","ads-TC-03_smt","Trust centers MUST provide documented programmatic access to all authorization data, including programmatic access to human-readable materials."
+"ADS-TC-04","ads-TC-04_smt","Trust centers SHOULD include features that encourage all necessary parties to provision and manage access to authorization data for their users and services directly."
+"ADS-TC-05","ads-TC-05_smt","Trust centers MUST maintain an inventory and history of federal agency users or systems with access to authorization data and MUST make this information available to FedRAMP without interruption."
+"ADS-TC-06","ads-TC-06_smt","Trust centers MUST log access to authorization data and store summaries of access for at least six months; such information, as it pertains to specific parties, SHOULD be made available upon request by those parties."
+"ADS-TC-07","ads-TC-07_smt","Trust centers SHOULD deliver responsive performance during normal operating conditions and minimize service disruptions."
+"ADS-EX-01","ads-EX-01_smt","Providers of FedRAMP Rev5 Authorized cloud service offerings at FedRAMP High using a legacy self-managed repository for authorization data MAY ignore the requirements in this Authorization Data Sharing document until future notice."
+"CCM-01","ccm-01_smt","Providers MUST make an Ongoing Authorization Report available to all necessary parties every 3 months, in a consistent format that is human readable, covering the entire period since the previous summary; this report MUST include high-level summaries of at least the following information:
+• Changes to authorization data
+• Planned changes to authorization data during at least the next 3 months
+• Accepted vulnerabilities
+• Transformative changes
+• Updated recommendations or best practices for security, configuration, usage, or similar aspects of the cloud service offering"
+"CCM-02","ccm-02_smt","Providers SHOULD establish a regular 3 month cycle for Ongoing Authorization Reports that is spread out from the beginning, middle, or end of each quarter."
+"CCM-03","ccm-03_smt","Providers MUST publicly include the target date for their next Ongoing Authorization Report with the authorization data required by FRR-ADS-01."
+"CCM-04","ccm-04_smt","Providers MUST establish and share an asynchronous mechanism for all necessary parties to provide feedback or ask questions about each Ongoing Authorization Report."
+"CCM-05","ccm-05_smt","Providers MUST maintain an anonymized and desensitized summary of the feedback, questions, and answers about each Ongoing Authorization Report as an addendum to the Ongoing Authorization Report."
+"CCM-06","ccm-06_smt","Providers MUST NOT irresponsibly disclose sensitive information in an Ongoing Authorization Report that would likely have an adverse effect on the cloud service offering."
+"CCM-07","ccm-07_smt","Providers MAY responsibly share some or all of the information an Ongoing Authorization Report publicly or with other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering."
+"CCM-QR-01","ccm-QR-01_smt","Providers SHOULD host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Authorization Reports that the provider determines are of the most relevance to agencies; providers who do not host Quarterly Reviews MUST clearly state this and explain this decision in the authorization data available to all necessary parties required by FRR-ADS-06 and FRR-ADS-07"
+"CCM-QR-02","ccm-QR-02_smt","Providers MUST host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Authorization Reports that the provider determines are of the most relevance to agencies."
+"CCM-QR-03","ccm-QR-03_smt","Providers SHOULD regularly schedule Quarterly Reviews to occur at least 3 business days after releasing an Ongoing Authorization Report AND within 10 business days of such release."
+"CCM-QR-04","ccm-QR-04_smt","Providers MUST NOT irresponsibly disclose sensitive information in a Quarterly Review that would likely have an adverse effect on the cloud service offering."
+"CCM-QR-05","ccm-QR-05_smt","Providers MUST include either a registration link or a downloadable calendar file with meeting information for Quarterly Reviews in the authorization data available to all necessary parties required by FRR-ADS-06 and FRR-ADS-07."
+"CCM-QR-06","ccm-QR-06_smt","Providers MUST publicly include the target date for their next Quarterly Review with the authorization data required by FRR-ADS-01."
+"CCM-QR-07","ccm-QR-07_smt","Providers SHOULD include additional information in Quarterly Reviews that the provider determines is of interest, use, or otherwise relevant to agencies."
+"CCM-QR-08","ccm-QR-08_smt","Providers SHOULD NOT invite third parties to attend Quarterly Reviews intended for agencies unless they have specific relevance."
+"CCM-QR-09","ccm-QR-09_smt","Providers SHOULD record or transcribe Quarterly Reviews and make such available to all necessary parties with other authorization data required by FRR-ADS-06 and FRR-ADS07."
+"CCM-QR-10","ccm-QR-10_smt","Providers MAY responsibly share recordings or transcriptions of Quarterly Reviews with the public or other parties ONLY if the provider removes all agency information (comments, questions, names, etc.) AND determines sharing will NOT likely have an adverse effect on the cloud service offering."
+"CCM-QR-11","ccm-QR-11_smt","Providers MAY responsibly share content prepared for a Quarterly Review with the public or other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering."
+"CCM-AG-01","ccm-AG-01_smt","Agencies MUST review each Ongoing Authorization Report to understand how changes to the cloud service offering may impact the previously agreed-upon risk tolerance documented in the agency's_ Authorization to Operate of a federal information system that includes the cloud service offering in its boundary."
+"CCM-AG-02","ccm-AG-02_smt","Agencies SHOULD consider the Security Category noted in their Authorization to Operate of the federal information system that includes the cloud service offering in its boundary and assign appropriate information security resources for reviewing Ongoing Authorization Reports, attending Quarterly Reviews, and other ongoing authorization data."
+"CCM-AG-03","ccm-AG-03_smt","Agencies SHOULD designate a senior information security official to review Ongoing Authorization Reports and represent the agency at Quarterly Reviews for cloud service offerings included in agency information systems with a Security Category of High."
+"CCM-AG-04","ccm-AG-04_smt","Agencies SHOULD formally notify the provider if the information presented in an Ongoing Authorization Report, Quarterly Review, or other ongoing authorization data causes significant concerns that may lead the agency to remove the cloud service offering from operation."
+"CCM-AG-05","ccm-AG-05_smt","Agencies MUST notify FedRAMP by sending a notification to info@fedramp.gov if the information presented in an Ongoing Authorization Report, Quarterly Review, or other ongoing authorization data causes significant concerns that may lead the agency to stop operation of the cloud service offering."
+"CCM-AG-06","ccm-AG-06_smt","Agencies MUST NOT place additional security requirements on cloud service providers beyond those required by FedRAMP UNLESS the head of the agency or an authorized delegate makes a determination that there is a demonstrable need for such; this does not apply to seeking clarification or asking general questions about authorization data."
+"CCM-AG-07","ccm-AG-07_smt","Agencies MUST inform FedRAMP after requesting any additional information or materials from a cloud service provider beyond those FedRAMP requires by sending a notification to info@fedramp.gov."
+"FSI-01","fsi-01_smt","FedRAMP MUST send messages to cloud service providers using an official @fedramp.gov or @gsa.gov email address with properly configured Sender Policy Framework (SPF), DomainKeys Identified Mail (DKIM), and Domain-based Message Authentication Reporting and Conformance (DMARC) email authentication."
+"FSI-02","fsi-02_smt","FedRAMP MUST convey the criticality of the message in the subject line using one of the following designators if the message requires an elevated response:
+• **Emergency:** There is a potential incident or crisis such that FedRAMP requires an extremely urgent response; emergency messages will contain aggressive timeframes for response and failure to meet these timeframes will result in corrective action.
+• **Emergency Test:** FedRAMP requires an extremely urgent response to confirm the functionality and effectiveness of the FedRAMP Security Inbox; emergency test messages will contain aggressive timeframes for response and failure to meet these timeframes will result in corrective action.
+• **Important:** There is an important issue that FedRAMP requires the cloud service provider to address; important messages will contain reasonable timeframes for response and failure to meet these timeframes may result in corrective action."
+"FSI-03","fsi-03_smt","FedRAMP MUST send Emergency and Emergency Test designated messages from fedramp_security@gsa.gov OR fedramp_security@fedramp.gov."
+"FSI-04","fsi-04_smt","FedRAMP MUST post a public notice at least 10 business days in advance of sending an Emergency Test message; such notices MUST include explanation of the likely expected actions and timeframes for the Emergency Test message."
+"FSI-05","fsi-05_smt","FedRAMP MUST clearly specify the required actions in the body of messages that require an elevated response."
+"FSI-06","fsi-06_smt","FedRAMP MUST clearly specify the expected timeframe for completing required actions in the body of messages that require an elevated response; timeframes for actions will vary depending on the situation but the default timeframes to provide an estimated resolution time for Emergency and Emergency Test designated messages will be as follows:
+• **High Impact:** within 12 hours
+• **Moderate Impact:** by 3:00 p.m. Eastern Time on the 2nd business day
+• **Low Impact:** by 3:00 p.m. Eastern Time on the 3rd business day"
+"FSI-07","fsi-07_smt","FedRAMP MUST clearly specify the corrective actions that will result from failure to complete the required actions in the body of messages that require an elevated response; such actions may vary from negative ratings in the FedRAMP Marketplace to suspension of FedRAMP authorization depending on the severity of the event."
+"FSI-08","fsi-08_smt","FedRAMP MAY track and publicly share the time required by cloud service providers to take the actions specified in messages that require an elevated response."
+"FSI-09","fsi-09_smt","Providers MUST establish and maintain an email address to receive messages from FedRAMP; this inbox is a FedRAMP Security Inbox (FSI)."
+"FSI-10","fsi-10_smt","Providers MUST treat any email originating from an @fedramp.gov or @gsa.gov email address as if it was sent from FedRAMP by default; if such a message is confirmed to originate from someone other than FedRAMP then FedRAMP Security Inbox requirements no longer apply."
+"FSI-11","fsi-11_smt","Providers MUST receive and respond to email messages from FedRAMP without disruption and without requiring additional actions from FedRAMP."
+"FSI-12","fsi-12_smt","Providers MUST immediately notify FedRAMP of any changes in addressing for their FedRAMP Security Inbox by emailing info@fedramp.gov with the name and FedRAMP ID of the cloud service offering and the updated email address."
+"FSI-13","fsi-13_smt","Providers SHOULD promptly and automatically acknowledge the receipt of messages received from FedRAMP in their FedRAMP Security Inbox."
+"FSI-14","fsi-14_smt","Providers MUST complete the required actions in Emergency or Emergency Test designated messages sent by FedRAMP within the timeframe included in the message."
+"FSI-15","fsi-15_smt","Providers MUST route Emergency designated messages sent by FedRAMP to a senior security official for their awareness."
+"FSI-16","fsi-16_smt","Providers SHOULD complete the required actions in Important designated messages sent by FedRAMP within the timeframe specified in the message."
+"ICP-01","icp-01_smt","Providers MUST responsibly report incidents to FedRAMP within 1 hour of identification by sending an email to fedramp_security@fedramp.gov or fedramp_security@gsa.gov."
+"ICP-02","icp-02_smt","Providers MUST responsibly report incidents to all agency customers within 1 hour of identification using the incident communications points of contact provided by each agency customer."
+"ICP-03","icp-03_smt","Providers MUST responsibly report incidents to CISA within 1 hour of identification if the incident is confirmed or suspected to be the result of an attack vector listed at https://www.cisa.gov/federal-incident-notification-guidelines#attack-vectors-taxonomy, following the CISA Federal Incident Notification Guidelines at https://www.cisa.gov/federal-incident-notification-guidelines, by using the CISA Incident Reporting System at https://myservices.cisa.gov/irf."
+"ICP-04","icp-04_smt","Providers MUST update all necessary parties, including at least FedRAMP, CISA (if applicable), and all agency customers, at least once per calendar day until the incident is resolved and recovery is complete."
+"ICP-05","icp-05_smt","Providers MUST make incident report information available in their secure FedRAMP repository (such as USDA Connect) or trust center."
+"ICP-06","icp-06_smt","Providers MUST NOT irresponsibly disclose specific sensitive information about incidents that would likely increase the impact of the incident, but MUST disclose sufficient information for informed risk-based decision-making to all necessary parties."
+"ICP-07","icp-07_smt","Providers MUST provide a final report once the incident is resolved and recovery is complete that describes at least:
+• What occurred
+• Root cause
+• Response
+• Lessons learned
+• Changes needed"
+"ICP-08","icp-08_smt","Providers SHOULD use automated mechanisms for reporting incidents and providing updates to all necessary parties (including CISA)."
+"ICP-09","icp-09_smt","Providers SHOULD make incident report information available in consistent human-readable and machine-readable formats."
+"AFR-01","afr-01_smt","Apply the FedRAMP Minimum Assessment Scope (MAS) to identify and document the scope of the cloud service offering to be assessed for FedRAMP authorization and persistently address all related requirements and recommendations."
+"AFR-02","afr-02_smt","Set security goals for the cloud service offering based on FedRAMP 20x Phase Two Key Security Indicators (KSIs - you are here), develop automated validation of status and progress to the greatest extent possible, and persistently address all related requirements and recommendations."
+"AFR-03","afr-03_smt","Determine how authorization data will be shared with all necessary parties in alignment with the FedRAMP Authorization Data Sharing (ADS) process and persistently address all related requirements and recommendations."
+"AFR-04","afr-04_smt","Document the vulnerability detection and vulnerability response methodology used within the cloud service offering in alignment with the FedRAMP Vulnerability Detection and Response (VDR) process and persistently address all related requirements and recommendations."
+"AFR-05","afr-05_smt","Determine how significant changes will be tracked and how all necessary parties will be notified in alignment with the FedRAMP Significant Change Notifications (SCN) process and persistently address all related requirements and recommendations."
+"AFR-06","afr-06_smt","Maintain a plan and process for providing Ongoing Authorization Reports and Quarterly Reviews for all necessary parties in alignment with the FedRAMP Collaborative Continuous Monitoring (CCM) process and persistently address all related requirements and recommendations."
+"AFR-07","afr-07_smt","Develop secure by default configurations and provide guidance for secure configuration of the cloud service offering to customers in alignment with the FedRAMP Recommended Secure Configuration (RSC) guidance process and persistently address all related requirements and recommendations."
+"AFR-08","afr-08_smt","Operate a secure inbox to receive critical communication from FedRAMP and other government entities in alignment with FedRAMP Security Inbox (FSI) requirements and persistently address all related requirements and recommendations."
+"AFR-09","afr-09_smt","Persistently validate, assess, and report on the effectiveness and status of security decisions and policies that are implemented within the cloud service offering in alignment with the FedRAMP 20x Persistent Validation and Assessment (PVA) process, and persistently address all related requirements and recommendations."
+"AFR-10","afr-10_smt","Integrate FedRAMP's Incident Communications Procedures (ICP) into incident response procedures and persistently address all related requirements and recommendations."
+"AFR-11","afr-11_smt","Ensure that cryptographic modules used to protect potentially sensitive federal customer data are selected and used in alignment with the FedRAMP 20x Using Cryptographic Modules (UCM) guidance and persistently address all related requirements and recommendations."
+"CED-01","ced-01_smt","Persistently review the effectiveness of training given to all employees on policies, procedures, and security-related topics."
+"CED-02","ced-02_smt","Persistently review the effectiveness of role-specific training given to employees in high risk roles, including at least roles with privileged access."
+"CED-03","ced-03_smt","Persistently review the effectiveness of role-specific training given to development and engineering staff that covers best practices for delivering secure software."
+"CED-04","ced-04_smt","Persistently review the effectiveness of role-specific training given to staff involved with incident response or disaster recovery."
+"CMT-01","cmt-01_smt","Log and monitor modifications to the cloud service offering."
+"CMT-02","cmt-02_smt","Execute changes to machine-based information resources through redeployment of version controlled immutable resources rather than direct modification wherever possible."
+"CMT-03","cmt-03_smt","Automate persistent testing and validation of changes throughout deployment."
+"CMT-04","cmt-04_smt","Persistently review the effectiveness of documented change management procedures."
+"CNA-01","cna-01_smt","Persistently ensure all machine-based information resources are configured to limit inbound and outbound network traffic."
+"CNA-02","cna-02_smt","Persistently ensure machine-based information resources have a minimal attack surface and that lateral movement is minimized if compromised."
+"CNA-03","cna-03_smt","Use logical networking and related capabilities to enforce traffic flow controls."
+"CNA-04","cna-04_smt","Use immutable infrastructure with strictly defined functionality and privileges by default."
+"CNA-05","cna-05_smt","Persistently review the effectiveness of protection against denial of service attacks and other unwanted activity."
+"CNA-06","cna-06_smt","Appropriately optimize machine-based information resources for high availability and rapid recovery."
+"CNA-07","cna-07_smt","Persistently ensure cloud-native machine-based information resources are implemented based on the host provider's best practices and documented guidance."
+"CNA-08","cna-08_smt","Use automated services to persistently assess the security posture of all machine-based information resources and automatically enforce their intended operational state."
+"IAM-01","iam-01_smt","Enforce multi-factor authentication (MFA) using methods that are difficult to intercept or impersonate (phishing-resistant MFA) for all user authentication."
+"IAM-02","iam-02_smt","Use secure passwordless methods for user authentication and authorization when feasible, otherwise enforce strong passwords with MFA."
+"IAM-03","iam-03_smt","Enforce appropriately secure authentication methods for non-user accounts and services."
+"IAM-04","iam-04_smt","Use a least-privileged, role and attribute-based, and just-in-time security authorization model for all user and non-user accounts and services."
+"IAM-05","iam-05_smt","Persistently ensure that identity and access management employs measures to ensure each user or device can only access the resources they need."
+"IAM-06","iam-06_smt","Automatically disable or otherwise secure accounts with privileged access in response to suspicious activity"
+"IAM-07","iam-07_smt","Securely manage the lifecycle and privileges of all accounts, roles, and groups, using automation."
+"INR-01","inr-01_smt","Persistently review of the effectiveness of documented incident response procedures."
+"INR-02","inr-02_smt","Persistently review past incidents for patterns or vulnerabilities."
+"INR-03","inr-03_smt","Generate incident after action reports and persistently incorporate lessons learned."
+"MLA-01","mla-01_smt","Operate a Security Information and Event Management (SIEM) or similar system(s) for centralized, tamper-resistent logging of events, activities, and changes."
+"MLA-02","mla-02_smt","Persistently review and audit logs."
+"MLA-05","mla-05_smt","Persistently evaluate and test the configuration of machine-based information resources, especially infrastructure as code."
+"MLA-07","mla-07_smt","Maintain a list of information resources and event types that will be monitored, logged, and audited, then do so."
+"MLA-08","mla-08_smt","Use a least-privileged, role and attribute-based, and just-in-time access authorization model for access to log data based on organizationally defined data sensitivity."
+"PIY-01","piy-01_smt","Use authoritative sources to automatically generate real-time inventories of all information resources when needed."
+"PIY-03","piy-03_smt","Persistently review the effectiveness of the provider's vulnerability disclosure program."
+"PIY-04","piy-04_smt","Persistently review the effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles."
+"PIY-06","piy-06_smt","Persistently review the effectiveness of the organization's investments in achieving security objectives."
+"PIY-08","piy-08_smt","Persistently review executive support for achieving the organization's security objectives."
+"RPL-01","rpl-01_smt","Persistently review desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO)."
+"RPL-02","rpl-02_smt","Persistently review the alignment of recovery plans with defined recovery objectives."
+"RPL-03","rpl-03_smt","Persistently review the alignment of machine-based information resource backups with defined recovery objectives."
+"RPL-04","rpl-04_smt","Persistently test the capability to recover from incidents and contingencies, including alignment with defined recovery objectives."
+"SVC-01","svc-01_smt","Implement improvements based on persistent evaluation of information resources for opportunities to improve security."
+"SVC-02","svc-02_smt","Encrypt or otherwise secure network traffic."
+"SVC-04","svc-04_smt","Manage configuration of machine-based information resources using automation."
+"SVC-05","svc-05_smt","Use cryptographic methods to validate the integrity of machine-based information resources."
+"SVC-06","svc-06_smt","Automate management, protection, and regular rotation of digital keys, certificates, and other secrets."
+"SVC-08","svc-08_smt","Persistently review plans, procedures, and the state of information resources after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+"SVC-09","svc-09_smt","Persistently validate the authenticity and integrity of communications between machine-based information resources using automation."
+"SVC-10","svc-10_smt","Remove unwanted federal customer data promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+"TPR-03","tpr-03_smt","Persistently identify, review, and mitigate potential supply chain risks."
+"TPR-04","tpr-04_smt","Automatically monitor third party software information resources for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services."
+"MAS-01","mas-01_smt","Providers MUST identify a set of information resources to assess for FedRAMP authorization that includes all information resources that are likely to handle federal customer data or likely to impact the confidentiality, integrity, or availability of federal customer data handled by the cloud service offering."
+"MAS-02","mas-02_smt","Providers MUST include the configuration and usage of third-party information resources, ONLY IF FRR-MAS-01 APPLIES."
+"MAS-03","mas-03_smt","Providers MUST clearly identify and document the justification, mitigation measures, compensating controls, and potential impact to federal customer data from the configuration and usage of non-FedRAMP authorized third-party information resources, ONLY IF FRR-MAS-01 APPLIES."
+"MAS-04","mas-04_smt","Providers MUST include metadata (including metadata about federal customer data), ONLY IF FRR-MAS-01 APPLIES."
+"MAS-05","mas-05_smt","Providers MUST clearly identify, document, and explain information flows and impact levels for ALL information resources, ONLY IF FRR-MAS-01 APPLIES."
+"MAS-AY-01","mas-AY-01_smt","Certain categories of cloud computing products and services are specified as entirely outside the scope of FedRAMP by the Director of the Office of Management and Budget. All such products and services are therefore not included in the cloud service offering for FedRAMP. For more, see https://fedramp.gov/scope."
+"MAS-AY-02","mas-AY-02_smt","Software produced by cloud service providers that is delivered separately for installation on agency systems and not operated in a shared responsibility model (typically including agents, application clients, mobile applications, etc. that are not fully managed by the cloud service provider) is not a cloud computing product or service and is entirely outside the scope of FedRAMP under the FedRAMP Authorization Act. All such software is therefore not included in the cloud service offering for FedRAMP. For more, see fedramp.gov/scope."
+"MAS-AY-03","mas-AY-03_smt","Information resources (including third-party information resources) that do not meet the conditions in FRR-MAS-01 are not included in the cloud service offering for FedRAMP (FRR-MAS-02)."
+"MAS-AY-04","mas-AY-04_smt","Information resources (including third-party information resources) MAY vary by impact level as appropriate to the level of information handled or impacted by the information resource (FRR-MAS-05)."
+"MAS-AY-05","mas-AY-05_smt","All parties SHOULD review best practices and technical assistance provided separately by FedRAMP for help with applying the Minimum Assessment Scope as needed."
+"MAS-AY-06","mas-AY-06_smt","All aspects of the cloud service offering are determined and maintained by the cloud service provider in accordance with related FedRAMP authorization requirements and documented by the cloud service provider in their assessment and authorization materials."
+"MAS-EX-01","mas-EX-01_smt","Providers MAY include documentation of information resources beyond the cloud service offering, or even entirely outside the scope of FedRAMP, in a FedRAMP assessment and authorization package supplement; these resources will not be FedRAMP authorized and MUST be clearly marked and separated from the cloud service offering."
+"PVA-01","pva-01_smt","Providers MUST persistently perform validation of their Key Security Indicators following the processes and cycles documented for their cloud service offering per FRR-KSI-02; this process is called persistent validation and is part of vulnerability detection."
+"PVA-02","pva-02_smt","Providers MUST treat failures detected during persistent validation and failures of the persistent validation process as vulnerabilities, then follow the requirements and recommendations in the FedRAMP Vulnerability Detection and Response process for such findings."
+"PVA-03","pva-03_smt","Providers MUST include persistent validation activity in the reports on vulnerability detection and response activity required by the FedRAMP Vulnerability Detection and Response process."
+"PVA-04","pva-04_smt","Providers MUST track significant changes that impact their Key Security Indicator goals and validation processes while following the requirements and recommendations in the FedRAMP Significant Change Notification process; if such significant changes are not properly tracked and supplied to all necessary assessors then a full Initial FedRAMP Assessment may be required in place of the expected Persistent FedRAMP Assessment."
+"PVA-05","pva-05_smt","Providers MUST have the implementation of their goals and validation processes assessed by a FedRAMP-recognized independent assessor OR by FedRAMP directly AND MUST include the results of this assessment in their authorization data without modification."
+"PVA-06","pva-06_smt","Providers MUST ensure a complete assessment of validation procedures (including underlying code, pipelines, configurations, automation tools, etc.) for the cloud service offering by all necessary assessors."
+"PVA-07","pva-07_smt","Providers SHOULD provide technical explanations, demonstrations, and other relevant supporting information to all necessary assessors for the technical capabilities they employ to meet Key Security Indicators and to provide validation."
+"PVA-08","pva-08_smt","Providers MAY ask for and accept advice from their assessor during assessment regarding techniques and procedures that will improve their security posture or the effectiveness, clarity, and accuracy of their validation and reporting procedures for Key Security Indicators, UNLESS doing so might compromise the objectivity and integrity of the assessment (see also FRR-PVA-09)."
+"PVA-09","pva-09_smt","Assessors MAY share advice with providers they are assessing about techniques and procedures that will improve their security posture or the effectiveness, clarity, and accuracy of their validation and reporting procedures for Key Security Indicators, UNLESS doing so might compromise the objectivity and integrity of the assessment (see also FRR-PVA-08)."
+"PVA-10","pva-10_smt","Assessors MUST evaluate the underlying processes (both machine-based and non-machine-based) that providers use to validate Key Security Indicators; this evaluation should include at least:
+• The effectiveness, completeness, and integrity of the automated processes that perform validation of the cloud service offering's_ security posture.
+• The effectiveness, completeness, and integrity of the human processes that perform validation of the cloud service offering's_ security posture
+• The coverage of these processes within the cloud service offering, including if all of the consolidated information resources listed are being validated."
+"PVA-11","pva-11_smt","Assessors MUST evaluate the implementation of processes derived from Key Security Indicators to determine whether or not the provider has accurately documented their process and goals."
+"PVA-12","pva-12_smt","Assessors MUST evaluate whether or not the underlying processes are consistently creating the desired security outcome documented by the provider."
+"PVA-13","pva-13_smt","Assessors MUST perform evaluation using a combination of quantitative and expert qualitative assessment as appropriate AND document which is applied to which aspect of the assessment."
+"PVA-14","pva-14_smt","Assessors SHOULD engage provider experts in discussion to understand the decisions made by the provider and inform expert qualitative assessment, and SHOULD perform independent research to test such information as part of the expert qualitative assessment process."
+"PVA-15","pva-15_smt","Assessors MUST NOT rely on screenshots, configuration dumps, or other static output as evidence EXCEPT when evaluating the accuracy and reliability of a process that generates such artifacts."
+"PVA-16","pva-16_smt","Assessors MUST assess whether or not procedures are consistently followed, including the processes in place to ensure this occurs, without relying solely on the existence of a procedure document for assessing if appropriate processes and procedures are in place."
+"PVA-17","pva-17_smt","Assessors MUST deliver a high-level summary of their assessment process and findings for each Key Security Indicator; this summary will be included in the authorization data for the cloud service offering."
+"PVA-18","pva-18_smt","Assessors MUST NOT deliver an overall recommendation on whether or not the cloud service offering meets the requirements for FedRAMP authorization."
+"PVA-TF-LO-01","pva-TF-LO-01_smt","Providers MUST complete the validation processes for Key Security Indicators of non-machine-based information resources at least once every 3 months."
+"PVA-TF-LO-02","pva-TF-LO-02_smt","Providers MUST complete the validation processes for Key Security Indicators of machine-based information resources at least once every 7 days."
+"PVA-TF-MO-01","pva-TF-MO-01_smt","Providers MUST complete the validation processes for Key Security Indicators of non-machine-based information resources at least once every 3 months."
+"PVA-TF-LM-02","pva-TF-LM-02_smt","Providers MUST complete the validation processes for Key Security Indicators of machine-based information resources at least once every 3 days."
+"RSC-01","rsc-01_smt","Providers MUST create and maintain guidance that includes instructions on how to securely access, configure, operate, and decommission top-level administrative accounts that control enterprise access to the entire cloud service offering."
+"RSC-02","rsc-02_smt","Providers MUST create and maintain guidance that explains security-related settings that can be operated only by top-level administrative accounts and their security implications."
+"RSC-03","rsc-03_smt","Providers SHOULD create and maintain guidance that explains security-related settings that can be operated only by privileged accounts and their security implications."
+"RSC-04","rsc-04_smt","Providers SHOULD set all settings to their recommended secure defaults for top-level administrative accounts and privileged accounts when initially provisioned."
+"RSC-05","rsc-05_smt","Providers SHOULD offer the capability to compare all current settings for top-level administrative accounts and privileged accounts to the recommended secure defaults."
+"RSC-06","rsc-06_smt","Providers SHOULD offer the capability to export all security settings in a machine-readable format."
+"RSC-07","rsc-07_smt","Providers SHOULD offer the capability to view and adjust security settings via an API or similar capability."
+"RSC-08","rsc-08_smt","Providers SHOULD provide recommended secure configuration guidance in a machine-readable format that can be used by customers or third-party tools to compare against current settings."
+"RSC-09","rsc-09_smt","Providers SHOULD make recommended secure configuration guidance available publicly."
+"RSC-10","rsc-10_smt","Providers SHOULD provide versioning and a release history for recommended secure default settings for top-level administrative accounts and privileged accounts as they are adjusted over time."
+"SCN-01","scn-01_smt","Providers MUST notify all necessary parties when Significant Change Notifications are required, including at least FedRAMP and all agency customers. Providers MAY share Significant Change Notifications publicly or with other parties."
+"SCN-02","scn-02_smt","Providers MUST follow the procedures documented in their security plan to plan, evaluate, test, perform, assess, and document changes."
+"SCN-03","scn-03_smt","Providers MUST evaluate and type label all significant changes, then follow FedRAMP requirements for the type."
+"SCN-04","scn-04_smt","Providers MUST maintain auditable records of these activities and make them available to all necessary parties."
+"SCN-05","scn-05_smt","Providers MUST keep historical Significant Change Notifications available to all necessary parties at least until the service completes its next annual assessment."
+"SCN-06","scn-06_smt","All parties SHOULD follow FedRAMP's best practices and technical assistance on significant change assessment and notification where applicable."
+"SCN-07","scn-07_smt","Providers MAY notify necessary parties in a variety of ways as long as the mechanism for notification is clearly documented and easily accessible."
+"SCN-08","scn-08_smt","Providers MUST make ALL Significant Change Notifications and related audit records available in similar human-readable and compatible machine-readable formats."
+"SCN-09","scn-09_smt","Providers MUST include at least the following information in Significant Change Notifications:
+• Service Offering FedRAMP ID
+• Assessor Name (if applicable)
+• Related POA&M (if applicable)
+• Significant Change type and explanation of categorization
+• Short description of change
+• Reason for change
+• Summary of customer impact, including changes to services and customer configuration responsibilities
+• Plan and timeline for the change, including for the verification, assessment, and/or validation of impacted Key Security Indicators or controls
+• Copy of the business or security impact analysis
+• Name and title of approver"
+"SCN-10","scn-10_smt","Providers MAY include additional relevant information in Significant Change Notifications."
+"SCN-RR-01","scn-RR-01_smt","Providers SHOULD NOT make formal Significant Change Notifications for routine recurring changes; this type of change is exempted from the notification requirements of this process."
+"SCN-AD-01","scn-AD-01_smt","Providers MUST notify all necessary parties within ten business days after finishing adaptive changes, also including the following information:
+• Summary of any new risks identified and/or POA&Ms resulting from the change (if applicable)"
+"SCN-TR-01","scn-TR-01_smt","Providers SHOULD engage a third-party assessor to review the scope and impact of the planned change before starting transformative changes if human validation is necessary. This review SHOULD be limited to security decisions that require human validation. Providers MUST document this decision and justification."
+"SCN-TR-02","scn-TR-02_smt","Providers MUST notify all necessary parties of initial plans for transformative changes at least 30 business days before starting transformative changes."
+"SCN-TR-03","scn-TR-03_smt","Providers MUST notify all necessary parties of final plans for transformative changes at least 10 business days before starting transformative changes."
+"SCN-TR-04","scn-TR-04_smt","Providers MUST notify all necessary parties within 5 business days after finishing transformative changes, also including the following information:
+• Updates to all previously sent information"
+"SCN-TR-05","scn-TR-05_smt","Providers MUST notify all necessary parties within 5 business days after completing the verification, assessment, and/or validation of transformative changes, also including the following information:
+• Updates to all previously sent information
+• Summary of any new risks identified and/or POA&Ms resulting from the change (if applicable)
+• Copy of the security assessment report (if applicable)"
+"SCN-TR-06","scn-TR-06_smt","Providers MUST publish updated service documentation and other materials to reflect transformative changes within 30 business days after finishing transformative changes."
+"SCN-TR-07","scn-TR-07_smt","Providers MUST allow agency customers to OPT OUT of transformative changes whenever feasible."
+"SCN-IM-01","scn-IM-01_smt","Providers MUST follow the legacy Significant Change Request process or full re-authorization for impact categorization changes, with advance approval from an identified lead agency, until further notice."
+"SCN-EX-01","scn-EX-01_smt","Providers MAY be required to delay significant changes beyond the standard Significant Change Notification period and/or submit significant changes for approval in advance as a condition of a formal FedRAMP Corrective Action Plan or other agreement."
+"SCN-EX-02","scn-EX-02_smt","Providers MAY execute significant changes (including transformative changes) during an emergency or incident without meeting Significant Change Notification requirements in advance ONLY if absolutely necessary. In such emergencies, providers MUST follow all relevant procedures, notify all necessary parties, retroactively provide all Significant Change Notification materials, and complete appropriate assessment after the incident."
+"UCM-01","ucm-01_smt","Providers MUST document the cryptographic modules used in each service (or groups of services that use the same modules) where cryptographic services are used to protect federal customer data, including whether these modules are validated under the NIST Cryptographic Module Validation Program or are update streams of such modules."
+"UCM-02","ucm-02_smt","Providers SHOULD configure agency tenants by default to use cryptographic services that use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when such modules are available."
+"UCM-03","ucm-03_smt","Providers SHOULD use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data."
+"UCM-04","ucm-04_smt","Providers MUST use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data."
+"VDR-01","vdr-01_smt","Providers MUST systematically, persistently, and promptly discover and identify vulnerabilities within their cloud service offering using appropriate techniques such as assessment, scanning, threat intelligence, vulnerability disclosure mechanisms, bug bounties, supply chain monitoring, and other relevant capabilities; this process is called vulnerability detection."
+"VDR-02","vdr-02_smt","Providers MUST systematically, persistently, and promptly track, evaluate, monitor, mitigate, remediate, assess exploitation of, report, and otherwise manage all detected vulnerabilities within their cloud service offering; this process is called vulnerability response."
+"VDR-03","vdr-03_smt","Providers MUST follow the requirements and recommendations outlined in FRR-VDR-TF regarding timeframes for vulnerability detection and response."
+"VDR-04","vdr-04_smt","Providers MAY sample effectively identical information resources, especially machine-based information resources, when performing vulnerability detection UNLESS doing so would decrease the efficiency or effectiveness of vulnerability detection."
+"VDR-05","vdr-05_smt","Providers SHOULD evaluate detected vulnerabilities, considering the context of the cloud service offering, to identify logical groupings of affected information resources that may improve the efficiency and effectiveness of vulnerability response by consolidating further activity; requirements and recommendations in this process are then applied to these consolidated groupings of vulnerabilities instead of each individual detected instance."
+"VDR-06","vdr-06_smt","Providers SHOULD evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are false positive vulnerabilities."
+"VDR-07","vdr-07_smt","Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are likely exploitable vulnerabilities."
+"VDR-08","vdr-08_smt","Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are internet-reachable vulnerabilities."
+"VDR-09","vdr-09_smt","Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to estimate the potential adverse impact of exploitation on government customers AND assign one of the following potential adverse impact ratings:"
+"VDR-10","vdr-10_smt","Providers SHOULD consider at least the following factors when considering the context of the cloud service offering to evaluate detected vulnerabilities:
+• **Criticality**: How important are the systems or information that might be impacted by the vulnerability?
+• **Reachability**: How might a threat actor reach the vulnerability and how likely is that?
+• **Exploitability**: How easy is it for a threat actor to exploit the vulnerability and how likely is that?
+• **Detectability**: How easy is it for a threat actor to become aware of the vulnerability and how likely is that?
+• **Prevalence**: How much of the cloud service offering is affected by the vulnerability?
+• **Privilege**: How much privileged authority or access is granted or can be gained from exploiting the vulnerability?
+• **Proximate Vulnerabilities**: How does this vulnerability interact with previously detected vulnerabilities, especially partially or fully mitigated vulnerabilities?_
+• **Known Threats**: How might already known threats leverage the vulnerability and how likely is that?"
+"VDR-11","vdr-11_smt","Providers MUST document the reason and resulting implications for their customers when choosing not to meet FedRAMP recommendations in this process; this documentation MUST be included in the authorization data for the cloud service offering."
+"VDR-AY-01","vdr-AY-01_smt","If it is not possible to fully mitigate or remediate detected vulnerabilities, providers SHOULD instead partially mitigate vulnerabilities promptly, progressively, and persistently."
+"VDR-AY-02","vdr-AY-02_smt","Providers SHOULD make design and architecture decisions for their cloud service offering that mitigate the risk of vulnerabilities by default AND decrease the risk and complexity of vulnerability detection and response."
+"VDR-AY-03","vdr-AY-03_smt","Providers SHOULD use automated services to improve and streamline vulnerability detection and response."
+"VDR-AY-04","vdr-AY-04_smt","Providers SHOULD automatically perform vulnerability detection on representative samples of new or significantly changed information resources."
+"VDR-AY-05","vdr-AY-05_smt","Providers SHOULD NOT weaken the security of information resources to facilitate vulnerability scanning or assessment activities."
+"VDR-AY-06","vdr-AY-06_smt","Providers SHOULD NOT deploy or otherwise activate new machine-based information resources with Known Exploited Vulnerabilities."
+"VDR-RP-01","vdr-RP-01_smt","Providers MUST report vulnerability detection and response activity to all necessary parties persistently, summarizing ALL activity since the previous report; these reports are authorization data and are subject to the FedRAMP Authorization Data Sharing (ADS) process."
+"VDR-RP-02","vdr-RP-02_smt","Providers SHOULD include high-level overviews of ALL vulnerability detection and response activities conducted during this period for the cloud service offering;_ this includes vulnerability disclosure programs, bug bounty programs, penetration testing, assessments, etc."
+"VDR-RP-03","vdr-RP-03_smt","Providers MUST NOT irresponsibly disclose specific sensitive information about vulnerabilities that would likely lead to exploitation, but MUST disclose sufficient information for informed risk-based decision-making to all necessary parties."
+"VDR-RP-04","vdr-RP-04_smt","Providers MAY responsibly disclose vulnerabilities publicly or with other parties if the provider determines doing so will NOT likely lead to exploitation."
+"VDR-RP-05","vdr-RP-05_smt","Providers MUST include the following information (if applicable) on detected vulnerabilities when reporting on vulnerability detection and response activity, UNLESS it is an accepted vulnerability:
+• Provider's internally assigned tracking identifier
+• Time and source of the detection
+• Time of completed evaluation
+• Is it an internet-reachable vulnerability or not?
+• Is it a likely exploitable vulnerability or not?
+• Historically and currently estimated potential adverse impact of exploitation
+• Time and level of each completed and evaluated reduction in potential adverse impact
+• Estimated time and target level of next reduction in potential adverse impact
+• Is it currently or is it likely to become an overdue vulnerability or not? If so, explain.
+• Any supplementary information the provider responsibly determines will help federal agencies assess or mitigate the risk to their federal customer data within the cloud service offering resulting from the vulnerability
+• Final disposition of the vulnerability"
+"VDR-RP-06","vdr-RP-06_smt","Providers MUST include the following information on accepted vulnerabilities when reporting on vulnerability detection and response activity:
+• Provider's internally assigned tracking identifier
+• Time and source of the detection
+• Time of completed evaluation
+• Is it an internet-reachable vulnerability or not?
+• Is it a likely exploitable vulnerability or not?
+• Currently estimated potential adverse impact of exploitation
+• Explanation of why this is an accepted vulnerability
+• Any supplementary information the provider determines will responsibly help federal agencies assess or mitigate the risk to their federal customer data within the cloud service offering resulting from the accepted vulnerability"
+"VDR-EX-01","vdr-EX-01_smt","Providers MAY be required to share additional vulnerability information, alternative reports, or to report at an alternative frequency as a condition of a FedRAMP Corrective Action Plan or other agreements with federal agencies."
+"VDR-EX-02","vdr-EX-02_smt","Providers MAY be required to provide additional information or details about vulnerabilities, including sensitive information that would likely lead to exploitation, as part of review, response or investigation by necessary parties."
+"VDR-EX-03","vdr-EX-03_smt","Providers MUST NOT use this process to reject requests for additional information from necessary parties which also include law enforcement, Congress, and Inspectors General."
+"VDR-TF-01","vdr-TF-01_smt","Providers MUST report vulnerability detection and response activity to all necessary parties in a consistent format that is human readable at least monthly."
+"VDR-TF-02","vdr-TF-02_smt","Providers SHOULD remediate Known Exploited Vulnerabilities according to the due dates in the CISA Known Exploited Vulnerabilities Catalog (even if the vulnerability has been fully mitigated) as required by CISA Binding Operational Directive (BOD) 22-01 or any successor guidance from CISA."
+"VDR-TF-03","vdr-TF-03_smt","Providers MUST categorize any vulnerability that is not or will not be fully mitigated or remediated within 192 days of evaluation as an accepted vulnerability."
+"VDR-TF-LO-01","vdr-TF-LO-01_smt","Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every month."
+"VDR-TF-LO-02","vdr-TF-LO-02_smt","Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every week."
+"VDR-TF-LO-03","vdr-TF-LO-03_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every month."
+"VDR-TF-LO-04","vdr-TF-LO-04_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every six months."
+"VDR-TF-LO-05","vdr-TF-LO-05_smt","Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 7 days of detection."
+"VDR-TF-LO-06","vdr-TF-LO-06_smt","Providers SHOULD partially mitigate, fully mitigate,_ or remediate vulnerabilities to a lower potential adverse impact within the timeframes from evaluation shown below (in days), factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
+"VDR-TF-LO-07","vdr-TF-LO-07_smt","Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
+"VDR-TF-MO-01","vdr-TF-MO-01_smt","Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 14 days."
+"VDR-TF-MO-02","vdr-TF-MO-02_smt","Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 3 days."
+"VDR-TF-MO-03","vdr-TF-MO-03_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 14 days."
+"VDR-TF-MO-04","vdr-TF-MO-04_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once per month."
+"VDR-TF-MO-05","vdr-TF-MO-05_smt","Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 5 days of detection."
+"VDR-TF-MO-06","vdr-TF-MO-06_smt","Providers SHOULD treat internet-reachable likely exploitable vulnerabilities with a potential adverse impact of N4 or N5 as a security incident until they are partially mitigated to N3 or below."
+"VDR-TF-MO-07","vdr-TF-MO-07_smt","Providers SHOULD partially mitigate, fully mitigate,_ or remediate vulnerabilities to a lower potential adverse impact within the timeframes from evaluation shown below, factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
+"VDR-TF-MO-08","vdr-TF-MO-08_smt","Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
+"VDR-TF-HI-01","vdr-TF-HI-01_smt","Providers SHOULD make all recent historical vulnerability detection and response activity available in a machine-readable format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 7 days."
+"VDR-TF-HI-02","vdr-TF-HI-02_smt","Providers SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once per day."
+"VDR-TF-HI-03","vdr-TF-HI-03_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 7 days."
+"VDR-TF-HI-04","vdr-TF-HI-04_smt","Providers SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every month."
+"VDR-TF-HI-05","vdr-TF-HI-05_smt","Providers SHOULD evaluate ALL vulnerabilities as required by FRR-VDR-07, FRR-VDR-08, and FRR-VDR-09 within 2 days of detection."
+"VDR-TF-HI-06","vdr-TF-HI-06_smt","Providers SHOULD treat internet-reachable likely exploitable vulnerabilities with a potential adverse impact of N4 or N5 as a security incident until they are partially mitigated to N3 or below."
+"VDR-TF-HI-07","vdr-TF-HI-07_smt","Providers SHOULD treat likely exploitable vulnerabilities that are NOT internet-reachable with a potential adverse impact of N5 as a security incident until they are partially mitigated to N4 or below."
+"VDR-TF-HI-08","vdr-TF-HI-08_smt","Providers SHOULD partially mitigate vulnerabilities to a lower potential adverse impact within the maximum time-frames from evaluation shown below, factoring for the current potential adverse impact, internet reachability,_ and likely exploitability:"
+"VDR-TF-HI-09","vdr-TF-HI-09_smt","Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider."
+"VDR-AG-01","vdr-AG-01_smt","Agencies SHOULD review the information provided in vulnerability reports at appropriate and reasonable intervals commensurate with the expectations and risk posture indicated by their Authorization to Operate, and SHOULD use automated processing and filtering of machine readable information from cloud service providers."
+"VDR-AG-02","vdr-AG-02_smt","Agencies SHOULD use vulnerability information reported by the Provider to maintain Plans of Action & Milestones for agency security programs when relevant according to agency security policies (such as if the agency takes action to mitigate the risk of exploitation or authorized the continued use of a cloud service with accepted vulnerabilities that put agency information systems at risk)."
+"VDR-AG-03","vdr-AG-03_smt","Agencies SHOULD NOT request additional information from cloud service providers that is not required by this FedRAMP process UNLESS the head of the agency or an authorized delegate makes a determination that there is a demonstrable need for such."
+"VDR-AG-04","vdr-AG-04_smt","Agencies MUST inform FedRAMP after requesting any additional vulnerability information or materials from a cloud service provider beyond those FedRAMP requires by sending a notification to [info@fedramp.gov](mailto:info@fedramp.gov)."
