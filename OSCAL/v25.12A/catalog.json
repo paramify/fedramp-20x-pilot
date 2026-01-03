@@ -4,7 +4,7 @@
     "metadata": {
       "title": "FedRAMP 20x Phase Two Catalog (v25.12A)",
       "published": "2025-12-30T03:41:48.000000-04:00",
-      "last-modified": "2025-12-30T03:41:48.000000-04:00",
+      "last-modified": "2026-01-03T03:27:34.000000-04:00",
       "version": "25.12A",
       "oscal-version": "1.1.2"
     },
@@ -1358,7 +1358,7 @@
               {
                 "id": "inr-01_smt",
                 "name": "statement",
-                "prose": "Persistently review of the effectiveness of documented incident response procedures."
+                "prose": "Persistently review the effectiveness of documented incident response procedures."
               }
             ]
           },

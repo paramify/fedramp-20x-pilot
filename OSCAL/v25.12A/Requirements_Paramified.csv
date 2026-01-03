@@ -131,7 +131,7 @@
 "IAM-05","iam-05_smt","Persistently ensure that identity and access management employs measures to ensure each user or device can only access the resources they need."
 "IAM-06","iam-06_smt","Automatically disable or otherwise secure accounts with privileged access in response to suspicious activity"
 "IAM-07","iam-07_smt","Securely manage the lifecycle and privileges of all accounts, roles, and groups, using automation."
-"INR-01","inr-01_smt","Persistently review of the effectiveness of documented incident response procedures."
+"INR-01","inr-01_smt","Persistently review the effectiveness of documented incident response procedures."
 "INR-02","inr-02_smt","Persistently review past incidents for patterns or vulnerabilities."
 "INR-03","inr-03_smt","Generate incident after action reports and persistently incorporate lessons learned."
 "MLA-01","mla-01_smt","Operate a Security Information and Event Management (SIEM) or similar system(s) for centralized, tamper-resistent logging of events, activities, and changes."
