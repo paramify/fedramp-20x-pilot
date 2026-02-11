@@ -2,8 +2,8 @@ name: Process FRMR Docs to OSCAL
 
 on:
   schedule:
-  # Run daily at 2 AM UTC
-  - cron: '0 2 * * *'
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
   workflow_dispatch:
     # Allow manual triggering
 
@@ -27,11 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        if [ -f FR_docs_to_OSCAL/requirements.txt ]; then
-          pip install -r FR_docs_to_OSCAL/requirements.txt
-        else
-          pip install requests
-        fi
+        pip install -r FR_docs_to_OSCAL/requirements.txt
 
     - name: Process FRMR files and generate OSCAL
       run: |
@@ -40,7 +36,7 @@ jobs:
     - name: Check for changes
       id: verify-changed-files
       run: |
-        if [ -n "$(git status --porcelain)" ]; then
+        if [ -n "$(git status --porcelain OSCAL/)" ]; then
           echo "changed=true" >> $GITHUB_OUTPUT
         else
           echo "changed=false" >> $GITHUB_OUTPUT

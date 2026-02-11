@@ -1,0 +1,78 @@
+{
+  "profile": {
+    "uuid": "0410add3-ce4c-54de-9664-185f69a5640f",
+    "metadata": {
+      "title": "FedRAMP 20x High Impact Profile",
+      "published": "2026-02-11T10:47:21.000000-04:00",
+      "last-modified": "2026-02-11T10:47:21.000000-04:00",
+      "version": "0.9.2-beta",
+      "oscal-version": "1.1.2"
+    },
+    "imports": [
+      {
+        "href": "#e4011384-363c-5611-9067-f4b23cb2c02e",
+        "include-controls": [
+          {
+            "with-ids": [
+              "afr-ads",
+              "afr-ccm",
+              "afr-fsi",
+              "afr-icp",
+              "afr-mas",
+              "afr-pva",
+              "afr-scg",
+              "afr-scn",
+              "afr-ucm",
+              "afr-vdr",
+              "ced-det",
+              "ced-rgt",
+              "ced-rrt",
+              "ced-rst",
+              "cmt-lmc",
+              "cmt-rmv",
+              "cmt-rvp",
+              "cmt-vtd",
+              "cna-dfp",
+              "cna-ibp",
+              "cna-mat",
+              "cna-ofa",
+              "cna-rnt",
+              "cna-rvp",
+              "cna-uln",
+              "iam-aam",
+              "iam-apm",
+              "iam-elp",
+              "iam-jit",
+              "iam-mfa",
+              "iam-snu",
+              "iam-sus",
+              "inr-aar",
+              "inr-rir",
+              "inr-rpi",
+              "mla-evc",
+              "mla-let",
+              "mla-osm",
+              "mla-rvl",
+              "piy-giv",
+              "piy-res",
+              "piy-ris",
+              "piy-rsd",
+              "piy-rvd",
+              "rpl-abo",
+              "rpl-arp",
+              "rpl-rro",
+              "rpl-trc",
+              "scr-mit",
+              "scr-mon",
+              "svc-acm",
+              "svc-asm",
+              "svc-eis",
+              "svc-snt",
+              "svc-vri"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
