@@ -1,0 +1,740 @@
+{
+  "catalog": {
+    "uuid": "93901dc9-53e0-5f8f-9cbe-8c82c34c805a",
+    "metadata": {
+      "title": "FedRAMP 20x Catalog (v0.9.3-beta)",
+      "published": "2026-02-21T04:10:49.000000-04:00",
+      "last-modified": "2026-02-21T04:10:49.000000-04:00",
+      "version": "0.9.3-beta",
+      "oscal-version": "1.1.2"
+    },
+    "groups": [
+      {
+        "id": "AFR",
+        "title": "Authorization by FedRAMP",
+        "controls": [
+          {
+            "id": "afr-ads",
+            "title": "Authorization Data Sharing",
+            "parts": [
+              {
+                "id": "afr-ads_smt",
+                "name": "statement",
+                "prose": "Determine how authorization data will be shared with all necessary parties in alignment with the FedRAMP Authorization Data Sharing (ADS) process and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-ccm",
+            "title": "Collaborative Continuous Monitoring",
+            "parts": [
+              {
+                "id": "afr-ccm_smt",
+                "name": "statement",
+                "prose": "Maintain a plan and process for providing Ongoing Authorization Reports and Quarterly Reviews for all necessary parties in alignment with the FedRAMP Collaborative Continuous Monitoring (CCM) process and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-fsi",
+            "title": "FedRAMP Security Inbox",
+            "parts": [
+              {
+                "id": "afr-fsi_smt",
+                "name": "statement",
+                "prose": "Operate a secure inbox to receive critical communication from FedRAMP and other government entities in alignment with FedRAMP Security Inbox (FSI) requirements and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-icp",
+            "title": "Incident Communications Procedures",
+            "parts": [
+              {
+                "id": "afr-icp_smt",
+                "name": "statement",
+                "prose": "Integrate FedRAMP's Incident Communications Procedures (ICP) into incident response procedures and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-mas",
+            "title": "Minimum Assessment Scope",
+            "parts": [
+              {
+                "id": "afr-mas_smt",
+                "name": "statement",
+                "prose": "Apply the FedRAMP Minimum Assessment Scope (MAS) to identify and document the scope of the cloud service offering to be assessed for FedRAMP authorization and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-pva",
+            "title": "Persistent Validation and Assessment",
+            "parts": [
+              {
+                "id": "afr-pva_smt",
+                "name": "statement",
+                "prose": "Persistently validate, assess, and report on the effectiveness and status of security decisions and policies that are implemented within the cloud service offering in alignment with the FedRAMP 20x Persistent Validation and Assessment (PVA) process, and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-scg",
+            "title": "Secure Configuration Guide",
+            "parts": [
+              {
+                "id": "afr-scg_smt",
+                "name": "statement",
+                "prose": "Develop secure by default configurations and provide guidance for secure configuration of the cloud service offering to customers in alignment with the FedRAMP Secure Configuration Guide (SCG) process and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-scn",
+            "title": "Significant Change Notifications",
+            "parts": [
+              {
+                "id": "afr-scn_smt",
+                "name": "statement",
+                "prose": "Determine how significant changes will be tracked and how all necessary parties will be notified in alignment with the FedRAMP Significant Change Notifications (SCN) process and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-ucm",
+            "title": "Using Cryptographic Modules",
+            "parts": [
+              {
+                "id": "afr-ucm_smt",
+                "name": "statement",
+                "prose": "Ensure that cryptographic modules used to protect potentially sensitive federal customer data are selected and used in alignment with the FedRAMP 20x Using Cryptographic Modules (UCM) guidance and persistently address all related requirements and recommendations."
+              }
+            ]
+          },
+          {
+            "id": "afr-vdr",
+            "title": "Vulnerability Detection and Response",
+            "parts": [
+              {
+                "id": "afr-vdr_smt",
+                "name": "statement",
+                "prose": "Document the vulnerability detection and vulnerability response methodology used within the cloud service offering in alignment with the FedRAMP Vulnerability Detection and Response (VDR) process and persistently address all related requirements and recommendations."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CED",
+        "title": "Cybersecurity Education",
+        "controls": [
+          {
+            "id": "ced-det",
+            "title": "Reviewing Development and Engineering Training",
+            "parts": [
+              {
+                "id": "ced-det_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of role-specific training given to development and engineering staff that covers best practices for delivering secure software."
+              }
+            ]
+          },
+          {
+            "id": "ced-rgt",
+            "title": "Reviewing General Training",
+            "parts": [
+              {
+                "id": "ced-rgt_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of training given to all employees on policies, procedures, and security-related topics."
+              }
+            ]
+          },
+          {
+            "id": "ced-rrt",
+            "title": "Reviewing Response and Recovery Training",
+            "parts": [
+              {
+                "id": "ced-rrt_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of role-specific training given to staff involved with incident response or disaster recovery."
+              }
+            ]
+          },
+          {
+            "id": "ced-rst",
+            "title": "Reviewing Role-Specific Training",
+            "parts": [
+              {
+                "id": "ced-rst_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of role-specific training given to employees in high risk roles, including at least roles with privileged access."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CMT",
+        "title": "Change Management",
+        "controls": [
+          {
+            "id": "cmt-lmc",
+            "title": "Logging Changes",
+            "parts": [
+              {
+                "id": "cmt-lmc_smt",
+                "name": "statement",
+                "prose": "Log and monitor modifications to the cloud service offering."
+              }
+            ]
+          },
+          {
+            "id": "cmt-rmv",
+            "title": "Redeploying vs Modifying",
+            "parts": [
+              {
+                "id": "cmt-rmv_smt",
+                "name": "statement",
+                "prose": "Execute changes to machine-based information resources through redeployment of version controlled immutable resources rather than direct modification wherever reasonable."
+              }
+            ]
+          },
+          {
+            "id": "cmt-rvp",
+            "title": "Reviewing Change Procedures",
+            "parts": [
+              {
+                "id": "cmt-rvp_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of documented change management procedures."
+              }
+            ]
+          },
+          {
+            "id": "cmt-vtd",
+            "title": "Validating Throughout Deployment",
+            "parts": [
+              {
+                "id": "cmt-vtd_smt",
+                "name": "statement",
+                "prose": "Automate persistent testing and validation of changes throughout deployment."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "CNA",
+        "title": "Cloud Native Architecture",
+        "controls": [
+          {
+            "id": "cna-dfp",
+            "title": "Defining Functionality and Privileges",
+            "parts": [
+              {
+                "id": "cna-dfp_smt",
+                "name": "statement",
+                "prose": "Strictly define the functionality and privileges for infrastructure and services."
+              }
+            ]
+          },
+          {
+            "id": "cna-eis",
+            "title": "Enforcing Intended State",
+            "parts": [
+              {
+                "id": "cna-eis_smt",
+                "name": "statement",
+                "prose": "Use automated services to persistently assess the security posture of all machine-based information resources and automatically enforce their intended operational state."
+              }
+            ]
+          },
+          {
+            "id": "cna-ibp",
+            "title": "Implementing Best Practices",
+            "parts": [
+              {
+                "id": "cna-ibp_smt",
+                "name": "statement",
+                "prose": "Persistently ensure cloud-native machine-based information resources are implemented based on the host provider's best practices and documented guidance."
+              }
+            ]
+          },
+          {
+            "id": "cna-mat",
+            "title": "Minimizing Attack Surface",
+            "parts": [
+              {
+                "id": "cna-mat_smt",
+                "name": "statement",
+                "prose": "Persistently ensure machine-based information resources have a minimal attack surface and that lateral movement is minimized if compromised."
+              }
+            ]
+          },
+          {
+            "id": "cna-ofa",
+            "title": "Optimizing for Availability",
+            "parts": [
+              {
+                "id": "cna-ofa_smt",
+                "name": "statement",
+                "prose": "Appropriately optimize machine-based information resources for high availability and rapid recovery."
+              }
+            ]
+          },
+          {
+            "id": "cna-rnt",
+            "title": "Restricting Network Traffic",
+            "parts": [
+              {
+                "id": "cna-rnt_smt",
+                "name": "statement",
+                "prose": "Persistently ensure all machine-based information resources are configured to limit inbound and outbound network traffic."
+              }
+            ]
+          },
+          {
+            "id": "cna-rvp",
+            "title": "Reviewing Protections",
+            "parts": [
+              {
+                "id": "cna-rvp_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of protection against denial of service attacks and other unwanted activity."
+              }
+            ]
+          },
+          {
+            "id": "cna-uln",
+            "title": "Using Logical Networking",
+            "parts": [
+              {
+                "id": "cna-uln_smt",
+                "name": "statement",
+                "prose": "Use logical networking and related capabilities to enforce traffic flow controls."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "IAM",
+        "title": "Identity and Access Management",
+        "controls": [
+          {
+            "id": "iam-aam",
+            "title": "Automating Account Management",
+            "parts": [
+              {
+                "id": "iam-aam_smt",
+                "name": "statement",
+                "prose": "Securely manage the lifecycle and privileges of all accounts, roles, and groups, using automation."
+              }
+            ]
+          },
+          {
+            "id": "iam-apm",
+            "title": "Adopting Passwordless Methods",
+            "parts": [
+              {
+                "id": "iam-apm_smt",
+                "name": "statement",
+                "prose": "Use secure passwordless methods for user authentication and authorization when feasible, otherwise enforce strong passwords with MFA for authentication."
+              }
+            ]
+          },
+          {
+            "id": "iam-elp",
+            "title": "Ensuring Least Privilege",
+            "parts": [
+              {
+                "id": "iam-elp_smt",
+                "name": "statement",
+                "prose": "Persistently ensure that identity and access management employs measures to ensure each user or device can only access the resources they need."
+              }
+            ]
+          },
+          {
+            "id": "iam-jit",
+            "title": "Authorizing Just-in-Time",
+            "parts": [
+              {
+                "id": "iam-jit_smt",
+                "name": "statement",
+                "prose": "Use a least-privileged, role and attribute-based, and just-in-time security authorization model for all user and non-user accounts and services."
+              }
+            ]
+          },
+          {
+            "id": "iam-mfa",
+            "title": "Enforcing Phishing-Resistant MFA",
+            "parts": [
+              {
+                "id": "iam-mfa_smt",
+                "name": "statement",
+                "prose": "Enforce multi-factor authentication (MFA) using methods that are difficult to intercept or impersonate (phishing-resistant MFA) for all user authentication."
+              }
+            ]
+          },
+          {
+            "id": "iam-snu",
+            "title": "Securing Non-User Authentication",
+            "parts": [
+              {
+                "id": "iam-snu_smt",
+                "name": "statement",
+                "prose": "Enforce appropriately secure authentication methods for non-user accounts and services."
+              }
+            ]
+          },
+          {
+            "id": "iam-sus",
+            "title": "Responding to Suspicious Activity",
+            "parts": [
+              {
+                "id": "iam-sus_smt",
+                "name": "statement",
+                "prose": "Automatically disable or otherwise secure accounts with privileged access in response to suspicious activity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "INR",
+        "title": "Incident Response",
+        "controls": [
+          {
+            "id": "inr-aar",
+            "title": "Generating After Action Reports",
+            "parts": [
+              {
+                "id": "inr-aar_smt",
+                "name": "statement",
+                "prose": "Generate incident after action reports and persistently incorporate lessons learned."
+              }
+            ]
+          },
+          {
+            "id": "inr-rir",
+            "title": "Reviewing Incident Response Procedures",
+            "parts": [
+              {
+                "id": "inr-rir_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of documented incident response procedures."
+              }
+            ]
+          },
+          {
+            "id": "inr-rpi",
+            "title": "Reviewing Past Incidents",
+            "parts": [
+              {
+                "id": "inr-rpi_smt",
+                "name": "statement",
+                "prose": "Persistently review past incidents for patterns or vulnerabilities."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "MLA",
+        "title": "Monitoring, Logging, and Auditing",
+        "controls": [
+          {
+            "id": "mla-ala",
+            "title": "Authorizing Log Access",
+            "parts": [
+              {
+                "id": "mla-ala_smt",
+                "name": "statement",
+                "prose": "Use a least-privileged, role and attribute-based, and just-in-time access authorization model for access to log data based on organizationally defined data sensitivity."
+              }
+            ]
+          },
+          {
+            "id": "mla-evc",
+            "title": "Evaluating Configurations",
+            "parts": [
+              {
+                "id": "mla-evc_smt",
+                "name": "statement",
+                "prose": "Persistently evaluate and test the configuration of machine-based information resources, especially infrastructure as code."
+              }
+            ]
+          },
+          {
+            "id": "mla-let",
+            "title": "Logging Event Types",
+            "parts": [
+              {
+                "id": "mla-let_smt",
+                "name": "statement",
+                "prose": "Maintain a list of information resources and event types that will be logged, monitored, and audited, then do so."
+              }
+            ]
+          },
+          {
+            "id": "mla-osm",
+            "title": "Operating SIEM Capability",
+            "parts": [
+              {
+                "id": "mla-osm_smt",
+                "name": "statement",
+                "prose": "Operate a Security Information and Event Management (SIEM) or similar system(s) for centralized, tamper-resistent logging of events, activities, and changes."
+              }
+            ]
+          },
+          {
+            "id": "mla-rvl",
+            "title": "Reviewing Logs",
+            "parts": [
+              {
+                "id": "mla-rvl_smt",
+                "name": "statement",
+                "prose": "Persistently review and audit logs."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "PIY",
+        "title": "Policy and Inventory",
+        "controls": [
+          {
+            "id": "piy-giv",
+            "title": "Generating Inventories",
+            "parts": [
+              {
+                "id": "piy-giv_smt",
+                "name": "statement",
+                "prose": "Use authoritative sources to automatically generate real-time inventories of all information resources when needed."
+              }
+            ]
+          },
+          {
+            "id": "piy-res",
+            "title": "Reviewing Executive Support",
+            "parts": [
+              {
+                "id": "piy-res_smt",
+                "name": "statement",
+                "prose": "Persistently review executive support for achieving the organization's security objectives."
+              }
+            ]
+          },
+          {
+            "id": "piy-ris",
+            "title": "Reviewing Investments in Security",
+            "parts": [
+              {
+                "id": "piy-ris_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of the organization's investments in achieving security objectives."
+              }
+            ]
+          },
+          {
+            "id": "piy-rsd",
+            "title": "Reviewing Security in the SDLC",
+            "parts": [
+              {
+                "id": "piy-rsd_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles."
+              }
+            ]
+          },
+          {
+            "id": "piy-rvd",
+            "title": "Reviewing Vulnerability Disclosures",
+            "parts": [
+              {
+                "id": "piy-rvd_smt",
+                "name": "statement",
+                "prose": "Persistently review the effectiveness of the provider's vulnerability disclosure program."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RPL",
+        "title": "Recovery Planning",
+        "controls": [
+          {
+            "id": "rpl-abo",
+            "title": "Aligning Backups with Objectives",
+            "parts": [
+              {
+                "id": "rpl-abo_smt",
+                "name": "statement",
+                "prose": "Persistently review the alignment of machine-based information resource backups with defined recovery objectives."
+              }
+            ]
+          },
+          {
+            "id": "rpl-arp",
+            "title": "Aligning Recovery Plan",
+            "parts": [
+              {
+                "id": "rpl-arp_smt",
+                "name": "statement",
+                "prose": "Persistently review the alignment of recovery plans with defined recovery objectives."
+              }
+            ]
+          },
+          {
+            "id": "rpl-rro",
+            "title": "Reviewing Recovery Objectives",
+            "parts": [
+              {
+                "id": "rpl-rro_smt",
+                "name": "statement",
+                "prose": "Persistently review desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO)."
+              }
+            ]
+          },
+          {
+            "id": "rpl-trc",
+            "title": "Testing Recovery Capabilities",
+            "parts": [
+              {
+                "id": "rpl-trc_smt",
+                "name": "statement",
+                "prose": "Persistently test the capability to recover from incidents and contingencies, including alignment with defined recovery objectives."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SCR",
+        "title": "Supply Chain Risk",
+        "controls": [
+          {
+            "id": "scr-mit",
+            "title": "Mitigating Supply Chain Risk",
+            "parts": [
+              {
+                "id": "scr-mit_smt",
+                "name": "statement",
+                "prose": "Persistently identify, review, and mitigate potential supply chain risks."
+              }
+            ]
+          },
+          {
+            "id": "scr-mon",
+            "title": "Monitoring Supply Chain Risk",
+            "parts": [
+              {
+                "id": "scr-mon_smt",
+                "name": "statement",
+                "prose": "Automatically monitor third party software information resources for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SVC",
+        "title": "Service Configuration",
+        "controls": [
+          {
+            "id": "svc-acm",
+            "title": "Automating Configuration Management",
+            "parts": [
+              {
+                "id": "svc-acm_smt",
+                "name": "statement",
+                "prose": "Manage configuration of machine-based information resources using automation."
+              }
+            ]
+          },
+          {
+            "id": "svc-asm",
+            "title": "Automating Secret Management",
+            "parts": [
+              {
+                "id": "svc-asm_smt",
+                "name": "statement",
+                "prose": "Automate management, protection, and regular rotation of digital keys, certificates, and other secrets."
+              }
+            ]
+          },
+          {
+            "id": "svc-eis",
+            "title": "Evaluating and Improving Security",
+            "parts": [
+              {
+                "id": "svc-eis_smt",
+                "name": "statement",
+                "prose": "Implement improvements based on persistent evaluation of information resources for opportunities to improve security."
+              }
+            ]
+          },
+          {
+            "id": "svc-prr",
+            "title": "Preventing Residual Risk",
+            "parts": [
+              {
+                "id": "svc-prr_smt",
+                "name": "statement",
+                "prose": "Persistently review plans, procedures, and the state of information resources after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+              }
+            ]
+          },
+          {
+            "id": "svc-rud",
+            "title": "Removing Unwanted Data",
+            "parts": [
+              {
+                "id": "svc-rud_smt",
+                "name": "statement",
+                "prose": "Remove unwanted federal customer data promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+              }
+            ]
+          },
+          {
+            "id": "svc-snt",
+            "title": "Securing Network Traffic",
+            "parts": [
+              {
+                "id": "svc-snt_smt",
+                "name": "statement",
+                "prose": "Encrypt or otherwise secure network traffic."
+              }
+            ]
+          },
+          {
+            "id": "svc-vcm",
+            "title": "Validating Communications",
+            "parts": [
+              {
+                "id": "svc-vcm_smt",
+                "name": "statement",
+                "prose": "Persistently validate the authenticity and integrity of communications between machine-based information resources using automation."
+              }
+            ]
+          },
+          {
+            "id": "svc-vri",
+            "title": "Validating Resource Integrity",
+            "parts": [
+              {
+                "id": "svc-vri_smt",
+                "name": "statement",
+                "prose": "Use cryptographic methods to validate the integrity of machine-based information resources."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

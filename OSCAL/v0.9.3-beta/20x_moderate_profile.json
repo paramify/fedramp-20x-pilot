@@ -1,0 +1,83 @@
+{
+  "profile": {
+    "uuid": "574bf3f2-c35f-59d5-afb2-d6f940ea9ea3",
+    "metadata": {
+      "title": "FedRAMP 20x Moderate Impact Profile",
+      "published": "2026-02-21T04:10:49.000000-04:00",
+      "last-modified": "2026-02-21T04:10:49.000000-04:00",
+      "version": "0.9.3-beta",
+      "oscal-version": "1.1.2"
+    },
+    "imports": [
+      {
+        "href": "#93901dc9-53e0-5f8f-9cbe-8c82c34c805a",
+        "include-controls": [
+          {
+            "with-ids": [
+              "afr-ads",
+              "afr-ccm",
+              "afr-fsi",
+              "afr-icp",
+              "afr-mas",
+              "afr-pva",
+              "afr-scg",
+              "afr-scn",
+              "afr-ucm",
+              "afr-vdr",
+              "ced-det",
+              "ced-rgt",
+              "ced-rrt",
+              "ced-rst",
+              "cmt-lmc",
+              "cmt-rmv",
+              "cmt-rvp",
+              "cmt-vtd",
+              "cna-dfp",
+              "cna-eis",
+              "cna-ibp",
+              "cna-mat",
+              "cna-ofa",
+              "cna-rnt",
+              "cna-rvp",
+              "cna-uln",
+              "iam-aam",
+              "iam-apm",
+              "iam-elp",
+              "iam-jit",
+              "iam-mfa",
+              "iam-snu",
+              "iam-sus",
+              "inr-aar",
+              "inr-rir",
+              "inr-rpi",
+              "mla-ala",
+              "mla-evc",
+              "mla-let",
+              "mla-osm",
+              "mla-rvl",
+              "piy-giv",
+              "piy-res",
+              "piy-ris",
+              "piy-rsd",
+              "piy-rvd",
+              "rpl-abo",
+              "rpl-arp",
+              "rpl-rro",
+              "rpl-trc",
+              "scr-mit",
+              "scr-mon",
+              "svc-acm",
+              "svc-asm",
+              "svc-eis",
+              "svc-prr",
+              "svc-rud",
+              "svc-snt",
+              "svc-vcm",
+              "svc-vri"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
