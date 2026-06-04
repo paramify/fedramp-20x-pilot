@@ -1,0 +1,68 @@
+{
+  "profile" : {
+    "uuid" : "e601f682-ac47-5f21-90d3-0ccd08cc7a54",
+    "metadata" : {
+      "title" : "FedRAMP Rev5 Consolidated Rules for 2026 - Unofficial OSCAL Profile",
+      "last-modified" : "2026-05-05T00:00:00Z",
+      "version" : "0.2.0",
+      "oscal-version" : "1.2.1",
+      "roles" : [ {
+        "id" : "creator",
+        "title" : "Unofficial OSCAL Profile Creator"
+      }, {
+        "id" : "publisher",
+        "title" : "Unofficial OSCAL Profile Publisher"
+      }, {
+        "id" : "contact",
+        "title" : "Project Contact"
+      } ],
+      "parties" : [ {
+        "uuid" : "5edbc8e7-891d-539b-af7a-eb443cf98a4a",
+        "type" : "organization",
+        "name" : "Palladium Innovations, LLC",
+        "email-addresses" : [ "oscal@go-palladium.com" ],
+        "addresses" : [ {
+          "addr-lines" : [ "341 Angela Lane" ],
+          "city" : "Mary Esther",
+          "state" : "FL",
+          "postal-code" : "32569"
+        } ]
+      } ],
+      "responsible-parties" : [ {
+        "role-id" : "creator",
+        "party-uuids" : [ "5edbc8e7-891d-539b-af7a-eb443cf98a4a" ]
+      }, {
+        "role-id" : "publisher",
+        "party-uuids" : [ "5edbc8e7-891d-539b-af7a-eb443cf98a4a" ]
+      }, {
+        "role-id" : "contact",
+        "party-uuids" : [ "5edbc8e7-891d-539b-af7a-eb443cf98a4a" ]
+      } ]
+    },
+    "imports" : [ {
+      "href" : "#e8a62d80-a8fe-5d24-b2c4-b00486e92724",
+      "include-controls" : [ {
+        "with-ids" : [ "AGU-AGC-AIP", "AGU-AGC-NAL", "AGU-AGC-GRC", "AGU-AGC-NAI", "AGU-AGC-NAR", "AGU-AGC-WKG", "AGU-AGC-LIA", "AGU-AGC-SIN", "AGU-USE-ABU", "AGU-USE-RCF", "AGU-USE-RSG", "AGU-USE-AFR", "AGU-USE-NFC", "AGU-USE-ROR", "AGU-USE-DSO", "AGU-USE-NPC", "AGU-USE-RIR", "AGU-SPN-MRC", "CCM-AGM-ROR", "CCM-AGM-NFA", "CCM-AGM-NAR", "CCM-AGM-CSC", "CCM-OCR-AVL", "CCM-OCR-NRD", "CCM-OCR-FBM", "CCM-OCR-AFS", "CCM-OCR-LSI", "CCM-OCR-SOR", "CCM-OCR-RPS", "CCM-QTR-MTG", "CCM-QTR-REG", "CCM-QTR-NRD", "CCM-QTR-NID", "CCM-QTR-SAR", "CCM-QTR-ACT", "CCM-QTR-RTR", "CCM-QTR-RTP", "CCM-QTR-SRR", "CCM-QTR-SCR", "CDS-CSO-PUB", "CDS-CSO-SVC", "CDS-CSO-PAR", "CDS-CSO-UTC", "CDS-CSO-CBF", "CDS-CSO-RIS", "CDS-CSO-HAD", "CDS-CSO-PSM", "CDS-CSO-RPS", "CDS-TRC-USH", "CDS-TRC-PAC", "CDS-TRC-AAI", "CDS-TRC-ACL", "CDS-TRC-HMR", "CDS-TRC-SSM", "CDS-UTC-PGD", "CDS-UTC-AAD", "CDS-UTC-AGA", "CDS-CSF-TCM", "CDS-CSF-SCD", "FRC-FRP-MCM", "FRC-FRP-ECR", "FRC-CSO-CDS", "FRC-CSO-CCM", "FRC-CSO-FSI", "FRC-CSO-ICP", "FRC-CSO-MAS", "FRC-CSO-SCG", "FRC-CSO-SCN", "FRC-CSO-UCM", "FRC-CSO-VDR", "FRC-CSO-IVV", "FRC-CSO-POP", "FRC-CSO-STE", "FRC-CSO-RAA", "FRC-IAS-VVP", "FRC-IAS-OUC", "FRC-IAS-PAD", "FRC-IAS-MME", "FRC-IAS-SUM", "FRC-IAS-OSA", "FRC-IAS-EPX", "FRC-IAS-SHA", "FRC-CLA-ASF", "FRC-CLA-EAM", "FRC-CLA-AFR", "FRC-CLA-IVV", "FRC-APP-MLF", "FRC-APP-AFC", "FRC-APP-FCP", "FRC-APP-FIA", "FRC-APS-ATO", "FRC-CSF-CDE", "FRC-CSF-RDY", "FRC-CLA-CAC", "FSI-FRP-VRE", "FSI-FRP-CDS", "FSI-FRP-UFS", "FSI-FRP-PNT", "FSI-FRP-RQA", "FSI-FRP-ERT", "FSI-FRP-COR", "FSI-FRP-RPM", "FSI-CSO-INB", "FSI-CSO-NOC", "FSI-CSO-TFG", "FSI-CSO-RCV", "FSI-CSO-CRA", "FSI-CSO-EMR", "FSI-CSO-IMA", "FSI-CSO-ACK", "ICP-FRP-ORV", "ICP-CSO-EFR", "ICP-CSO-DPR", "ICP-CSO-IIR", "ICP-CSO-OIR", "ICP-CSO-FIR", "ICP-CSO-EFI", "ICP-CSO-AIR", "MAS-CSO-IIR", "MAS-CSO-FLO", "MAS-CSO-TPR", "MAS-CSO-MDI", "MAS-CSO-SUP", "MKT-FRP-DSM", "MKT-FRP-MJS", "MKT-FRP-SOF", "MKT-CSO-AGU", "MKT-CSO-LRQ", "MKT-IAS-OFR", "MKT-IAS-WEB", "MKT-IAS-LRQ", "MKT-CAS-WEB", "MKT-CAS-LRQ", "MKT-CAS-RFR", "MKT-PRE-REQ", "MKT-PRE-DCP", "MKT-PRE-DLA", "REC-FRP-FOC", "REC-FRP-RAO", "REC-FRP-DRD", "REC-IAS-ACC", "REC-IAS-ADA", "REC-IAS-PSC", "REC-IAS-ANR", "REC-IAS-RAS", "REC-IAS-RAR", "REC-IAS-RQU", "REC-IAS-AFI", "REC-IAS-CFI", "REC-IAS-PST", "REC-IAS-CAP", "REC-IAS-INV", "REC-IAS-SEP", "SCG-CSO-RSC", "SCG-CSO-AUP", "SCG-CSO-PUB", "SCG-CSO-SDF", "SCG-ENH-CMP", "SCG-ENH-EXP", "SCG-ENH-API", "SCG-ENH-MRG", "SCG-ENH-VRH", "SCN-FRP-CAP", "SCN-CSO-EVA", "SCN-CSO-MAR", "SCN-CSO-INF", "SCN-CSO-HIS", "SCN-CSO-HRM", "SCN-CSO-ARI", "SCN-CSO-NOM", "SCN-CSO-EMG", "SCN-ADP-NTF", "SCN-RTR-NNR", "SCN-TRF-NIP", "SCN-TRF-NFP", "SCN-TRF-NAF", "SCN-TRF-NAV", "SCN-TRF-UPD", "SCN-TRF-TPR", "UCM-CSO-CMD", "UCM-CSO-UVM", "UCM-CSO-CAT", "VDR-FRP-ARP", "VDR-FRP-ADV", "VDR-CSO-DET", "VDR-CSO-RES", "VDR-CSO-FAV", "VDR-AGM-NFR", "VDR-AGM-RVR", "VDR-AGM-MAP", "VDR-AGM-DRE", "VDR-BST-DFR", "VDR-BST-ADT", "VDR-BST-DAC", "VDR-BST-MSP", "VDR-BST-AKE", "VDR-BST-SIR", "VDR-EVA-ELX", "VDR-EVA-EIR", "VDR-EVA-EPA", "VDR-EVA-GRV", "VDR-EVA-EFP", "VDR-EVA-EFA", "VDR-RPT-PER", "VDR-RPT-VDT", "VDR-RPT-AVI", "VDR-RPT-NID", "VDR-RPT-HLO", "VDR-RPT-RPD", "VDR-TFR-MHR", "VDR-TFR-MAV", "VDR-TFR-NMV", "VDR-TFR-KEV", "VDR-TFR-MRH", "VDR-TFR-PSD", "VDR-TFR-PDD", "VDR-TFR-PCD", "VDR-TFR-EVU", "VDR-TFR-PVR", "VDR-TFR-RMN", "VDR-TFR-IRI", "VDR-TFR-NRI", "VDR-TFR-MVF" ]
+      } ]
+    } ],
+    "merge" : {
+      "as-is" : true
+    },
+    "back-matter" : {
+      "resources" : [ {
+        "uuid" : "e8a62d80-a8fe-5d24-b2c4-b00486e92724",
+        "description" : "FedRAMP Consolidated Rules for 2026 - Unofficial OSCAL Catalog",
+        "rlinks" : [ {
+          "href" : "../../../catalog/xml/FedRAMP_CR26_catalog.xml",
+          "media-type" : "application/oscal.catalog+xml"
+        }, {
+          "href" : "../../../catalog/json/FedRAMP_CR26_catalog.json",
+          "media-type" : "application/oscal.catalog+json"
+        }, {
+          "href" : "../../../catalog/yaml/FedRAMP_CR26_catalog.yaml",
+          "media-type" : "application/oscal.catalog+yaml"
+        } ]
+      } ]
+    }
+  }
+}
